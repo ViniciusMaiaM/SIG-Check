@@ -23,9 +23,8 @@ char telaprinc(void){
   printf("|             0 - Sair                               |\n");
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
-  printf(" Escolha a opcao desejada: ");
+  printf("Escolha a opcao desejada: ");
   scanf("%c", &esc);
-  printf(" ____________________________________________________ \n");
   return esc;
 }
 
@@ -67,5 +66,8 @@ int main()
   case '0':
     printf("Fim do programa!\n");
     break;
+  
+  default:
+    printf("Por favor insira uma opcao valida.\n");
   }
 }
