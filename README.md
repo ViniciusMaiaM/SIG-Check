@@ -9,5 +9,7 @@ Repositório criado para o projeto desenvolvido durante a disciplina de programa
 O presente projeto tem como objetivo desenvolver um programa de computador que realize o cadastro e o acompanhamento de cheque pré-datados, auxiliando o controle financeiro de uma empresa.
 
 ### Membros
-- Thamiris Borges
-- Vinicius Maia 
+| Nome            | Perfil                                          |
+|-----------------|-------------------------------------------------|
+| Thamiris Borges |[Thami03](https://github.com/Thami03)            |
+| Vinicius Maia   |[ViniciusMaiaM](https://github.com/ViniciusMaiaM)|
