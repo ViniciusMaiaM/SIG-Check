@@ -148,7 +148,7 @@ char relatorio_check(void){
   return esc;
 }
 int main()
-{
+{ 
   char modulo; 
   char mod_check;
 
