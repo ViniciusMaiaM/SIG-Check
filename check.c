@@ -1,12 +1,22 @@
 #include <stdio.h>
-#include <unistd.h> 
+#include <unistd.h>
 #include <stdlib.h>
 
-char telaprinc(void);
-char tela_check(void);
+char tela_princ(void);
+void tela_check(void);
 void sobre(void);
+char relatorio_check(void);
+char cadastrar_check(void);
+char input(char);
 
-char telaprinc(void){
+char input(char n){
+  scanf("%c",&n);
+  getchar();
+  return n;
+}
+
+char tela_princ(void)
+{
   char esc;
   system("clear||cls");
   printf("\n");
@@ -27,11 +37,11 @@ char telaprinc(void){
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
-  scanf("%c", &esc);
-  return esc;
+  return input(esc);
 }
 
-void sobre(void){
+void sobre(void)
+{
   system("clear||cls");
   printf(" ____________________________________________________ \n");
   printf("|                                                    |\n");
@@ -54,9 +64,12 @@ void sobre(void){
   printf("|           - Thamiris Borges(Thami03)               |\n");
   printf("|           - Vinicius Maia(ViniciusMaiaM)           |\n");
   printf("|____________________________________________________|\n");
+  printf("Pressione alguma tecla para continuar!\n");
+  getchar();
 }
 
-char tela_check(void){
+void tela_check(void)
+{
   char esc;
   system("clear||cls");
   printf(" ____________________________________________________ \n");
@@ -76,34 +89,28 @@ char tela_check(void){
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
-  scanf("%c", &esc);
-  return esc;
+  esc = input(esc);
+  switch (esc)
+  {
+  case '1':
+    cadastrar_check();
+    break;
+
+  case '2':
+    relatorio_check();
+    break;
+
+  case '0':
+    tela_princ();
+    break;
+
+  default:
+    printf("Por favor insira uma opcao valida.\n");
+  }
 }
 
-char check(void){
-  char esc;
-  system("clear||cls");
-  printf(" ____________________________________________________ \n");
-  printf("|                                                    |\n");
-  printf("|    Universidade Federal do Rio Grande do Norte     |\n");
-  printf("|            Centro de Ensino Superior               |\n");
-  printf("|     Departamento de Computacao e Tecnologia        |\n");
-  printf("|         Disciplina DCT1106 -- Programacao          |\n");
-  printf("|                Projeto SIG-Check                   |\n");
-  printf("|____________________________________________________|\n");
-  printf("|                                                    |\n");
-  printf("|          - - - - Modulo Check - - - -              |\n");
-  printf("|                                                    |\n");
-  printf("|             1 - Cadastrar cheque                   |\n");
-  printf("|             2 - Relatorio de cheques recebidos     |\n");
-  printf("|             0 - Voltar                             |\n");
-  printf("|                                                    |\n");
-  printf("|____________________________________________________|\n");
-  printf("Escolha a opcao desejada: ");
-  scanf("%c", &esc);
-  return esc;
-}
-char cadastrar_check(void){
+char cadastrar_check(void)
+{
   char esc;
   system("clear||cls");
   printf(" ____________________________________________________ \n");
@@ -123,10 +130,10 @@ char cadastrar_check(void){
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
-  scanf("%c", &esc);
-  return esc;
+  return input(esc);
 }
-char relatorio_check(void){
+char relatorio_check(void)
+{
   char esc;
   system("clear||cls");
   printf(" ____________________________________________________ \n");
@@ -144,49 +151,30 @@ char relatorio_check(void){
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
-  scanf("%c", &esc);
-  return esc;
+  return input(esc);
 }
 int main()
-{ 
-  char modulo; 
-  char mod_check;
+{
+  char modulo;
 
+  do{
+    modulo = tela_princ();
+    switch (modulo)
+    {
+    case '1':
+      sobre();
+      break;
 
-  modulo = telaprinc();
-  switch (modulo){
-  case '1':
-    sobre();
-    break;
-    
-  case '2':
-	check();
-	break;
-	
-  case '0':
-    printf("Fim do programa!\n");
-    break;
-  
-  default:
-    printf("Por favor insira uma opcao valida.\n");
-  }
-  
-  mod_check = tela_check();
-  switch (mod_check){
-	case '1':
-    cadastrar_check();
-    break;
-    
-  case '2':
-	relatorio_check();
-	break;
-	
-  case '0':
-    telaprinc();
-    break;
+    case '2':
+      tela_check();
+      break;
 
     default:
-	  printf("Por favor insira uma opcao valida.\n");
- }
-  
+      printf("Por favor insira uma opcao valida.\n");
+      break;
+    }
+  } while (modulo != '0');
+
+  printf("\nFim do programa!");
+  return 0;
 }
