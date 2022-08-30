@@ -149,7 +149,7 @@ char relatorio_check(void){
 }
 int main()
 {
-  char modulo;
+  char modulo; 
   char mod_check;
 
 
