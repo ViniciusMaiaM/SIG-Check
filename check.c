@@ -5,18 +5,12 @@
 
 char tela_princ(void);
 void sobre(void);
-char input(char);
 
-char input(char n)
-{
-  scanf("%c", &n);
-  getchar();
-  return n;
-}
+
 
 char tela_princ(void)
 {
-  char esc;
+  char escolha;
   system("clear||cls");
   printf("\n");
   printf(" ____________________________________________________ \n");
@@ -37,7 +31,8 @@ char tela_princ(void)
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
-  return input(esc);
+  escolha = input(escolha);
+  return escolha;
 }
 
 void sobre(void)
@@ -83,17 +78,16 @@ int main()
       break;
 
     case '2':
-      printf("Em desenvolvimento!");
+      system("clear||cls");
+      printf("\nEm desenvolvimento!\n");
       break;
 
     case '3':
       sobre();
-      break;
 
     default:
       printf("Por favor insira uma opcao valida.\n");
       sleep(1.2);
-      break;
     }
   }
 
