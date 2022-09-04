@@ -10,11 +10,11 @@ char relatorio_check();
 
 void valida_user()
 {
-  char esc;
-  esc = tela_usuario();
-  while (esc != '0')
+  char escolha;
+  escolha = tela_usuario();
+  while (escolha != '0')
   {
-    switch (esc)
+    switch (escolha)
     {
     case '1':
       cadastrar_check();
@@ -28,13 +28,12 @@ void valida_user()
       printf("Por favor insira uma opcao valida.\n");
     }
   }
-  return 0;
 }
 
 char tela_usuario(void)
 {
   // Requisitar login ou criação de conta
-  char esc;
+  char escolha;
   system("clear||cls");
   printf(" ____________________________________________________ \n");
   printf("|                                                    |\n");
@@ -53,13 +52,13 @@ char tela_usuario(void)
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
-  esc = input(esc);
-  return esc;
+  escolha = input(escolha);
+  return escolha;
 }
 
 char cadastrar_check(void)
 {
-  char esc;
+  char escolha;
   system("clear||cls");
   printf(" ____________________________________________________ \n");
   printf("|                                                    |\n");
@@ -78,11 +77,9 @@ char cadastrar_check(void)
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
-  esc = input(esc);
-  while (esc != '0')
-  {
-    switch (esc)
-    {
+  escolha = input(escolha);
+  while (escolha != '0'){
+    switch (escolha){
     default:
       printf("Em desenvolvimento!");
       break;
@@ -92,7 +89,7 @@ char cadastrar_check(void)
 
 char relatorio_check(void)
 {
-  char esc;
+  char escolha;
   system("clear||cls");
   printf(" ____________________________________________________ \n");
   printf("|                                                    |\n");
@@ -109,5 +106,13 @@ char relatorio_check(void)
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
-  return input(esc);
+  escolha = input(escolha);
+  return escolha;
+}
+
+char input(char n)
+{
+  scanf("%c", &n);
+  getchar();
+  return n;
 }
