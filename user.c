@@ -49,7 +49,6 @@ void tela_usuario(void) {
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("\n");
-  printf("Pressione enter para continuar!\n");
   escolha = input(escolha);
   valida_user(escolha);
 } 
