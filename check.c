@@ -26,6 +26,8 @@ int main(void) {
       break;
   
     default:
+      printf("Em desenvolvimento!");
+      sleep(1.5);
       break;
     }
   }
@@ -33,6 +35,7 @@ int main(void) {
 }
 
 char tela_principal(void) {
+  char escolha;
   system("clear||cls");
   printf("\n");
   printf(" ____________________________________________________ \n");
@@ -54,8 +57,8 @@ char tela_principal(void) {
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("\n");
-  printf("Pressione enter para continuar!\n");
-  getchar();
+  escolha = input(escolha);
+  return escolha;
 }
 
 void tela_sobre(void) {
