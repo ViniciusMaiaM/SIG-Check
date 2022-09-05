@@ -3,36 +3,30 @@
 #include <stdlib.h>
 #include "user.h"
 
-char tela_usuario(void);
-char tela_usuario(void);
-char cadastrar_check();
-char relatorio_check();
-
-void valida_user()
+void valida_user(char escolha) //validação/escolha da tela de usuário
 {
-  char escolha;
-  escolha = tela_usuario();
   while (escolha != '0')
   {
-    switch (escolha)
-    {
-    case '1':
+
+    if (escolha =  '1'){
       cadastrar_check();
       break;
+      }
 
-    case '2':
+    else if (escolha = '2'){
       relatorio_check();
       break;
+      }
 
-    default:
+    else{
       printf("Por favor insira uma opcao valida.\n");
+      break;
     }
   }
 }
 
-char tela_usuario(void)
+void tela_usuario(void) //função de tela do usuário
 {
-  // Requisitar login ou criação de conta
   char escolha;
   system("clear||cls");
   printf(" ____________________________________________________ \n");
@@ -53,10 +47,10 @@ char tela_usuario(void)
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
   escolha = input(escolha);
-  return escolha;
+  valida_user(escolha);
 }
 
-char cadastrar_check(void)
+void cadastrar_check(void) //função em desenvolvimento
 {
   char escolha;
   system("clear||cls");
@@ -78,16 +72,11 @@ char cadastrar_check(void)
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
   escolha = input(escolha);
-  while (escolha != '0'){
-    switch (escolha){
-    default:
-      printf("Em desenvolvimento!");
-      break;
-    }
-  }
+  printf("Em desenvolvimento, pressione enter para voltar!\n");
+  getchar();
 }
 
-char relatorio_check(void)
+void relatorio_check(void) //função em desenvolvimento
 {
   char escolha;
   system("clear||cls");
@@ -107,10 +96,11 @@ char relatorio_check(void)
   printf("|____________________________________________________|\n");
   printf("Escolha a opcao desejada: ");
   escolha = input(escolha);
-  return escolha;
+  printf("Em desenvolvimento, pressione enter para voltar!\n");
+  getchar();
 }
 
-char input(char n)
+char input(char n) //função de input
 {
   scanf("%c", &n);
   getchar();
