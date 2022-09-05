@@ -8,7 +8,7 @@ void sobre(void);
 
 
 
-char tela_princ(void)
+char tela_princ(void) //função da tela inicial do programa
 {
   char escolha;
   system("clear||cls");
@@ -35,7 +35,7 @@ char tela_princ(void)
   return escolha;
 }
 
-void sobre(void)
+void sobre(void) //funçao com dados dos membros colaboradores
 {
   system("clear||cls");
   printf(" ____________________________________________________ \n");
@@ -64,12 +64,11 @@ void sobre(void)
 }
 
 
-int main()
+int main() 
 {
   char modulo;
 
-  while (modulo != '0')
-  {
+  while (modulo != '0'){
     modulo = tela_princ();
     switch (modulo)
     {
@@ -78,19 +77,21 @@ int main()
       break;
 
     case '2':
-      system("clear||cls");
       printf("\nEm desenvolvimento!\n");
       break;
 
     case '3':
       sobre();
 
+    case '0':
+      break;
+      
     default:
+      system("clear||cls");
       printf("Por favor insira uma opcao valida.\n");
       sleep(1.2);
     }
   }
-
-  printf("\nFim do programa!");
+  printf("\nFim do programa!\n");
   return 0;
 }
