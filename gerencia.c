@@ -1,4 +1,7 @@
 #include <stdio.h>
+/*
+Modulo ainda em desenvolvimento
+
 void tela_gerencia(void) {
     system("clear||cls");
     printf("\n");
@@ -178,3 +181,4 @@ void cadastrar_cheque(void) {
     printf("Pressione enter para continuar!\n");
     getchar();
 }
+*/
