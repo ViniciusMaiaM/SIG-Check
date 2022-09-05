@@ -9,15 +9,19 @@ void valida_user(char escolha) //validação/escolha da tela de usuário
   {
   
   if (escolha =  '1'){
-    cadastrar_check();
+    cadastrar_usuario();
     break;
   }
 
   else if (escolha = '2'){
-    relatorio_check();
+    pesquisar_usuario();
     break;
   }
 
+  else if(escolha = '3'){
+    excluir_usuario();
+    break;
+  }
   else{
     printf("Por favor insira uma opcao valida.\n");
     break;
@@ -42,8 +46,7 @@ void tela_usuario(void) {
   printf("|                                                    |\n");
   printf("|             1 - Cadastrar usuario                  |\n");
   printf("|             2 - Pesquisar usuario                  |\n");
-  printf("|             2 - Atualizar usuario                  |\n");
-  printf("|             2 - Excluir usuario                    |\n");
+  printf("|             3 - Excluir usuario                    |\n");
   printf("|             0 - Voltar                             |\n");
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
@@ -81,7 +84,7 @@ void cadastrar_usuario(void) {
 }
 
 
-void tela_pesquisar_usuario(void) {
+void pesquisar_usuario(void) {
   system("clear||cls");
   printf("\n");
   printf(" ____________________________________________________ \n");
@@ -106,7 +109,7 @@ void tela_pesquisar_usuario(void) {
 }
 
 
-void tela_excluir_usuario(void) {
+void excluir_usuario(void) {
   system("clear||cls");
   printf("\n");
   printf(" ____________________________________________________ \n");
@@ -134,10 +137,11 @@ char input(char n) //função de input
 {
   scanf("%c", &n);
   getchar();
-  return n;
+  return n; 
 }
 
-void tela_cadastrar_cheque(void) {
+/*
+void tela_alterar_usuario(void) {
   system("clear||cls");
   printf("\n");
   printf(" ____________________________________________________ \n");
@@ -149,15 +153,10 @@ void tela_cadastrar_cheque(void) {
   printf("|                Projeto SIG-Check                   |\n");
   printf("|____________________________________________________|\n");
   printf("|                                                    |\n");
-  printf("|          - - - - Cadastrar cheque  - - - -         |\n");
+  printf("|          - - - - Alterar usuario - - - -           |\n");
   printf("|                                                    |\n");
-  printf("|          Tipo (A vista || A prazo):                |\n");
-  printf("|          Numero do cheque:                         |\n");
-  printf("|          Codigo do banco:                          |\n");
-  printf("|          ID do usuario:                            |\n");
-  printf("|          Data do vendimento(dd/mm/aaaa):           |\n");
-  printf("|          Valor:                                    |\n");
-  printf("|          Quantidade de parcelas                    |\n");
+  printf("|           Informe o ID (apenas numeros):           |\n");
+  printf("|                                                    |\n");
   printf("|                                                    |\n");
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
@@ -165,52 +164,7 @@ void tela_cadastrar_cheque(void) {
   printf("Pressione enter para continuar!\n");
     getchar();
 }
+*/
 
-void tela_pagar_cheque(void) {
-  system("clear||cls");
-  printf("\n");
-  printf(" ____________________________________________________ \n");
-  printf("|                                                    |\n");
-  printf("|    Universidade Federal do Rio Grande do Norte     |\n");
-  printf("|            Centro de Ensino Superior               |\n");
-  printf("|     Departamento de Computacao e Tecnologia        |\n");
-  printf("|         Disciplina DCT1106 -- Programacao          |\n");
-  printf("|                Projeto SIG-Check                   |\n");
-  printf("|____________________________________________________|\n");
-  printf("|                                                    |\n");
-  printf("|          - - - - Pagar cheque - - - -              |\n");
-  printf("|                                                    |\n");
-  printf("|          ID do usuario:                            |\n");
-  printf("|          Codigo do banco:                          |\n");
-  printf("|          Numero do cheque:                         |\n");
-  printf("|          Valor do cheque:                          |\n");
-  printf("|          Data do pagamento:                        |\n");
-  printf("|          Valor a pagar:                            |\n");
-  printf("|                                                    |\n");
-  printf("|____________________________________________________|\n");
-  printf("\n");
-  printf("Pressione enter para continuar!\n");
-  getchar();
-}
 
-void tela_lucros(void) {
-  system("clear||cls");
-  printf("\n");
-  printf(" ____________________________________________________ \n");
-  printf("|                                                    |\n");
-  printf("|    Universidade Federal do Rio Grande do Norte     |\n");
-  printf("|            Centro de Ensino Superior               |\n");
-  printf("|     Departamento de Computacao e Tecnologia        |\n");
-  printf("|         Disciplina DCT1106 -- Programacao          |\n");
-  printf("|                Projeto SIG-Check                   |\n");
-  printf("|____________________________________________________|\n");
-  printf("|                                                    |\n");
-  printf("|         - - - - Caixa lucros - - - -               |\n");
-  printf("|                                                    |\n");
-  printf("|              Saldo:                                |\n");
-  printf("|                                                    |\n");
-  printf("|____________________________________________________|\n");
-  printf("\n");
-  printf("Pressione enter para continuar!\n");
-  getchar();
-}
+
