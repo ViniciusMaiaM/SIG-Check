@@ -27,7 +27,7 @@ int main(void) {
   
     default:
       printf("Em desenvolvimento!");
-      sleep(1.5);
+      sleep(0.5);
       break;
     }
   }
