@@ -8,11 +8,10 @@
 char tela_principal(void);
 void tela_sobre(void);
 
-
 /////
 // Programa principal
 int main(void) {
-
+  
   char modulo;
   while (modulo != '0'){
     modulo = tela_principal();
@@ -25,19 +24,18 @@ int main(void) {
     case '4':
       tela_sobre();
       break;
-
+  
     default:
+      printf("Em desenvolvimento!");
+      sleep(1);
       break;
     }
   }
   return 0;
 }
 
-
-/////
-// Funções
-
 char tela_principal(void) {
+  char escolha;
   system("clear||cls");
   printf("\n");
   printf(" ____________________________________________________ \n");
@@ -59,10 +57,9 @@ char tela_principal(void) {
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("\n");
-  printf("Pressione enter para continuar!\n");
-  getchar();
+  escolha = input(escolha);
+  return escolha;
 }
-
 
 void tela_sobre(void) {
   system("clear||cls");
