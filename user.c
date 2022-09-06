@@ -52,8 +52,7 @@ void tela_usuario(void) {
   printf("|____________________________________________________|\n");
   printf("\n");
   printf("Pressione enter para continuar!\n");
-
-  escolha = input(escolha);
+  escolha = input();
   valida_user(escolha);
 } 
 
@@ -134,8 +133,10 @@ void excluir_usuario(void) {
   getchar();
 }
 
-char input(char n) //função de input
+char input(void) //função de input
 {
+  char n;
+  printf("Insira sua escolha: ");
   scanf("%c", &n);
   getchar();
   return n; 

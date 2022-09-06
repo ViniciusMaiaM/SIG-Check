@@ -57,7 +57,7 @@ char tela_principal(void) {
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
   printf("\n");
-  escolha = input(escolha);
+  escolha = input();
   return escolha;
 }
 
