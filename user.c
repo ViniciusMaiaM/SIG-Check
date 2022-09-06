@@ -52,6 +52,7 @@ void tela_usuario(void) {
   printf("|____________________________________________________|\n");
   printf("\n");
   printf("Pressione enter para continuar!\n");
+
   escolha = input(escolha);
   valida_user(escolha);
 } 
@@ -141,6 +142,8 @@ char input(char n) //função de input
 }
 
 /*
+Ainda em desenvolvimento
+
 void tela_alterar_usuario(void) {
   system("clear||cls");
   printf("\n");
