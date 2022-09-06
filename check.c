@@ -26,6 +26,7 @@ int main(void) {
       break;
   
     default:
+      printf("teste");
       printf("Em desenvolvimento!");
       sleep(1);
       break;
