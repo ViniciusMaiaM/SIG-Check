@@ -7,7 +7,7 @@
 // Assinatura das funções
 char tela_principal(void);
 void tela_sobre(void);
-
+void sleep();
 /////
 // Programa principal
 int main(void) {

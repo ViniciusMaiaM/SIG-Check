@@ -8,25 +8,26 @@ void valida_user(char escolha) //validação/escolha da tela de usuário
   while (escolha != '0')
   {
   
-  if (escolha =  '1'){
-    cadastrar_usuario();
-    break;
-  }
+    switch (escolha)
+    {
 
-  else if (escolha = '2'){
-    pesquisar_usuario();
-    break;
+      case '1':
+        cadastrar_usuario();
+        break;
+      
+      case '2':
+        pesquisar_usuario();
+        break;
+      
+      case '3': 
+        excluir_usuario();
+        break;
+      
+      default:
+        printf("Por favor insira uma opcao valida.\n");
+        break;
+    }
   }
-
-  else if(escolha = '3'){
-    excluir_usuario();
-    break;
-  }
-  else{
-    printf("Por favor insira uma opcao valida.\n");
-    break;
-  }
-}
 }
 
 void tela_usuario(void) {
