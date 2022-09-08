@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdlib.h>
-#include "user.h"
+#include "cheque.h"
 
 /////
 // Assinatura das funções

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "user.h"
+#include "cheque.h"
 
 void valida_user(char escolha) //validação/escolha da tela de usuário
 { 
