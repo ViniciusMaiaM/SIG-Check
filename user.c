@@ -4,30 +4,26 @@
 #include "user.h"
 
 void valida_user(char escolha) //validação/escolha da tela de usuário
-{
-  //while (escolha != '0')
-  //{
-  
-    switch (escolha)
-    {
+{ 
+  switch (escolha)
+  {
 
-      case '1':
-        cadastrar_cheque();
-        break;
+    case '1':
+      cadastrar_cheque();
+      break;
       
-      case '2':
-        pesquisar_usuario();
-        break;
+    case '2':
+      pesquisar_usuario();
+      break;
       
-      case '3': 
-        excluir_usuario();
-        break;
+    case '3': 
+      excluir_usuario();
+      break;
       
-      default:
-        printf("Por favor insira uma opcao valida.\n");
-        break;
-    }
-  //}
+    default:
+      printf("Por favor insira uma opcao valida.\n");
+      break;
+  }
 }
 
 void tela_cliente(void) {
@@ -72,16 +68,16 @@ void cadastrar_cheque(void) {
   printf("|          - - - - Cadastrar usuario - - - -         |\n");
   printf("|                                                    |\n");
   printf("|          ID: ");
-  scanf("%[A-Z a-z.,0-9]|",id);
+  scanf("%[A-Z a-z.,0-9]",id);
   getchar();
   printf("|          CPF: ");
-  scanf("%[0-9]|",id);
+  scanf("%[0-9]",id);
   getchar();
   printf("|          Nome completo: ");
-  scanf("%[A-Z a-z]|",id);
+  scanf("%[A-Z a-z]",id);
   getchar();
   printf("|          Celular (apenas numeros): ");
-  scanf("%[0-9]|",id);
+  scanf("%[0-9]",id);
   getchar();
   printf("|                                                    |\n");
   printf("|                                                    |\n");
