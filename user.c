@@ -13,11 +13,11 @@ void valida_user(char escolha) //validação/escolha da tela de usuário
       break;
       
     case '2':
-      pesquisar_usuario();
+      pesquisar_cheque();
       break;
       
     case '3': 
-      excluir_usuario();
+      excluir_cheque();
       break;
       
     default:
@@ -88,7 +88,7 @@ void cadastrar_cheque(void) {
 }
 
 
-void pesquisar_usuario(void) {
+void pesquisar_cheque(void) {
   system("clear||cls");
   char id;
   printf("\n");
@@ -101,7 +101,7 @@ void pesquisar_usuario(void) {
   printf("|                Projeto SIG-Check                   |\n");
   printf("|____________________________________________________|\n");
   printf("|                                                    |\n");
-  printf("|          - - - - Pesquisar usuario - - - -         |\n");
+  printf("|          - - - - Pesquisar cheque - - - -         |\n");
   printf("|                                                    |\n");
   printf("|           Informe o ID (apenas numeros): ");
   scanf("%[A-Z a-z.,0-9]",id);
@@ -115,7 +115,7 @@ void pesquisar_usuario(void) {
 }
 
 
-void excluir_usuario(void) {
+void excluir_cheque(void) {
   system("clear||cls");
   char id;
   printf("\n");
@@ -128,7 +128,7 @@ void excluir_usuario(void) {
   printf("|                Projeto SIG-Check                   |\n");
   printf("|____________________________________________________|\n");
   printf("|                                                    |\n");
-  printf("|          - - - - Excluir usuario - - - -           |\n");
+  printf("|          - - - - Excluir cheque - - - -            |\n");
   printf("|                                                    |\n");
   printf("|           Informe o ID (apenas numeros): ");
   scanf("%[A-Z a-z.,0-9]",id);
