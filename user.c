@@ -12,7 +12,7 @@ void valida_user(char escolha) //validação/escolha da tela de usuário
     {
 
       case '1':
-        cadastrar_usuario();
+        cadastrar_cheque();
         break;
       
       case '2':
@@ -30,7 +30,7 @@ void valida_user(char escolha) //validação/escolha da tela de usuário
   }
 }
 
-void tela_usuario(void) {
+void tela_cliente(void) {
   char escolha;
   system("clear||cls");
   printf("\n");
@@ -43,11 +43,11 @@ void tela_usuario(void) {
   printf("|                Projeto SIG-Check                   |\n");
   printf("|____________________________________________________|\n");
   printf("|                                                    |\n");
-  printf("|             - - - - Usuario - - - -                |\n");
+  printf("|             - - - - Cheques - - - -                |\n");
   printf("|                                                    |\n");
-  printf("|             1 - Cadastrar usuario                  |\n");
-  printf("|             2 - Pesquisar usuario                  |\n");
-  printf("|             3 - Excluir usuario                    |\n");
+  printf("|             1 - Cadastrar cheque                   |\n");
+  printf("|             2 - Pesquisar cheque                   |\n");
+  printf("|             3 - Excluir cheque                     |\n");
   printf("|             0 - Voltar                             |\n");
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
@@ -57,7 +57,7 @@ void tela_usuario(void) {
   valida_user(escolha);
 } 
 
-void cadastrar_usuario(void) {
+void cadastrar_cheque(void) {
   system("clear||cls");
   printf("\n");
   printf(" ____________________________________________________ \n");

@@ -18,7 +18,7 @@ int main(void) {
     switch (modulo)
     {
     case '1':
-      tela_usuario();
+      tela_cliente();
       break;
     
     case '4':
@@ -26,6 +26,7 @@ int main(void) {
       break;
   
     default:
+      printf("teste");
       printf("Em desenvolvimento!");
       sleep(1);
       break;
@@ -49,9 +50,9 @@ char tela_principal(void) {
   printf("|                                                    |\n");
   printf("|             - - - - SIG-Check - - - -              |\n");
   printf("|                                                    |\n");
-  printf("|             1 - Modulo Usuario                     |\n");
-  printf("|             2 - Modulo Gerencia                    |\n");
-  printf("|             3 - Cadastrar cheque                   |\n");
+  printf("|             1 - Modulo Cliente                     |\n");
+  printf("|             2 - Modulo Movimentação                |\n");
+  printf("|             3 - Cadastrar Lucro                    |\n");
   printf("|             4 - Sobre o sistema                    |\n");
   printf("|             0 - Sair                               |\n");
   printf("|                                                    |\n");
