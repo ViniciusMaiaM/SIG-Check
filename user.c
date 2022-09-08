@@ -90,6 +90,7 @@ void cadastrar_cheque(void) {
 
 void pesquisar_usuario(void) {
   system("clear||cls");
+  char id;
   printf("\n");
   printf(" ____________________________________________________ \n");
   printf("|                                                    |\n");
@@ -102,7 +103,8 @@ void pesquisar_usuario(void) {
   printf("|                                                    |\n");
   printf("|          - - - - Pesquisar usuario - - - -         |\n");
   printf("|                                                    |\n");
-  printf("|           Informe o ID (apenas numeros):           |\n");
+  printf("|           Informe o ID (apenas numeros): ");
+  scanf("%[A-Z a-z.,0-9]",id);
   printf("|                                                    |\n");
   printf("|                                                    |\n");
   printf("|                                                    |\n");
@@ -115,6 +117,7 @@ void pesquisar_usuario(void) {
 
 void excluir_usuario(void) {
   system("clear||cls");
+  char id;
   printf("\n");
   printf(" ____________________________________________________ \n");
   printf("|                                                    |\n");
@@ -127,7 +130,8 @@ void excluir_usuario(void) {
   printf("|                                                    |\n");
   printf("|          - - - - Excluir usuario - - - -           |\n");
   printf("|                                                    |\n");
-  printf("|           Informe o ID (apenas numeros):           |\n");
+  printf("|           Informe o ID (apenas numeros): ");
+  scanf("%[A-Z a-z.,0-9]",id);
   printf("|                                                    |\n");
   printf("|                                                    |\n");
   printf("|                                                    |\n");
