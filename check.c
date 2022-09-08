@@ -12,24 +12,23 @@ void sleep();
 // Programa principal
 int main(void) {
   
-  char modulo;
-  while (modulo != '0'){
-    modulo = tela_principal();
-    switch (modulo)
-    {
-    case '1':
-      tela_cliente();
-      break;
+  char modulo = ' ';
+  while (modulo != '0') {
+    modulo = tela_principal(); 
+    switch (modulo) {
+      case '1':
+        tela_cliente();
+        break;
+      
+      case '4':
+        tela_sobre();
+        break;
     
-    case '4':
-      tela_sobre();
-      break;
-  
-    default:
-      printf("teste");
-      printf("Em desenvolvimento!");
-      sleep(1);
-      break;
+      default:
+        printf("teste");
+        printf("Em desenvolvimento!");
+        sleep(1);
+        break;
     }
   }
   return 0;

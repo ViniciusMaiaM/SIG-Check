@@ -5,8 +5,8 @@
 
 void valida_user(char escolha) //validação/escolha da tela de usuário
 {
-  while (escolha != '0')
-  {
+  //while (escolha != '0')
+  //{
   
     switch (escolha)
     {
@@ -27,7 +27,7 @@ void valida_user(char escolha) //validação/escolha da tela de usuário
         printf("Por favor insira uma opcao valida.\n");
         break;
     }
-  }
+  //}
 }
 
 void tela_cliente(void) {
@@ -58,8 +58,8 @@ void tela_cliente(void) {
 } 
 
 void cadastrar_cheque(void) {
+  char id[16];
   system("clear||cls");
-  printf("\n");
   printf(" ____________________________________________________ \n");
   printf("|                                                    |\n");
   printf("|    Universidade Federal do Rio Grande do Norte     |\n");
@@ -71,16 +71,23 @@ void cadastrar_cheque(void) {
   printf("|                                                    |\n");
   printf("|          - - - - Cadastrar usuario - - - -         |\n");
   printf("|                                                    |\n");
-  printf("|          ID:                                       |\n");
-  printf("|          CPF:                                      |\n");
-  printf("|          Nome completo:                            |\n");
-  printf("|          Celular (apenas numeros):                 |\n");
+  printf("|          ID: ");
+  scanf("%[A-Z a-z.,0-9]|",id);
+  getchar();
+  printf("|          CPF: ");
+  scanf("%[0-9]|",id);
+  getchar();
+  printf("|          Nome completo: ");
+  scanf("%[A-Z a-z]|",id);
+  getchar();
+  printf("|          Celular (apenas numeros): ");
+  scanf("%[0-9]|",id);
+  getchar();
   printf("|                                                    |\n");
   printf("|                                                    |\n");
   printf("|                                                    |\n");
   printf("|____________________________________________________|\n");
-  printf("\n");
-  printf("Pressione enter para continuar!\n");
+  printf("\nPressione enter para continuar!\n");
   getchar();
 }
 
