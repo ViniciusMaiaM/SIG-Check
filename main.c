@@ -19,6 +19,10 @@ int main(void) {
       case '1':
         tela_cliente();
         break;
+/*
+      case '2':
+        movimentacao;
+        break;*/  
       
       case '4':
         tela_sobre();

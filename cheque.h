@@ -1,6 +1,6 @@
 void tela_cliente(void);
-void cadastrar_cheque(void);
+void cadastrar_usuario(void);
 char input(void);
 void valida_user(char escolha);
-void pesquisar_cheque(void);
-void excluir_cheque(void);
+void pesquisar_usuario(void);
+void excluir_usuario(void);
