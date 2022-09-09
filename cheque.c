@@ -9,15 +9,15 @@ void valida_user(char escolha) //validação/escolha da tela de usuário
   {
 
     case '1':
-      cadastrar_cheque();
+      cadastrar_usuario();
       break;
       
     case '2':
-      pesquisar_cheque();
+      pesquisar_usuario();
       break;
       
     case '3': 
-      excluir_cheque();
+      excluir_usuario();
       break;
       
     default:
@@ -93,7 +93,7 @@ void cadastrar_usuario(void) {
 
 void pesquisar_usuario(void) {
   system("clear||cls");
-  char id;
+  char id[16];
   printf("\n");
   printf(" ____________________________________________________ \n");
   printf("|                                                    |\n");
@@ -120,7 +120,7 @@ void pesquisar_usuario(void) {
 
 void excluir_usuario(void) {
   system("clear||cls");
-  char id;
+  char id[16];
   printf("\n");
   printf(" ____________________________________________________ \n");
   printf("|                                                    |\n");
