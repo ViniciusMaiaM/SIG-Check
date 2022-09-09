@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdlib.h>
 #include "cheque.h"
+#include "movimentacao.h"
 
 /////
 // Assinatura das funções
@@ -19,10 +19,10 @@ int main(void) {
       case '1':
         tela_cliente();
         break;
-/*
+
       case '2':
-        movimentacao;
-        break;*/  
+        tela_gerencia();
+        break;  
       
       case '4':
         tela_sobre();
