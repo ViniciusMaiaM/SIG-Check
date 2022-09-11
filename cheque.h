@@ -1,7 +1,5 @@
 void tela_cliente(void);
-void cadastrar_cheque(void);
-void cadastrar_check(void);
-void relatorio_check(void);
+void cadastrar_usuario(void);
 char input(void);
 void valida_user(char escolha);
 void pesquisar_usuario(void);

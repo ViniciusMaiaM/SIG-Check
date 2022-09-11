@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdlib.h>
-#include "user.h"
+#include "cheque.h"
+#include "movimentacao.h"
 
 /////
 // Assinatura das funções
@@ -12,24 +12,26 @@ void sleep();
 // Programa principal
 int main(void) {
   
-  char modulo;
-  while (modulo != '0'){
-    modulo = tela_principal();
-    switch (modulo)
-    {
-    case '1':
-      tela_cliente();
-      break;
+  char modulo = ' ';
+  while (modulo != '0') {
+    modulo = tela_principal(); 
+    switch (modulo) {
+      case '1':
+        tela_cliente();
+        break;
+
+      case '2':
+        tela_gerencia();
+        break;  
+      
+      case '4':
+        tela_sobre();
+        break;
     
-    case '4':
-      tela_sobre();
-      break;
-  
-    default:
-      printf("teste");
-      printf("Em desenvolvimento!");
-      sleep(1);
-      break;
+      default:
+        printf("\nEm desenvolvimento!\n");
+        sleep(1);
+        break;
     }
   }
   return 0;
