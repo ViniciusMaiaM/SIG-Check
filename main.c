@@ -29,8 +29,7 @@ int main(void) {
         break;
     
       default:
-        printf("teste");
-        printf("Em desenvolvimento!");
+        printf("\nEm desenvolvimento!\n");
         sleep(1);
         break;
     }
