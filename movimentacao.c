@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "movimentacao.h"
     
-void tela_gerencia(void) {
+void tela_gerencia(void) { //Ainda vamos criar uma indicacao de caminnhos e validacoes
     system("clear||cls");
     char tipo[20];
     int num_cheque;
@@ -28,16 +28,22 @@ void tela_gerencia(void) {
     scanf("%[A-Z a-z]",tipo);
     printf("|          Numero do cheque: ");
     scanf("%d",&num_cheque);
+    getchar();
     printf("|          Codigo do banco: ");
     scanf("%[0-9]",cod_banco);
+    getchar();
     printf("|          ID do usuario: ");
     scanf("%[A-Z a-z., 0-9]",id);
+    getchar();
     printf("|          Data do vendimento(dd/mm/aaaa): ");
     scanf("%[0-9 /]",data);
+    getchar();
     printf("|          Valor Pago: ");
     scanf("%d",&valor_pago);
+    getchar();
     printf("|          Valor Depositado: ");
     scanf("%d",&valor_depositado);
+    getchar();
     printf("|                                                    |\n");
     printf("|                                                    |\n");
     printf("|____________________________________________________|\n");
