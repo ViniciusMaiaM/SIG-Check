@@ -5,13 +5,14 @@
 
 /////
 // Assinatura das funções
+/////
 char tela_principal(void);
 void tela_sobre(void);
 void sleep();
-/////
+///// 
 // Programa principal
+/////
 int main(void) {
-  
   char modulo = ' ';
   while (modulo != '0') {
     modulo = tela_principal(); 
@@ -64,7 +65,7 @@ char tela_principal(void) {
   return escolha;
 }
 
-void tela_sobre(void) {
+void tela_sobre(void) { 
   system("clear||cls");
   printf(" ____________________________________________________ \n");
   printf("|                                                    |\n");

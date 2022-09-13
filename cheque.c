@@ -7,7 +7,6 @@ void valida_user(char escolha) //validação/escolha da tela de usuário
 { 
   switch (escolha)
   {
-
     case '1':
       cadastrar_usuario();
       break;
@@ -52,7 +51,7 @@ void tela_cliente(void) {
   valida_user(escolha);
 } 
 
-void cadastrar_usuario(void) {
+void cadastrar_usuario(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
   char id[16];
   char cpf[16];
   char nome[30];
@@ -90,7 +89,7 @@ void cadastrar_usuario(void) {
 }
 
 
-void pesquisar_usuario(void) {
+void pesquisar_usuario(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
   system("clear||cls");
   char id[16];
   printf("\n");
@@ -117,7 +116,7 @@ void pesquisar_usuario(void) {
 }
 
 
-void excluir_usuario(void) {
+void excluir_usuario(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
   system("clear||cls");
   char id[16];
   printf("\n");
