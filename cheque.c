@@ -30,22 +30,22 @@ void tela_cliente(void) {
   system("clear||cls");
   printf("\n");
   printf(" ____________________________________________________ \n");
-  printf("|                                                    |\n");
-  printf("|    Universidade Federal do Rio Grande do Norte     |\n");
-  printf("|            Centro de Ensino Superior               |\n");
-  printf("|     Departamento de Computacao e Tecnologia        |\n");
-  printf("|         Disciplina DCT1106 -- Programacao          |\n");
-  printf("|                Projeto SIG-Check                   |\n");
-  printf("|____________________________________________________|\n");
-  printf("|                                                    |\n");
-  printf("|             - - - - Usuario - - - -                |\n");
-  printf("|                                                    |\n");
-  printf("|             1 - Cadastrar usuario                  |\n");
-  printf("|             2 - Pesquisar usuario                  |\n");
-  printf("|             3 - Excluir usuario                    |\n");
-  printf("|             0 - Voltar                             |\n");
-  printf("|                                                    |\n");
-  printf("|____________________________________________________|\n");
+  printf("                                                    \n");
+  printf("    Universidade Federal do Rio Grande do Norte     \n");
+  printf("            Centro de Ensino Superior               \n");
+  printf("     Departamento de Computacao e Tecnologia        \n");
+  printf("         Disciplina DCT1106 -- Programacao          \n");
+  printf("                Projeto SIG-Check                   \n");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("             - - - - Usuario - - - -                \n");
+  printf("                                                    \n");
+  printf("             1 - Cadastrar usuario                  \n");
+  printf("             2 - Pesquisar usuario                  \n");
+  printf("             3 - Excluir usuario                    \n");
+  printf("             0 - Voltar                             \n");
+  printf("                                                    \n");
+  printf("____________________________________________________\n");
   printf("\n");
   escolha = input();
   valida_user(escolha);
@@ -58,32 +58,36 @@ void cadastrar_usuario(void) { //Tela que recebe informacoes iniciais do user, p
   char celular[19];
   system("clear||cls");
   printf(" ____________________________________________________ \n");
-  printf("|                                                    |\n");
-  printf("|    Universidade Federal do Rio Grande do Norte     |\n");
-  printf("|            Centro de Ensino Superior               |\n");
-  printf("|     Departamento de Computacao e Tecnologia        |\n");
-  printf("|         Disciplina DCT1106 -- Programacao          |\n");
-  printf("|                Projeto SIG-Check                   |\n");
-  printf("|____________________________________________________|\n");
-  printf("|                                                    |\n");
-  printf("|          - - - - Cadastrar usuario - - - -         |\n");
-  printf("|                                                    |\n");
-  printf("|          ID: ");
+  printf("                                                    \n");
+  printf("    Universidade Federal do Rio Grande do Norte     \n");
+  printf("            Centro de Ensino Superior               \n");
+  printf("     Departamento de Computacao e Tecnologia        \n");
+  printf("         Disciplina DCT1106 -- Programacao          \n");
+  printf("                Projeto SIG-Check                   \n");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("          - - - - Cadastrar usuario - - - -         \n");
+  printf("                                                    \n");
+  printf("          ID: ");
   scanf("%[A-Z a-z.,0-9]",id);
   getchar();
-  printf("|          CPF: ");
+  printf("          CPF: ");
   scanf("%[0-9]",cpf);
   getchar();
-  printf("|          Nome completo: ");
+  printf("          Nome completo: ");
   scanf("%[A-Z a-z]",nome);
+  /*while(!valida_string(nome)){
+    printf("Nome invalido, por favor insira um nome apenas com letras: ");
+    scanf("%[A-Z a-z]",nome);
+  }*/
   getchar();
-  printf("|          Celular (apenas numeros): ");
+  printf("          Celular (apenas numeros): ");
   scanf("%[0-9]",celular);
   getchar();
-  printf("|                                                    |\n");
-  printf("|                                                    |\n");
-  printf("|                                                    |\n");
-  printf("|____________________________________________________|\n");
+  printf("                                                    \n");
+  printf("                                                    \n");
+  printf("                                                    \n");
+  printf("____________________________________________________\n");
   printf("\nPressione enter para continuar!\n");
   getchar();
 }
@@ -94,22 +98,22 @@ void pesquisar_usuario(void) { //Implementar ferramenta de busca quando salvarmo
   char id[16];
   printf("\n");
   printf(" ____________________________________________________ \n");
-  printf("|                                                    |\n");
-  printf("|    Universidade Federal do Rio Grande do Norte     |\n");
-  printf("|            Centro de Ensino Superior               |\n");
-  printf("|     Departamento de Computacao e Tecnologia        |\n");
-  printf("|         Disciplina DCT1106 -- Programacao          |\n");
-  printf("|                Projeto SIG-Check                   |\n");
-  printf("|____________________________________________________|\n");
-  printf("|                                                    |\n");
-  printf("|          - - - - Pesquisar usuario - - - -         |\n");
-  printf("|                                                    |\n");
-  printf("|           Informe o ID (apenas numeros): ");
+  printf("                                                    \n");
+  printf("    Universidade Federal do Rio Grande do Norte     \n");
+  printf("            Centro de Ensino Superior               \n");
+  printf("     Departamento de Computacao e Tecnologia        \n");
+  printf("         Disciplina DCT1106 -- Programacao          \n");
+  printf("                Projeto SIG-Check                   \n");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("          - - - - Pesquisar usuario - - - -         \n");
+  printf("                                                    \n");
+  printf("           Informe o ID (apenas numeros): ");
   scanf("%[A-Z a-z.,0-9]",id);
-  printf("|                                                    |\n");
-  printf("|                                                    |\n");
-  printf("|                                                    |\n");
-  printf("|____________________________________________________|\n");
+  printf("                                                    \n");
+  printf("                                                    \n");
+  printf("                                                    \n");
+  printf("____________________________________________________\n");
   printf("\n");
   printf("Pressione enter para continuar!\n");
   getchar();
@@ -121,22 +125,22 @@ void excluir_usuario(void) { //Implementar ferramenta de busca quando salvarmos 
   char id[16];
   printf("\n");
   printf(" ____________________________________________________ \n");
-  printf("|                                                    |\n");
-  printf("|    Universidade Federal do Rio Grande do Norte     |\n");
-  printf("|            Centro de Ensino Superior               |\n");
-  printf("|     Departamento de Computacao e Tecnologia        |\n");
-  printf("|         Disciplina DCT1106 -- Programacao          |\n");
-  printf("|                Projeto SIG-Check                   |\n");
-  printf("|____________________________________________________|\n");
-  printf("|                                                    |\n");
-  printf("|          - - - - Excluir usuario - - - -           |\n");
-  printf("|                                                    |\n");
-  printf("|           Informe o ID (apenas numeros): ");
+  printf("                                                    \n");
+  printf("    Universidade Federal do Rio Grande do Norte     \n");
+  printf("            Centro de Ensino Superior               \n");
+  printf("     Departamento de Computacao e Tecnologia        \n");
+  printf("         Disciplina DCT1106 -- Programacao          \n");
+  printf("                Projeto SIG-Check                   \n");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("          - - - - Excluir usuario - - - -           \n");
+  printf("                                                    \n");
+  printf("           Informe o ID (apenas numeros): ");
   scanf("%[A-Z a-z.,0-9]",id);
-  printf("|                                                    |\n");
-  printf("|                                                    |\n");
-  printf("|                                                    |\n");
-  printf("|____________________________________________________|\n");
+  printf("                                                    \n");
+  printf("                                                    \n");
+  printf("                                                    \n");
+  printf("____________________________________________________\n");
   printf("\n");
   printf("Pressione enter para continuar!\n");
   getchar();
@@ -150,6 +154,16 @@ char input(void) //função de input
   getchar();
   return n; 
 }
+
+/*int valida_string(char array[]){
+  int tamanho = sizeof(array)/sizeof(array[0]);
+  for(int i = 0; i < tamanho;i++){
+    if(!((array[i] >= 'A' && array[i] <='Z') || (array[i] >= 'a' && array[i] <='z'))){
+      return 0;
+    }
+  }
+  return 1;
+}*/
 
 /*
 Ainda em desenvolvimento
