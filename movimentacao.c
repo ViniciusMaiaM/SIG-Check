@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "movimentacao.h"
-    
-void tela_gerencia(void) { //Ainda vamos criar uma indicacao de caminnhos e validacoes
+#include "cheque.h"
+
+void tela_movimenta(void) { //Ainda vamos criar uma indicacao de caminnhos e validacoes
     system("clear||cls");
     char tipo[20];
     int num_cheque;
@@ -52,6 +53,31 @@ void tela_gerencia(void) { //Ainda vamos criar uma indicacao de caminnhos e vali
     getchar();
 }
 
+void tela_gerencia(void){
+    char escolha;
+    system("clear||cls");
+    printf("\n");
+    printf(" ____________________________________________________ \n");
+    printf("                                                    \n");
+    printf("    Universidade Federal do Rio Grande do Norte     \n");
+    printf("            Centro de Ensino Superior               \n");
+    printf("     Departamento de Computacao e Tecnologia        \n");
+    printf("         Disciplina DCT1106 -- Programacao          \n");
+    printf("                Projeto SIG-Check                   \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("             - - - - cheque - - - -                 \n");
+    printf("                                                    \n");
+    printf("             1 - Cadastrar cheque                   \n");
+    printf("             2 - Pesquisar cheque                   \n");
+    printf("             3 - Excluir cheque                     \n");
+    printf("             0 - Voltar                             \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    escolha = input();
+    valida_user(escolha);
+}
 
 
 void tela_pesquisar_cheque(void) {
