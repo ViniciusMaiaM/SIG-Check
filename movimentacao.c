@@ -8,14 +8,13 @@ void valida_cheque(char escolha) //cadastro de cheque
     switch (escolha)
     {
         case '1':
+        tela_movimenta();
         break;
         
         case '2':
+        tela_pesquisar_cheque();
         break;
-        
-        case '3': 
-        break;
-        
+    
         default:
         printf("Por favor insira uma opcao valida.\n");
         break;
@@ -27,14 +26,6 @@ void valida_cheque(char escolha) //cadastro de cheque
 
 
 void tela_movimenta(void) { //Ainda vamos criar uma indicacao de caminnhos e validacoes
-    system("clear||cls");
-    char tipo[20];
-    int num_cheque;
-    char id[19];
-    char cod_banco[3]; //verificar qual a melhor maneira de validar esse, a data e o num_cheque, com char ou int
-    int valor_depositado;
-    char data[10];
-    int valor_pago;
     system("clear||cls");
     printf("\n");
     printf("____________________________________________________\n");
@@ -95,7 +86,7 @@ void tela_pesquisar_cheque(void) {
     printf("                Projeto SIG-Check                   \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("          - - - - Pesquisar cheque - - - -          \n");
+    printf("         - - - - Pesquisar Movimentacao - - - -     \n");
     printf("                                                    \n");
     printf("   Informe o Numero do cheque (apenas numeros): ");
     scanf("%d",&num_cheque);
@@ -108,7 +99,7 @@ void tela_pesquisar_cheque(void) {
     getchar();
 }
 
-
+/*
 void tela_alterar_cheque(void) {
     system("clear||cls");
     int num_cheque;
@@ -184,3 +175,4 @@ void tela_lucros(void) {
     printf("Pressione enter para continuar!\n");
     getchar();
 }
+*/ 
