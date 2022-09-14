@@ -3,6 +3,29 @@
 #include "movimentacao.h"
 #include "cheque.h"
 
+void valida_cheque(char escolha) //cadastro de cheque
+{ 
+    switch (escolha)
+    {
+        case '1':
+        break;
+        
+        case '2':
+        break;
+        
+        case '3': 
+        break;
+        
+        default:
+        printf("Por favor insira uma opcao valida.\n");
+        break;
+    }
+}
+
+
+
+
+
 void tela_movimenta(void) { //Ainda vamos criar uma indicacao de caminnhos e validacoes
     system("clear||cls");
     char tipo[20];
