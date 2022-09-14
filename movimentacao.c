@@ -3,7 +3,7 @@
 #include "movimentacao.h"
 #include "cheque.h"
 
-void valida_cheque(char escolha) //cadastro de cheque
+void escolha_tela(char escolha) //cadastro de cheque
 { 
     switch (escolha)
     {
@@ -69,7 +69,7 @@ void tela_gerencia(void){
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    valida_cheque(escolha);
+    escolha_tela(escolha);
 }
 
 

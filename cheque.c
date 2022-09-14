@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "cheque.h"
 
-void valida_cheque(char escolha) //cadastro de cheque
+void muda_tela_cheque(char escolha) //cadastro de cheque
 { 
   switch (escolha)
   {
@@ -48,7 +48,7 @@ void tela_cliente(void) {
   printf("____________________________________________________\n");
   printf("\n");
   escolha = input();
-  valida_cheque(escolha);
+  muda_tela_cheque(escolha);
 } 
 
 void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
