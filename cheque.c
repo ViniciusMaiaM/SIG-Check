@@ -53,7 +53,7 @@ void tela_cliente(void) {
 
 void cadastrar_usuario(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
   char id[16];
-  char cpf[16];
+  char cpf[11];
   char nome[30];
   char celular[19];
   system("clear||cls");
