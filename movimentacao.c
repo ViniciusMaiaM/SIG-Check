@@ -37,7 +37,7 @@ void tela_movimenta(void) { //Ainda vamos criar uma indicacao de caminnhos e val
     int valor_pago;
     system("clear||cls");
     printf("\n");
-    printf(" ____________________________________________________ \n");
+    printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("    Universidade Federal do Rio Grande do Norte     \n");
     printf("            Centro de Ensino Superior               \n");
@@ -46,29 +46,9 @@ void tela_movimenta(void) { //Ainda vamos criar uma indicacao de caminnhos e val
     printf("                Projeto SIG-Check                   \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("          - - - - Cadastrar cheque  - - - -         \n");
+    printf("          - - - - Relatorio movimenta  - - - -      \n");
     printf("                                                    \n");
-    printf("          Tipo (A vista || A prazo): ");
-    scanf("%[A-Z a-z]",tipo);
-    printf("          Numero do cheque: ");
-    scanf("%d",&num_cheque);
-    getchar();
-    printf("          Codigo do banco: ");
-    scanf("%[0-9]",cod_banco);
-    getchar();
-    printf("          ID do usuario: ");
-    scanf("%[A-Z a-z., 0-9]",id);
-    getchar();
-    printf("          Data do vendimento(dd/mm/aaaa): ");
-    scanf("%[0-9 /]",data);
-    getchar();
-    printf("          Valor Pago: ");
-    scanf("%d",&valor_pago);
-    getchar();
-    printf("          Valor Depositado: ");
-    scanf("%d",&valor_depositado);
-    getchar();
-    printf("                                                    \n");
+    printf("  Adicionar movimentacao geral de movimentacao      \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("\n");
@@ -89,17 +69,16 @@ void tela_gerencia(void){
     printf("                Projeto SIG-Check                   \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("             - - - - cheque - - - -                 \n");
+    printf("             - - - - Movimentacao - - -             \n");
     printf("                                                    \n");
-    printf("             1 - Cadastrar cheque                   \n");
-    printf("             2 - Pesquisar cheque                   \n");
-    printf("             3 - Excluir cheque                     \n");
+    printf("             1 - Relatorio geral                    \n");
+    printf("             2 - Pesquisar movimentacao             \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    valida_user(escolha);
+    valida_cheque(escolha);
 }
 
 
