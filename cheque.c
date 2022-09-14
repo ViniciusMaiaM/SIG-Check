@@ -48,7 +48,7 @@ void tela_cliente(void) {
   printf("____________________________________________________\n");
   printf("\n");
   escolha = input();
-  valida_user(escolha);
+  valida_cheque(escolha);
 } 
 
 void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
