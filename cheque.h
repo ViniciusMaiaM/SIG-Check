@@ -1,3 +1,10 @@
+struct cheque{
+    char id[19];
+    char cpf[11];
+    char nome[30];
+    char celular[19];
+};
+
 void tela_cliente(void);
 void cadastrar_cheque(void);
 char input(void);
