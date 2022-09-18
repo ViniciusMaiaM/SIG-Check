@@ -8,16 +8,16 @@ void escolha_tela(char escolha) //cadastro de cheque
     switch (escolha)
     {
         case '1':
-        tela_movimenta();
-        break;
+            tela_movimenta();
+            break;
         
         case '2':
-        tela_pesquisar_cheque();
-        break;
+            tela_pesquisar_cheque();
+            break;
     
         default:
-        printf("Por favor insira uma opcao valida.\n");
-        break;
+            printf("Por favor insira uma opcao valida.\n");
+            break;
     }
 }
 
