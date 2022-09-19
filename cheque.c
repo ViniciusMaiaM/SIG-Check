@@ -3,20 +3,20 @@
 #include <stdlib.h>
 #include "cheque.h"
 
-void valida_user(char escolha) //validação/escolha da tela de usuário
+void muda_tela_cheque(char escolha) //cadastro de cheque
 { 
   switch (escolha)
   {
     case '1':
-      cadastrar_usuario();
+      cadastrar_cheque();
       break;
       
     case '2':
-      pesquisar_usuario();
+      pesquisar_cheque();
       break;
       
     case '3': 
-      excluir_usuario();
+      excluir_cheque();
       break;
       
     default:
@@ -38,20 +38,20 @@ void tela_cliente(void) {
   printf("                Projeto SIG-Check                   \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
-  printf("             - - - - Usuario - - - -                \n");
+  printf("             - - - - cheque - - - -                 \n");
   printf("                                                    \n");
-  printf("             1 - Cadastrar usuario                  \n");
-  printf("             2 - Pesquisar usuario                  \n");
-  printf("             3 - Excluir usuario                    \n");
+  printf("             1 - Cadastrar cheque                   \n");
+  printf("             2 - Pesquisar cheque                   \n");
+  printf("             3 - Excluir cheque                     \n");
   printf("             0 - Voltar                             \n");
   printf("                                                    \n");
   printf("____________________________________________________\n");
   printf("\n");
   escolha = input();
-  valida_user(escolha);
+  muda_tela_cheque(escolha);
 } 
 
-void cadastrar_usuario(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
+void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
   char id[16];
   char cpf[11];
   char nome[30];
@@ -66,7 +66,7 @@ void cadastrar_usuario(void) { //Tela que recebe informacoes iniciais do user, p
   printf("                Projeto SIG-Check                   \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
-  printf("          - - - - Cadastrar usuario - - - -         \n");
+  printf("          - - - - Cadastrar cheque - - - -          \n");
   printf("                                                    \n");
   printf("          ID: ");
   scanf("%[A-Z a-z.,0-9]",id);
@@ -93,7 +93,7 @@ void cadastrar_usuario(void) { //Tela que recebe informacoes iniciais do user, p
 }
 
 
-void pesquisar_usuario(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
+void pesquisar_cheque(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
   system("clear||cls");
   char id[16];
   printf("\n");
@@ -106,7 +106,7 @@ void pesquisar_usuario(void) { //Implementar ferramenta de busca quando salvarmo
   printf("                Projeto SIG-Check                   \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
-  printf("          - - - - Pesquisar usuario - - - -         \n");
+  printf("          - - - - Pesquisar cheque - - - -          \n");
   printf("                                                    \n");
   printf("           Informe o ID (apenas numeros): ");
   scanf("%[A-Z a-z.,0-9]",id);
@@ -120,7 +120,7 @@ void pesquisar_usuario(void) { //Implementar ferramenta de busca quando salvarmo
 }
 
 
-void excluir_usuario(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
+void excluir_cheque(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
   system("clear||cls");
   char id[16];
   printf("\n");
@@ -133,7 +133,7 @@ void excluir_usuario(void) { //Implementar ferramenta de busca quando salvarmos 
   printf("                Projeto SIG-Check                   \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
-  printf("          - - - - Excluir usuario - - - -           \n");
+  printf("          - - - - Excluir cheque - - - -            \n");
   printf("                                                    \n");
   printf("           Informe o ID (apenas numeros): ");
   scanf("%[A-Z a-z.,0-9]",id);
@@ -168,7 +168,7 @@ char input(void) //função de input
 /*
 Ainda em desenvolvimento
 
-void tela_alterar_usuario(void) {
+void tela_alterar_cheque(void) {
   system("clear||cls");
   printf("\n");
   printf(" ____________________________________________________ \n");

@@ -1,16 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "movimentacao.h"
+#include "cheque.h"
+
+void escolha_tela(char escolha) //cadastro de cheque
+{ 
+    switch (escolha)
+    {
+        case '1':
+            tela_movimenta();
+            break;
+        
+        case '2':
+            tela_pesquisar_cheque();
+            break;
     
-void tela_gerencia(void) { //Ainda vamos criar uma indicacao de caminnhos e validacoes
+        default:
+            printf("Por favor insira uma opcao valida.\n");
+            break;
+    }
+}
+
+
+
+
+
+void tela_movimenta(void) { //Ainda vamos criar uma indicacao de caminnhos e validacoes
     system("clear||cls");
-    char tipo[20];
-    int num_cheque;
-    char id[19];
-    char cod_banco[3]; //verificar qual a melhor maneira de validar esse, a data e o num_cheque, com char ou int
-    int valor_depositado;
-    char data[10];
-    int valor_pago;
+    printf("\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("    Universidade Federal do Rio Grande do Norte     \n");
+    printf("            Centro de Ensino Superior               \n");
+    printf("     Departamento de Computacao e Tecnologia        \n");
+    printf("         Disciplina DCT1106 -- Programacao          \n");
+    printf("                Projeto SIG-Check                   \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          - - - - Relatorio movimenta  - - - -      \n");
+    printf("                                                    \n");
+    printf("  Adicionar movimentacao geral de movimentacao      \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    printf("Pressione enter para continuar!\n");
+    getchar();
+}
+
+void tela_gerencia(void){
+    char escolha;
     system("clear||cls");
     printf("\n");
     printf(" ____________________________________________________ \n");
@@ -22,36 +60,17 @@ void tela_gerencia(void) { //Ainda vamos criar uma indicacao de caminnhos e vali
     printf("                Projeto SIG-Check                   \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("          - - - - Cadastrar cheque  - - - -         \n");
+    printf("             - - - - Movimentacao - - -             \n");
     printf("                                                    \n");
-    printf("          Tipo (A vista || A prazo): ");
-    scanf("%[A-Z a-z]",tipo);
-    printf("          Numero do cheque: ");
-    scanf("%d",&num_cheque);
-    getchar();
-    printf("          Codigo do banco: ");
-    scanf("%[0-9]",cod_banco);
-    getchar();
-    printf("          ID do usuario: ");
-    scanf("%[A-Z a-z., 0-9]",id);
-    getchar();
-    printf("          Data do vendimento(dd/mm/aaaa): ");
-    scanf("%[0-9 /]",data);
-    getchar();
-    printf("          Valor Pago: ");
-    scanf("%d",&valor_pago);
-    getchar();
-    printf("          Valor Depositado: ");
-    scanf("%d",&valor_depositado);
-    getchar();
-    printf("                                                    \n");
+    printf("             1 - Relatorio geral                    \n");
+    printf("             2 - Pesquisar movimentacao             \n");
+    printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("\n");
-    printf("Pressione enter para continuar!\n");
-    getchar();
+    escolha = input();
+    escolha_tela(escolha);
 }
-
 
 
 void tela_pesquisar_cheque(void) {
@@ -67,7 +86,7 @@ void tela_pesquisar_cheque(void) {
     printf("                Projeto SIG-Check                   \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("          - - - - Pesquisar cheque - - - -          \n");
+    printf("         - - - - Pesquisar Movimentacao - - - -     \n");
     printf("                                                    \n");
     printf("   Informe o Numero do cheque (apenas numeros): ");
     scanf("%d",&num_cheque);
@@ -80,7 +99,7 @@ void tela_pesquisar_cheque(void) {
     getchar();
 }
 
-
+/*
 void tela_alterar_cheque(void) {
     system("clear||cls");
     int num_cheque;
@@ -156,3 +175,4 @@ void tela_lucros(void) {
     printf("Pressione enter para continuar!\n");
     getchar();
 }
+*/ 
