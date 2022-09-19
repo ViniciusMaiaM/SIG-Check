@@ -79,10 +79,6 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   getchar();
   printf("          Nome completo: ");
   scanf("%[A-Z a-z]",nome);
-  /*while(!valida_string(nome)){
-    printf("Nome invalido, por favor insira um nome apenas com letras: ");
-    scanf("%[A-Z a-z]",nome);
-  }*/
   getchar();
   printf("          Celular (apenas numeros): ");
   scanf("%[0-9]",celular);
