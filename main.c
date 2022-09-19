@@ -55,7 +55,7 @@ char tela_principal(void) {
   printf("                                                    \n");
   printf("             1 - Modulo Cliente                     \n");
   printf("             2 - Modulo Movimentação                \n");
-  printf("             3 - Cadastrar Lucro                    \n");
+  printf("             3 - Relatorio de Lucro                 \n");
   printf("             4 - Sobre o sistema                    \n");
   printf("             0 - Sair                               \n");
   printf("                                                    \n");
