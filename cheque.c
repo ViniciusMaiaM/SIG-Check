@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h> //tem que incluir string e math
+#include <math.h>
 #include "cheque.h"
 
-
 void muda_tela_cheque(char escolha) //cadastro de cheque
-
 { 
   switch (escolha)
   {
@@ -56,7 +56,7 @@ void tela_cliente(void) {
 
 void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
   char id[16];
-  char cpf[11];
+  char cpf[15];
   char nome[30];
   char celular[19];
   system("clear||cls");
@@ -77,6 +77,10 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("          CPF: ");
   scanf("%[0-9]",cpf);
   getchar();
+  if (!(valida_cpf(cpf))){
+    printf("\nCpf invalido");
+    return;
+  }
   printf("          Nome completo: ");
   scanf("%[A-Z a-z]",nome);
   /*while(!valida_string(nome)){
@@ -158,6 +162,59 @@ char input(void) //função de input
   return n; 
 }
 
+int valida_cpf(char cpf[]){
+  
+  int validador=2;
+  while(validador!=0)
+{  //com mascara ###.###.###-##
+    int cpf_int[11];
+    int soma_d1=0, soma_d2=0, calculo_d, tam,d=0,i=0, digitos;
+//    printf("Digite seu cpf (###.###.###-##):\n");
+ //   scanf("%s", &cpf);
+    tam=strlen(cpf);
+  
+    while(d<=tam){
+      if(cpf[d]!='.' && cpf[d]!='-'){
+        cpf_int[i] = cpf[d]-48;
+        i=i+1;
+      }
+      d++;
+    }
+  
+//calculo
+i=0;
+while(i<9){
+  soma_d1 = soma_d1 +((cpf_int[i])*(10-i));
+  soma_d2 = soma_d2 +((cpf_int[i])*(11-i));
+  i++;
+}
+// primeiro digito
+soma_d1 = (soma_d1 *10)%11;
+if(soma_d1>9){
+  soma_d1=0;
+}
+// segundo digito
+soma_d2 = ((soma_d2 +(soma_d1*2)) *10)%11;
+if(soma_d2 >9){
+  soma_d2=0;
+}
+//calculo dos digitos
+calculo_d =(soma_d1 * 10)+soma_d2;
+// verificar digitos
+i=cpf_int[9];
+d=cpf_int[10];
+//conferindo
+digitos = ((i)*10)+(d);
+if(calculo_d==digitos){
+  validador=0;
+}else{
+  validador=1;
+  }
+}
+return validador;
+}
+
+
 /*int valida_string(char array[]){
   int tamanho = sizeof(array)/sizeof(array[0]);
   for(int i = 0; i < tamanho;i++){
@@ -195,6 +252,3 @@ void tela_alterar_cheque(void) {
     getchar();
 }
 */
-
-
-
