@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "cheque.h"
 #include "movimentacao.h"
-
+#include "lucro.h"
 /////
 // Assinatura das funções
 /////
@@ -25,6 +25,10 @@ int main(void) {
         tela_gerencia();
         break;  
       
+      case '3':
+        relatorio_lucro();
+        break;
+
       case '4':
         tela_sobre();
         break;
