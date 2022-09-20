@@ -5,7 +5,6 @@
 
 
 void muda_tela_cheque(char escolha) //cadastro de cheque
-
 { 
   switch (escolha)
   {
@@ -19,7 +18,6 @@ void muda_tela_cheque(char escolha) //cadastro de cheque
       
     case '3': 
       excluir_cheque();
-
       break;
       
     default:
