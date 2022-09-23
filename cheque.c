@@ -58,6 +58,8 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   char cpf[15];
   char nome[30];
   char celular[19];
+  int valor;
+  char receptor[20];
   system("clear||cls");
   printf(" ____________________________________________________ \n");
   printf("                                                    \n");
@@ -82,6 +84,11 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("          Celular (apenas numeros): ");
   scanf("%[0-9]",celular);
   getchar();
+  printf("          Valor do cheque: ");
+  scanf("%d",&valor);
+  getchar();
+  printf("          Receptor do cheque: ");
+  scanf("%[A-Z a-z]",receptor);
   printf("                                                    \n");
   printf("                                                    \n");
   printf("                                                    \n");

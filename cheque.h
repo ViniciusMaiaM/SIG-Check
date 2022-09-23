@@ -3,6 +3,8 @@ struct cheque{
     char cpf[11];
     char nome[30];
     char celular[19];
+    int valor;
+    char receptor[20];
 };
 
 void tela_cliente(void);
