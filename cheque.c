@@ -19,7 +19,6 @@ void muda_tela_cheque(char escolha) //cadastro de cheque
       
     case '3': 
       excluir_cheque();
-
       break;
       
     default:
@@ -77,16 +76,8 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("          CPF: ");
   scanf("%[0-9]",cpf);
   getchar();
-  if (!(valida_cpf(cpf))){
-    printf("\nCpf invalido");
-    return;
-  }
   printf("          Nome completo: ");
   scanf("%[A-Z a-z]",nome);
-  /*while(!valida_string(nome)){
-    printf("Nome invalido, por favor insira um nome apenas com letras: ");
-    scanf("%[A-Z a-z]",nome);
-  }*/
   getchar();
   printf("          Celular (apenas numeros): ");
   scanf("%[0-9]",celular);
@@ -162,6 +153,7 @@ char input(void) //função de input
   return n; 
 }
 
+/*
 int valida_cpf(char cpf[]){
   
   int validador=2;
@@ -213,7 +205,7 @@ if(calculo_d==digitos){
 }
 return validador;
 }
-
+*/
 
 /*int valida_string(char array[]){
   int tamanho = sizeof(array)/sizeof(array[0]);
