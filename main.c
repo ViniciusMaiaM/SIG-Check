@@ -18,7 +18,7 @@ int main(void) {
     modulo = tela_principal(); 
     switch (modulo) {
       case '1':
-        tela_cliente();
+        tela_cheque();
         break;
 
       case '2':

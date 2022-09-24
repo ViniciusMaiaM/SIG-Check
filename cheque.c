@@ -27,7 +27,7 @@ void muda_tela_cheque(char escolha) //cadastro de cheque
   }
 }
 
-void tela_cliente(void) {
+void tela_cheque(void) {
   char escolha;
   system("clear||cls");
   printf("\n");
