@@ -98,7 +98,32 @@ void pesquisar_cliente(void) { //Implementar ferramenta de busca quando salvarmo
     printf("                                                    \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
+    printf("\nPressione enter para continuar!\n");
+    getchar();
+}
+
+void excluir_cliente(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
+    system("clear||cls");
+    char nome[30];
     printf("\n");
-    printf("Pressione enter para continuar!\n");
+    printf(" ____________________________________________________ \n");
+    printf("                                                    \n");
+    printf("    Universidade Federal do Rio Grande do Norte     \n");
+    printf("            Centro de Ensino Superior               \n");
+    printf("     Departamento de Computacao e Tecnologia        \n");
+    printf("         Disciplina DCT1106 -- Programacao          \n");
+    printf("                Projeto SIG-Check                   \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          - - - - Exlcuir cliente - - - -           \n");
+    printf("                                                    \n");
+    printf("           Informe o nome: ");
+    scanf("%s",nome);
+    printf("                                                    \n");
+    printf("                                                    \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\nCliente %s excluido com sucesso!",nome);
+    printf("\nPressione enter para continuar!\n");
     getchar();
 }
