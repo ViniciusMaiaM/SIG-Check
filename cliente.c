@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "cliente.h"
 
 void escolha_cliente (char escolha) //cadastro de cheque
 { 
