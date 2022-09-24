@@ -14,7 +14,8 @@ void sleep();
 /////
 int main(void) {
   char modulo = ' ';
-  while (modulo != '0') {
+  do{
+
     modulo = tela_principal(); 
     switch (modulo) {
       case '1':
@@ -32,13 +33,18 @@ int main(void) {
       case '4':
         tela_sobre();
         break;
-    
+
+      case '0':
+        printf("\nAte a proxima!\n");
+        break;
+
       default:
         printf("\nEm desenvolvimento!\n");
         sleep(1);
         break;
     }
-  }
+  }while (modulo != '0');
+
   return 0;
 }
 
@@ -46,7 +52,7 @@ char tela_principal(void) {
   char escolha;
   system("clear||cls");
   printf("\n");
-  printf(" ____________________________________________________ \n");
+  printf("____________________________________________________ \n");
   printf("                                                    \n");
   printf("    Universidade Federal do Rio Grande do Norte     \n");
   printf("            Centro de Ensino Superior               \n");
