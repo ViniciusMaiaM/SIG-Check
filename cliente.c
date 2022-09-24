@@ -50,3 +50,35 @@ void tela_cliente(void) {
     muda_tela_cheque(escolha);
 } 
 
+void cadastro_cliente(void){
+    char id[16];
+    char cpf[15];
+    char nome[30];
+    char celular[19];
+    int valor;
+    char receptor[20];
+    system("clear||cls");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          - - - - Cadastrar cliente - - - -         \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("          ID: ");
+    scanf("%[A-Z a-z.,0-9]",id);
+    getchar();
+    printf("          CPF: ");
+    scanf("%[0-9]",cpf);
+    getchar();
+    printf("          Nome completo: ");
+    scanf("%[A-Z a-z]",nome);
+    getchar();
+    printf("          Celular (apenas numeros): ");
+    scanf("%[0-9]",celular);
+    getchar();
+    printf("                                                    \n");
+    printf("                                                    \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\nPressione enter para continuar!\n");
+    getchar();
+}
