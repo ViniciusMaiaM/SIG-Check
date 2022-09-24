@@ -27,16 +27,12 @@ void tela_cliente(void) {
     char escolha;
     system("clear||cls");
     printf("\n");
-    printf(" ____________________________________________________ \n");
-    printf("                                                    \n");
-    printf("    Universidade Federal do Rio Grande do Norte     \n");
-    printf("            Centro de Ensino Superior               \n");
-    printf("     Departamento de Computacao e Tecnologia        \n");
-    printf("         Disciplina DCT1106 -- Programacao          \n");
-    printf("                Projeto SIG-Check                   \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("             - - - - Cheque - - - -                 \n");
+    printf("             - - - - Cliente - - - -                \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
     printf("                                                    \n");
     printf("             1 - Cadastrar Cliente                  \n");
     printf("             2 - Pesquisar Cliente                  \n");
@@ -47,7 +43,7 @@ void tela_cliente(void) {
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    muda_tela_cheque(escolha);
+    escolha_cliente(escolha);
 } 
 
 void cadastro_cliente(void){
@@ -81,16 +77,12 @@ void pesquisar_cliente(void) { //Implementar ferramenta de busca quando salvarmo
     system("clear||cls");
     char nome[30];
     printf("\n");
-    printf(" ____________________________________________________ \n");
-    printf("                                                    \n");
-    printf("    Universidade Federal do Rio Grande do Norte     \n");
-    printf("            Centro de Ensino Superior               \n");
-    printf("     Departamento de Computacao e Tecnologia        \n");
-    printf("         Disciplina DCT1106 -- Programacao          \n");
-    printf("                Projeto SIG-Check                   \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("          - - - - Pesquisar cliente - - - -         \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
     printf("                                                    \n");
     printf("           Informe o nome: ");
     scanf("%s",nome);
@@ -106,16 +98,12 @@ void excluir_cliente(void) { //Implementar ferramenta de busca quando salvarmos 
     system("clear||cls");
     char nome[30];
     printf("\n");
-    printf(" ____________________________________________________ \n");
-    printf("                                                    \n");
-    printf("    Universidade Federal do Rio Grande do Norte     \n");
-    printf("            Centro de Ensino Superior               \n");
-    printf("     Departamento de Computacao e Tecnologia        \n");
-    printf("         Disciplina DCT1106 -- Programacao          \n");
-    printf("                Projeto SIG-Check                   \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("          - - - - Exlcuir cliente - - - -           \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
     printf("                                                    \n");
     printf("           Informe o nome: ");
     scanf("%s",nome);
@@ -127,3 +115,4 @@ void excluir_cliente(void) { //Implementar ferramenta de busca quando salvarmos 
     printf("\nPressione enter para continuar!\n");
     getchar();
 }
+
