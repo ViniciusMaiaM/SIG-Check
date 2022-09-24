@@ -3,6 +3,7 @@
 #include "cheque.h"
 #include "movimentacao.h"
 #include "lucro.h"
+#include "cliente.h"
 /////
 // Assinatura das funções
 /////
@@ -19,21 +20,25 @@ int main(void) {
     modulo = tela_principal(); 
     switch (modulo) {
       case '1':
-        tela_cheque();
+        tela_cliente();
         break;
 
       case '2':
-        tela_movimenta();
+        tela_cheque();
         break;  
       
       case '3':
-        relatorio_lucro();
+        tela_movimenta();
         break;
 
       case '4':
-        tela_sobre();
+        relatorio_movimento();
         break;
 
+      case '5':
+        tela_sobre();
+        break;
+  
       case '0':
         printf("\nAte a proxima!\n");
         break;
