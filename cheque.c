@@ -40,9 +40,9 @@ void tela_cliente(void) {
   printf("                Projeto SIG-Check                   \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
-  printf("             - - - - cheque - - - -                 \n");
+  printf("             - - - - Cheque - - - -                 \n");
   printf("                                                    \n");
-  printf("             1 - Cadastrar cheque                   \n");
+  printf("             1 - Cadastrar Cheque                   \n");
   printf("             2 - Pesquisar cheque                   \n");
   printf("             3 - Excluir cheque                     \n");
   printf("             0 - Voltar                             \n");
