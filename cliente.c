@@ -1,20 +1,26 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "cliente.h"
+#include "cheque.h"
 
 void escolha_cliente (char escolha) //cadastro de cheque
 { 
     switch (escolha)
     {
         case '1':
+        cadastro_cliente();
         break;
         
         case '2':
+        pesquisar_cliente();
         break;
         
         case '3': 
+        excluir_cliente();
         break;
         
         case '4':
+        printf("Inserir tela de relatorio");
         break;
 
         default:
