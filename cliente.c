@@ -51,26 +51,20 @@ void tela_cliente(void) {
 } 
 
 void cadastro_cliente(void){
-    char id[16];
-    char cpf[15];
     char nome[30];
+    char cpf[15];
     char celular[19];
-    int valor;
-    char receptor[20];
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("          - - - - Cadastrar cliente - - - -         \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
-    printf("          ID: ");
-    scanf("%[A-Z a-z.,0-9]",id);
-    getchar();
+    printf("          Nome completo: ");
+    scanf("%[A-Z a-z]",nome);
     printf("          CPF: ");
     scanf("%[0-9]",cpf);
     getchar();
-    printf("          Nome completo: ");
-    scanf("%[A-Z a-z]",nome);
     getchar();
     printf("          Celular (apenas numeros): ");
     scanf("%[0-9]",celular);
@@ -80,5 +74,31 @@ void cadastro_cliente(void){
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("\nPressione enter para continuar!\n");
+    getchar();
+}
+
+void pesquisar_cliente(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
+    system("clear||cls");
+    char nome[30];
+    printf("\n");
+    printf(" ____________________________________________________ \n");
+    printf("                                                    \n");
+    printf("    Universidade Federal do Rio Grande do Norte     \n");
+    printf("            Centro de Ensino Superior               \n");
+    printf("     Departamento de Computacao e Tecnologia        \n");
+    printf("         Disciplina DCT1106 -- Programacao          \n");
+    printf("                Projeto SIG-Check                   \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          - - - - Pesquisar cliente - - - -         \n");
+    printf("                                                    \n");
+    printf("           Informe o nome: ");
+    scanf("%s",nome);
+    printf("                                                    \n");
+    printf("                                                    \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    printf("Pressione enter para continuar!\n");
     getchar();
 }
