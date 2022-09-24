@@ -1,5 +1,28 @@
 #include <stdio.h>
 
+void escolha_cliente (char escolha) //cadastro de cheque
+{ 
+    switch (escolha)
+    {
+        case '1':
+        break;
+        
+        case '2':
+        break;
+        
+        case '3': 
+        break;
+        
+        case '4':
+        break;
+
+        default:
+        printf("Por favor insira uma opcao valida.\n");
+        break;
+    }
+}
+
+
 void tela_cliente(void) {
     char escolha;
     system("clear||cls");
@@ -26,3 +49,4 @@ void tela_cliente(void) {
     escolha = input();
     muda_tela_cheque(escolha);
 } 
+
