@@ -22,13 +22,6 @@ void escolha_tela(char escolha) //cadastro de cheque
 }
 
 void relatorio_movimento(void) { //Ainda vamos criar uma indicacao de caminnhos e validacoes
-/*     char tipo[20];
-    int num_cheque;
-    char id[19];
-    char cod_banco[3]; //verificar qual a melhor maneira de validar esse, a data e o num_cheque, com char ou int
-    int valor_depositado;
-    char data[10];
-    int valor_pago; */
     system("clear||cls");
     printf("\n");
     printf(" ____________________________________________________ \n");

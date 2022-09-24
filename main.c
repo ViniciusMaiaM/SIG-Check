@@ -58,7 +58,7 @@ char tela_principal(void) {
   printf("             - - - - SIG-Check - - - -              \n");
   printf("                                                    \n");
   printf("             1 - Modulo Cliente                     \n");
-  printf("             2 - Modulo Cheque                     \n");
+  printf("             2 - Modulo Cheque                      \n");
   printf("             3 - Modulo Movimentação                \n");
   printf("             4 - Relatorio de Lucro                 \n");
   printf("             5 - Sobre o sistema                    \n");
