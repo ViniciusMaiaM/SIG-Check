@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h> //tem que incluir string e math
 #include <math.h>
+#include <time.h> //biblioteca de data e hora
 #include "cheque.h"
 
 void muda_tela_cheque(char escolha) //cadastro de cheque
@@ -87,10 +88,10 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   scanf("%[A-z a-z]",nome_banco);
   getchar();
   printf("          Numero agencia: ");
-  scanf("%[0-9]");
+  scanf("%[0-9]",agencia);
   getchar();
   printf("          Numero conta: ");
-  scanf("%[0-9]");
+  scanf("%[0-9]",num_conta);
   getchar();
   printf("          Valor do cheque: ");
   scanf("%d",&valor);
@@ -169,6 +170,33 @@ char input(void) //função de input
 }
 
 void relatorio_cheque(){
+  system("clear||cls");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("          - - - - Relatorio Cheque - - - -          \n");
+  printf("                                                    \n");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("          Nome do cliente: Flavius\n");
+  printf("          Numero do cheque: 000158\n");
+  printf("          Numero do banco: 001\n");
+  printf("          Numero agencia: 4321\n");
+  printf("          Numero conta: 468293-1\n");
+  printf("          Valor do cheque: 1500.00\n");
+  printf("          Receptor do cheque: Vinicius\n");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("          Nome do cliente: Thamirys\n");
+  printf("          Numero do cheque: 000132\n");
+  printf("          Numero do banco: 001\n");
+  printf("          Numero agencia: 1234\n");
+  printf("          Numero conta: 273673-1\n");
+  printf("          Valor do cheque: 300.00\n");
+  printf("          Receptor do cheque: Italo\n");
+  printf("                                                    \n");
+  printf("____________________________________________________\n");
+  printf("\nPressione enter para continuar!\n");
+  getchar();
 }
 
 /*
