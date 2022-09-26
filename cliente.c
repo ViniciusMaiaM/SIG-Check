@@ -126,4 +126,25 @@ void excluir_cliente(void) { //Implementar ferramenta de busca quando salvarmos 
 }
 
 void relatorio_cliente(){
+    system("clear||cls");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          - - - - Relatorio cliente - - - -         \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          Nome: Vinicius\n");
+    printf("          CPF: 123.456.789-10\n");
+    printf("          Celular: 912345678\n");
+    printf("          Email: vinicius.maia.123@ufrn.edu.br\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          Nome: Thamiris\n");
+    printf("          CPF: 123.456.789-10\n");
+    printf("          Celular: 912345678\n");
+    printf("          Email: thamiris.123@ufrn.edu.br\n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\nPressione enter para continuar!\n");
+    getchar();
 }
