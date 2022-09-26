@@ -3,6 +3,7 @@
 #include "cheque.h"
 #include "movimentacao.h"
 #include "lucro.h"
+#include "cliente.h"
 /////
 // Assinatura das funções
 /////
@@ -14,7 +15,8 @@ void sleep();
 /////
 int main(void) {
   char modulo = ' ';
-  while (modulo != '0') {
+  do{
+
     modulo = tela_principal(); 
     switch (modulo) {
       case '1':
@@ -22,23 +24,32 @@ int main(void) {
         break;
 
       case '2':
-        tela_gerencia();
+        tela_cheque();
         break;  
       
       case '3':
-        relatorio_lucro();
+        tela_movimenta();
         break;
 
       case '4':
+        relatorio_movimento();
+        break;
+
+      case '5':
         tela_sobre();
         break;
-    
+  
+      case '0':
+        printf("\nAte a proxima!\n");
+        break;
+
       default:
         printf("\nEm desenvolvimento!\n");
         sleep(1);
         break;
     }
-  }
+  }while (modulo != '0');
+
   return 0;
 }
 
@@ -46,7 +57,7 @@ char tela_principal(void) {
   char escolha;
   system("clear||cls");
   printf("\n");
-  printf(" ____________________________________________________ \n");
+  printf("____________________________________________________ \n");
   printf("                                                    \n");
   printf("    Universidade Federal do Rio Grande do Norte     \n");
   printf("            Centro de Ensino Superior               \n");
@@ -58,9 +69,10 @@ char tela_principal(void) {
   printf("             - - - - SIG-Check - - - -              \n");
   printf("                                                    \n");
   printf("             1 - Modulo Cliente                     \n");
-  printf("             2 - Modulo Movimentação                \n");
-  printf("             3 - Relatorio de Lucro                 \n");
-  printf("             4 - Sobre o sistema                    \n");
+  printf("             2 - Modulo Cheque                      \n");
+  printf("             3 - Modulo Movimentação                \n");
+  printf("             4 - Relatorio de Lucro                 \n");
+  printf("             5 - Sobre o sistema                    \n");
   printf("             0 - Sair                               \n");
   printf("                                                    \n");
   printf("____________________________________________________\n");
