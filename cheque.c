@@ -21,6 +21,9 @@ void muda_tela_cheque(char escolha) //cadastro de cheque
       excluir_cheque();
       break;
       
+    case '4':
+      break;
+
     default:
       printf("Por favor insira uma opcao valida.\n");
       break;
@@ -45,6 +48,7 @@ void tela_cheque(void) {
   printf("             1 - Cadastrar Cheque                   \n");
   printf("             2 - Pesquisar cheque                   \n");
   printf("             3 - Excluir cheque                     \n");
+  printf("             4 - Relatorio                          \n");
   printf("             0 - Voltar                             \n");
   printf("                                                    \n");
   printf("____________________________________________________\n");
@@ -57,7 +61,6 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   char id[16];
   char cpf[15];
   char nome[30];
-  char celular[19];
   int valor;
   char receptor[20];
   system("clear||cls");
@@ -78,11 +81,8 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("          CPF: ");
   scanf("%[0-9]",cpf);
   getchar();
-  printf("          Nome completo: ");
+  printf("          Nome do cliente: ");
   scanf("%[A-Z a-z]",nome);
-  getchar();
-  printf("          Celular (apenas numeros): ");
-  scanf("%[0-9]",celular);
   getchar();
   printf("          Valor do cheque: ");
   scanf("%d",&valor);
@@ -158,6 +158,10 @@ char input(void) //função de input
   scanf("%c", &n);
   getchar();
   return n; 
+}
+
+void relatorio_cheque(){
+  
 }
 
 /*

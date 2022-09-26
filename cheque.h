@@ -16,5 +16,6 @@ char input(void);
 void muda_tela_cheque(char escolha);
 void pesquisar_cheque(void);
 void excluir_cheque(void);
+void relatorio_cheque();
 int valida_cpf(char cpf[]);
 //int valida_string(char array[]);
