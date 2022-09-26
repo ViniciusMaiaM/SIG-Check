@@ -58,9 +58,11 @@ void tela_cheque(void) {
 } 
 
 void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
-  char id[16];
-  char cpf[15];
-  char nome[30];
+  char cheque_num[16];
+  char nome_banco[30];
+  char nome_cliente[30];
+  char agencia[15];
+  char num_conta[20];
   int valor;
   char receptor[20];
   system("clear||cls");
@@ -75,14 +77,20 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("                                                    \n");
   printf("          - - - - Cadastrar cheque - - - -          \n");
   printf("                                                    \n");
-  printf("          ID: ");
-  scanf("%[A-Z a-z.,0-9]",id);
+  printf("          Nome do cliente: "); //Assim ele vai pegar todas as informações do usuario do arquivo
+  scanf("%[A-Z a-z]",nome_cliente);
   getchar();
-  printf("          CPF: ");
-  scanf("%[0-9]",cpf);
+  printf("          Numero do cheque: ");
+  scanf("%[0-9]",cheque_num);
   getchar();
-  printf("          Nome do cliente: ");
-  scanf("%[A-Z a-z]",nome);
+  printf("          Nome do banco: ");
+  scanf("%[A-z a-z]",nome_banco);
+  getchar();
+  printf("          Numero agencia: ");
+  scanf("%[0-9]");
+  getchar();
+  printf("          Numero conta: ");
+  scanf("%[0-9]");
   getchar();
   printf("          Valor do cheque: ");
   scanf("%d",&valor);
@@ -161,7 +169,6 @@ char input(void) //função de input
 }
 
 void relatorio_cheque(){
-  
 }
 
 /*
