@@ -57,6 +57,7 @@ void cadastro_cliente(void){
     char nome[30];
     char cpf[15];
     char celular[19];
+    char email[30];
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -68,10 +69,11 @@ void cadastro_cliente(void){
     printf("          CPF: ");
     scanf("%[0-9]",cpf);
     getchar();
-    getchar();
     printf("          Celular (apenas numeros): ");
     scanf("%[0-9]",celular);
     getchar();
+    printf("         Email: ");
+    fgets(email,30,stdin);
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
@@ -124,5 +126,4 @@ void excluir_cliente(void) { //Implementar ferramenta de busca quando salvarmos 
 }
 
 void relatorio_cliente(){
-    
 }
