@@ -23,6 +23,7 @@ void muda_tela_cheque(char escolha) //cadastro de cheque
       break;
       
     case '4':
+      relatorio_cheque();
       break;
 
     default:
