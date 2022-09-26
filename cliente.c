@@ -66,6 +66,7 @@ void cadastro_cliente(void){
     printf("____________________________________________________\n");
     printf("          Nome completo: ");
     scanf("%[A-Z a-z]",nome);
+    getchar();
     printf("          CPF: ");
     scanf("%[0-9]",cpf);
     getchar();
