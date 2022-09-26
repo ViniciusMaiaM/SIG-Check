@@ -123,3 +123,6 @@ void excluir_cliente(void) { //Implementar ferramenta de busca quando salvarmos 
     getchar();
 }
 
+void relatorio_cliente(){
+    
+}
