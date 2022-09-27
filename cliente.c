@@ -20,7 +20,7 @@ void escolha_cliente (char escolha) //cadastro de cheque
         break;
         
         case '4':
-        printf("Inserir tela de relatorio");
+        relatorio_cliente();
         break;
 
         default:

@@ -24,7 +24,7 @@ void escolha_tela(char escolha) //cadastro de cheque
 void relatorio_movimento(void) { //Ainda vamos criar uma indicacao de caminnhos e validacoes
     system("clear||cls");
     printf("\n");
-    printf(" ____________________________________________________ \n");
+printf(" ____________________________________________________ \n");
     printf("                                                    \n");
     printf("    Universidade Federal do Rio Grande do Norte     \n");
     printf("            Centro de Ensino Superior               \n");
@@ -35,8 +35,17 @@ void relatorio_movimento(void) { //Ainda vamos criar uma indicacao de caminnhos 
     printf("                                                    \n");
     printf("          - - - - Relatorio movimenta  - - - -      \n");
     printf("                                                    \n");
-    printf("  Adicionar movimentacao geral de movimentacao      \n");
-    printf("                                                    \n");
+    printf("          Nome:Thamiris                   \n");
+    printf("          Valor do cheque:300.00                    \n");
+    printf("          Receptor do cheque:Italo                  \n");
+    printf("____________________________________________________\n");
+    printf("          Nome:Flavius                    \n");
+    printf("          Valor do cheque:150.00                    \n");
+    printf("          Receptor do cheque:Vinicius              \n");
+    printf("____________________________________________________\n");
+    printf("          Nome:Italo                    \n");
+    printf("          Valor do cheque:386.00                    \n");
+    printf("          Receptor do cheque:Flavius            \n");
     printf("____________________________________________________\n");
     printf("\n");
     printf("Pressione enter para continuar!\n");

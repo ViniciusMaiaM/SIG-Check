@@ -32,7 +32,7 @@ int main(void) {
         break;
 
       case '4':
-        relatorio_movimento();
+        relatorio_lucro();
         break;
 
       case '5':
