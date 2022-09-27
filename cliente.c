@@ -73,7 +73,7 @@ void cadastro_cliente(void){
     printf("          Celular (apenas numeros): ");
     scanf("%[0-9]",celular);
     getchar();
-    printf("         Email: ");
+    printf("          Email: ");
     fgets(email,30,stdin);
     printf("                                                    \n");
     printf("                                                    \n");
