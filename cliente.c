@@ -110,7 +110,7 @@ void excluir_cliente(void) { //Implementar ferramenta de busca quando salvarmos 
     printf("\n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("          - - - - Exlcuir cliente - - - -           \n");
+    printf("          - - - - Excluir cliente - - - -           \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
