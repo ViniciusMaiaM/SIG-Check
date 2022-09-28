@@ -40,6 +40,8 @@ void tela_cheque(void) {
   printf("                                                    \n");
   printf("             - - - - Cheque - - - -                 \n");
   printf("                                                    \n");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
   printf("             1 - Cadastrar Cheque                   \n");
   printf("             2 - Pesquisar cheque                   \n");
   printf("             3 - Excluir cheque                     \n");
@@ -64,6 +66,8 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("          - - - - Cadastrar cheque - - - -          \n");
+  printf("                                                    \n");
+  printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("          Nome do cliente: "); //Assim ele vai pegar todas as informações do usuario do arquivo
   scanf("%[A-Z a-z]",nome_cliente);
@@ -102,6 +106,8 @@ void pesquisar_cheque(void) { //Implementar ferramenta de busca quando salvarmos
   printf("                                                    \n");
   printf("          - - - - Pesquisar cheque - - - -          \n");
   printf("                                                    \n");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
   printf("           Informe o ID (apenas números): ");
   scanf("%[A-Z a-z.,0-9]",id);
   printf("                                                    \n");
@@ -121,6 +127,8 @@ void excluir_cheque(void) { //Implementar ferramenta de busca quando salvarmos e
   printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("          - - - - Excluir cheque - - - -            \n");
+  printf("                                                    \n");
+  printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("           Informe o ID (apenas números): ");
   scanf("%[A-Z a-z.,0-9]",id);
