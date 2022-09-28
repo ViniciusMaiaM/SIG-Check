@@ -8,6 +8,8 @@ void relatorio_lucro(void) {
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("          - - - - Relatório Lucro  - - - -          \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
     printf("             Nome:Thamiris                          \n");
     printf("             Número do cheque:032                   \n");
     printf("             Nome do banco:Nubank                   \n");
