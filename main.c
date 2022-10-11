@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "cheque.h"
-#include "movimentacao.h"
-#include "lucro.h"
-#include "cliente.h"
+#include "cheque/cheque.h"
+#include "movimentacao/movimentacao.h"
+#include "lucro/lucro.h"
+#include "cliente/cliente.h"
+#include "aux/aux.h"
+
 /////
 // Assinatura das funções
 /////
