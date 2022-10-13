@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cliente.h"
-#include "cheque.h"
+#include "../aux/aux.h"
 
 void escolha_cliente (char escolha) //cadastro de cheque
 { 
@@ -44,7 +44,7 @@ void tela_cliente(void) {
     printf("             1 - Cadastrar Cliente                  \n");
     printf("             2 - Pesquisar Cliente                  \n");
     printf("             3 - Excluir   Cliente                  \n");
-    printf("             4 - Relatorio Cliente                  \n");
+    printf("             4 - Relatório Cliente                  \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
@@ -70,7 +70,7 @@ void cadastro_cliente(void){
     printf("          CPF: ");
     scanf("%[0-9]",cpf);
     getchar();
-    printf("          Celular (apenas numeros): ");
+    printf("          Celular (apenas números): ");
     scanf("%[0-9]",celular);
     getchar();
     printf("          Email: ");
@@ -130,7 +130,7 @@ void relatorio_cliente(){
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("          - - - - Relatorio cliente - - - -         \n");
+    printf("          - - - - Relatório cliente - - - -         \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");

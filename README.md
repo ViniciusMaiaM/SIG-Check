@@ -13,3 +13,13 @@ O presente projeto tem como objetivo desenvolver um programa de computador que r
 |-----------------|-------------------------------------------------|
 | Thamiris Borges |[Thami03](https://github.com/Thami03)            |
 | Vinicius Maia   |[ViniciusMaiaM](https://github.com/ViniciusMaiaM)|
+
+
+### Compilação
+
+- Caso possua a ferramente de automação make, apenas digite o comando a seguir para a compilação e execução do código:
+`make`
+
+
+- Se sua maquina não possuir a ferramenta, apenas copie e cole os seguintes comandos em seu terminal:
+`gcc -c -Wall aux/aux.c; gcc -c -Wall cheque/cheque.c; gcc -c -Wall cliente/cliente.c; gcc -c -Wall lucro/lucro.c; gcc -c -Wall movimentacao/movimentacao.c; gcc -c -Wall main.c; gcc -o sigcheck *.o;`
