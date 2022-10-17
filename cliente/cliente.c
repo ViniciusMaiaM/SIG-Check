@@ -72,16 +72,24 @@ void cadastro_cliente(void){
     printf("          Nome completo: ");
     scanf("%[A-Z a-z]",nome);
     getchar();
+    
     do{
         printf("          CPF: ");
         scanf("%s",cpf);
+        getchar();
     }while(!valida_cpf(cpf));
-    getchar();
-    printf("          Celular (apenas numeros): ");
-    scanf("%[0-9]",celular);
-    getchar();
-    printf("          Email: ");
-    fgets(email,30,stdin);
+
+    do{
+        printf("          Celular (apenas números | Insira DDD): ");
+        scanf("%[0-9]",celular);
+        getchar();
+    }while(!valida_cel(celular));
+    
+    do{
+        printf("          Email: ");
+        fgets(email,30,stdin);
+    }while(!valida_email(email));
+    
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
