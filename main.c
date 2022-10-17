@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "cheque.h"
-#include "movimentacao.h"
-#include "lucro.h"
-#include "cliente.h"
+#include "cheque/cheque.h"
+#include "movimentacao/movimentacao.h"
+#include "lucro/lucro.h"
+#include "cliente/cliente.h"
+#include "aux/aux.h"
+
 /////
 // Assinatura das funções
 /////
@@ -57,7 +59,7 @@ char tela_principal(void) {
   char escolha;
   system("clear||cls");
   printf("\n");
-  printf("____________________________________________________ \n");
+  printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("    Universidade Federal do Rio Grande do Norte     \n");
   printf("            Centro de Ensino Superior               \n");
@@ -83,7 +85,7 @@ char tela_principal(void) {
 
 void tela_sobre(void) { 
   system("clear||cls");
-  printf(" ____________________________________________________ \n");
+  printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("    Universidade Federal do Rio Grande do Norte     \n");
   printf("            Centro de Ensino Superior               \n");
@@ -96,13 +98,13 @@ void tela_sobre(void) {
   printf("                                                    \n");
   printf(" Projeto tem como objetivo desenvolver um programa  \n");
   printf(" que realize o cadastro e o acompanhamento de       \n");
-  printf(" cheque pre-datados,auxiliando o controle           \n");
+  printf(" cheque pré-datados, auxiliando o controle          \n");
   printf(" financeiro de uma empresa.                         \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("             - - - - Equipe - - - -                 \n");
   printf("           - Thamiris Borges(Thami03)               \n");
-  printf("           - Vinicius Maia(ViniciusMaiaM)           \n");
+  printf("           - Vinícius Maia(ViniciusMaiaM)           \n");
   printf("____________________________________________________\n");
   printf("Pressione enter para continuar!\n");
   getchar();

@@ -1,0 +1,1 @@
+char input(void);

@@ -5,6 +5,7 @@
 #include <math.h>
 #include <time.h> //biblioteca de data e hora
 #include "cheque.h"
+#include "../aux/aux.h"
 
 void muda_tela_cheque(char escolha) //cadastro de cheque
 { 
@@ -36,21 +37,16 @@ void tela_cheque(void) {
   char escolha;
   system("clear||cls");
   printf("\n");
-  printf(" ____________________________________________________ \n");
-  printf("                                                    \n");
-  printf("    Universidade Federal do Rio Grande do Norte     \n");
-  printf("            Centro de Ensino Superior               \n");
-  printf("     Departamento de Computacao e Tecnologia        \n");
-  printf("         Disciplina DCT1106 -- Programacao          \n");
-  printf("                Projeto SIG-Check                   \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("             - - - - Cheque - - - -                 \n");
   printf("                                                    \n");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
   printf("             1 - Cadastrar Cheque                   \n");
   printf("             2 - Pesquisar cheque                   \n");
   printf("             3 - Excluir cheque                     \n");
-  printf("             4 - Relatorio                          \n");
+  printf("             4 - Relatório                          \n");
   printf("             0 - Voltar                             \n");
   printf("                                                    \n");
   printf("____________________________________________________\n");
@@ -68,30 +64,25 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   int valor;
   char data[20];
   system("clear||cls");
-  printf(" ____________________________________________________ \n");
-  printf("                                                    \n");
-  printf("    Universidade Federal do Rio Grande do Norte     \n");
-  printf("            Centro de Ensino Superior               \n");
-  printf("     Departamento de Computacao e Tecnologia        \n");
-  printf("         Disciplina DCT1106 -- Programacao          \n");
-  printf("                Projeto SIG-Check                   \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("          - - - - Cadastrar cheque - - - -          \n");
   printf("                                                    \n");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
   printf("          Nome do cliente: "); //Assim ele vai pegar todas as informações do usuario do arquivo
   scanf("%[A-Z a-z]",nome_cliente);
   getchar();
-  printf("          Numero do cheque: ");
+  printf("          Número do cheque: ");
   scanf("%[0-9]",cheque_num);
   getchar();
   printf("          Código do banco: ");
   scanf("%[A-z a-z]",cod_banco);
   getchar();
-  printf("          Numero agencia: ");
+  printf("          Número agência: ");
   scanf("%[0-9]",agencia);
   getchar();
-  printf("          Numero conta: ");
+  printf("          Número conta: ");
   scanf("%[0-9]",num_conta);
   getchar();
   printf("          Valor do cheque: ");
@@ -113,18 +104,13 @@ void pesquisar_cheque(void) { //Implementar ferramenta de busca quando salvarmos
   system("clear||cls");
   char id[16];
   printf("\n");
-  printf(" ____________________________________________________ \n");
-  printf("                                                    \n");
-  printf("    Universidade Federal do Rio Grande do Norte     \n");
-  printf("            Centro de Ensino Superior               \n");
-  printf("     Departamento de Computacao e Tecnologia        \n");
-  printf("         Disciplina DCT1106 -- Programacao          \n");
-  printf("                Projeto SIG-Check                   \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("          - - - - Pesquisar cheque - - - -          \n");
   printf("                                                    \n");
-  printf("           Informe o ID (apenas numeros): ");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("           Informe o ID (apenas números): ");
   scanf("%[A-Z a-z.,0-9]",id);
   printf("                                                    \n");
   printf("                                                    \n");
@@ -140,18 +126,13 @@ void excluir_cheque(void) { //Implementar ferramenta de busca quando salvarmos e
   system("clear||cls");
   char id[16];
   printf("\n");
-  printf(" ____________________________________________________ \n");
-  printf("                                                    \n");
-  printf("    Universidade Federal do Rio Grande do Norte     \n");
-  printf("            Centro de Ensino Superior               \n");
-  printf("     Departamento de Computacao e Tecnologia        \n");
-  printf("         Disciplina DCT1106 -- Programacao          \n");
-  printf("                Projeto SIG-Check                   \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("          - - - - Excluir cheque - - - -            \n");
   printf("                                                    \n");
-  printf("           Informe o ID (apenas numeros): ");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("           Informe o ID (apenas números): ");
   scanf("%[A-Z a-z.,0-9]",id);
   printf("                                                    \n");
   printf("                                                    \n");
@@ -162,37 +143,30 @@ void excluir_cheque(void) { //Implementar ferramenta de busca quando salvarmos e
   getchar();
 }
 
-char input(void) //função de input
-{
-  char n;
-  printf("Insira sua escolha: ");
-  scanf("%c", &n);
-  getchar();
-  return n; 
-}
+
 
 void relatorio_cheque(){
   system("clear||cls");
   printf("____________________________________________________\n");
   printf("                                                    \n");
-  printf("          - - - - Relatorio Cheque - - - -          \n");
+  printf("          - - - - Relatório Cheque - - - -          \n");
   printf("                                                    \n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
-  printf("          Nome do cliente: Flavius\n");
-  printf("          Numero do cheque: 000158\n");
-  printf("          Numero do banco: 001\n");
-  printf("          Numero agencia: 4321\n");
-  printf("          Numero conta: 468293-1\n");
+  printf("          Nome do cliente: Flávius\n");
+  printf("          Número do cheque: 000158\n");
+  printf("          Número do banco: 001\n");
+  printf("          Número agência: 4321\n");
+  printf("          Número conta: 468293-1\n");
   printf("          Valor do cheque: 1500.00\n");
   printf("          Receptor do cheque: Vinicius\n");
   printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("          Nome do cliente: Thamirys\n");
-  printf("          Numero do cheque: 000132\n");
-  printf("          Numero do banco: 001\n");
-  printf("          Numero agencia: 1234\n");
-  printf("          Numero conta: 273673-1\n");
+  printf("          Número do cheque: 000132\n");
+  printf("          Número do banco: 001\n");
+  printf("          Número agência: 1234\n");
+  printf("          Número conta: 273673-1\n");
   printf("          Valor do cheque: 300.00\n");
   printf("          Receptor do cheque: Italo\n");
   printf("                                                    \n");
@@ -201,16 +175,43 @@ void relatorio_cheque(){
   getchar();
 }
 
+
+/*
+Ainda em desenvolvimento
+
+void tela_alterar_cheque(void) {
+  system("clear||cls");
+  printf("\n");
+  printf(" ____________________________________________________ \n");
+  printf("|                                                    |\n");
+  printf("|    Universidade Federal do Rio Grande do Norte     |\n");
+  printf("|            Centro de Ensino Superior               |\n");
+  printf("|     Departamento de Computacao e Tecnologia        |\n");
+  printf("|         Disciplina DCT1106 -- Programacao          |\n");
+  printf("|                Projeto SIG-Check                   |\n");
+  printf("|____________________________________________________|\n");
+  printf("|                                                    |\n");
+  printf("|          - - - - Alterar usuario - - - -           |\n");
+  printf("|                                                    |\n");
+  printf("|           Informe o ID (apenas numeros):           |\n");
+  printf("|                                                    |\n");
+  printf("|                                                    |\n");
+  printf("|                                                    |\n");
+  printf("|____________________________________________________|\n");
+  printf("\n");
+  printf("Pressione enter para continuar!\n");
+    getchar();
+}
+*/
 /*
 int valida_cpf(char cpf[]){
   
-  int validador=2;
-  while(validador!=0)
-{  //com mascara ###.###.###-##
+  int validador = 2;
+  while(validador != 0){  //com mascara ###.###.###-##
     int cpf_int[11];
     int soma_d1=0, soma_d2=0, calculo_d, tam,d=0,i=0, digitos;
-//    printf("Digite seu cpf (###.###.###-##):\n");
- //   scanf("%s", &cpf);
+//  printf("Digite seu cpf (###.###.###-##):\n");
+ // scanf("%s", cpf);
     tam=strlen(cpf);
   
     while(d<=tam){
@@ -264,31 +265,3 @@ return validador;
   }
   return 1;
 }*/
-
-/*
-Ainda em desenvolvimento
-
-void tela_alterar_cheque(void) {
-  system("clear||cls");
-  printf("\n");
-  printf(" ____________________________________________________ \n");
-  printf("|                                                    |\n");
-  printf("|    Universidade Federal do Rio Grande do Norte     |\n");
-  printf("|            Centro de Ensino Superior               |\n");
-  printf("|     Departamento de Computacao e Tecnologia        |\n");
-  printf("|         Disciplina DCT1106 -- Programacao          |\n");
-  printf("|                Projeto SIG-Check                   |\n");
-  printf("|____________________________________________________|\n");
-  printf("|                                                    |\n");
-  printf("|          - - - - Alterar usuario - - - -           |\n");
-  printf("|                                                    |\n");
-  printf("|           Informe o ID (apenas numeros):           |\n");
-  printf("|                                                    |\n");
-  printf("|                                                    |\n");
-  printf("|                                                    |\n");
-  printf("|____________________________________________________|\n");
-  printf("\n");
-  printf("Pressione enter para continuar!\n");
-    getchar();
-}
-*/
