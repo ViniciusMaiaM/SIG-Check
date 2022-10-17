@@ -127,3 +127,31 @@ int data_valida_str(char data[]){
 
     return 0;
 }
+
+int valida_email(char email[]){
+
+    int arroba = 0, pont = 0;
+
+    if (strlen(email) > 0){
+        for(int i = 0; i < strlen(email); i++){
+            
+            if(email[i] == '@'){
+                arroba ++;
+            }
+
+            else if(email[i] == '.'){
+                pont++;
+
+            }
+        }
+
+        if(arroba == 1 && pont!= 0){
+            return 1;
+        }
+
+        else{
+            return 0;
+        }
+    }
+    return 0;
+}
