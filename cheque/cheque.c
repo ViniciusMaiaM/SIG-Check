@@ -88,6 +88,7 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("          Valor do cheque: ");
   scanf("%d",&valor);
   getchar();
+
   do{
     printf("          Data para ser descontado: ");
     scanf("%[0-9 / -]", data);
