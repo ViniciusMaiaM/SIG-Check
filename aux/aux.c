@@ -155,3 +155,13 @@ int valida_email(char email[]){
     }
     return 0;
 }
+
+int valida_float(float dinheiro){
+
+
+    if (((dinheiro >= '0') && (dinheiro <= '9')) || (dinheiro = '.')){
+        return 1;
+    }
+    
+    return 0;
+}
