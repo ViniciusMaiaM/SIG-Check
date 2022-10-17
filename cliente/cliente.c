@@ -57,12 +57,13 @@ void tela_cliente(void) {
     escolha_cliente(escolha);
 } 
 
+
 int cadastro_cliente(void){
     char nome[30];
     char cpf[15];
     char celular[19];
     char email[30];
-   system("clear||cls");
+    system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("          - - - - Cadastrar cliente - - - -         \n");
