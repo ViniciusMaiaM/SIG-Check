@@ -59,7 +59,7 @@ int busca_num(int tam, char celular[]){
 ///////////
 //Criado com base no algoritmo do professor Flavius Gorgonio
 //////////
-int data_valida_int(int dia, int mes, int ano){
+int data_int(int dia, int mes, int ano){
     int md;
     if (ano < 0 || mes > 12 || mes < 0 || dia < 1){
         return 0;
@@ -106,7 +106,7 @@ int bissexto (int ano){
     }
 }
 
-int data_valida_str(char data[]){
+int data_str(char data[]){
     int dia, mes, ano;
 
     if (strlen(data) != 10){
@@ -121,7 +121,7 @@ int data_valida_str(char data[]){
     mes = ((data[3] - '0') * 10) + (data[4] - '0');
     ano = ((data[6] - '0') * 1000) + ((data[7] - '0') * 100) + ((data[8] - '0') * 10) + (data[9] - '0');
     
-    if(data_valida_int(dia,mes,ano)){
+    if(data_int(dia,mes,ano)){
         return 1;
     }
 
