@@ -56,7 +56,7 @@ void tela_cliente(void) {
 void cadastro_cliente(void){
     char nome[30];
     char cpf[15];
-    char celular[19];
+    char celular[11];
     char email[30];
     system("clear||cls");
     printf("____________________________________________________\n");
@@ -70,9 +70,11 @@ void cadastro_cliente(void){
     printf("          CPF: ");
     scanf("%[0-9]",cpf);
     getchar();
-    printf("          Celular (apenas números): ");
-    scanf("%[0-9]",celular);
-    getchar();
+    do{
+        printf("          Celular (apenas números): ");
+        scanf("%[0-9]",celular);
+        getchar();
+    }while(!valida_cel(celular));
     printf("          Email: ");
     fgets(email,30,stdin);
     printf("                                                    \n");
