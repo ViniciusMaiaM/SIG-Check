@@ -250,7 +250,6 @@ digitos = ((i)*10)+(d);
 
   validador=0;
 }else{
-  printf("CPF inválido, Digite novamente: \n");
  validador=1;
   }
 }
