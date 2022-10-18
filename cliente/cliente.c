@@ -6,7 +6,6 @@
 #include <math.h>
 
 int valida_cpf(char cpf[]);
-
 void escolha_cliente (char escolha) //cadastro de cheque
 { 
     switch (escolha)
@@ -70,7 +69,7 @@ void cadastro_cliente(void){
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("          Nome completo: ");
-    scanf("%[A-Z a-z]",nome);
+    scanf("%[A-Z a-z]",&nome);
     getchar();
     
     do{
@@ -89,7 +88,7 @@ void cadastro_cliente(void){
         printf("          Email: ");
         fgets(email,30,stdin);
     }while(!valida_email(email));
-    
+
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
@@ -184,6 +183,7 @@ int valida_cpf(char *cpf){
 
 //Testando cpf com todos os numeros iguais, são considerados válidos pelo calculo, mas são invalidos.
 if(cpf_int[0]==0 && cpf_int[1]==0 && cpf_int[2]==0 && cpf_int[3]==0 && cpf_int[4]==0 && cpf_int[5]==0 && cpf_int[6]==0 && cpf_int[7]==0 && cpf_int[8]==0 && cpf_int[9]==0 && cpf_int[10]==0){
+
     printf("CPF inválido, Digite novamente: \n");
     validador=1; 
 }  
