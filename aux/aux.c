@@ -267,7 +267,7 @@ return validador;
 // }
 
 int valida_dig(char dig[]){
-    int tam = sizeof(dig)/sizeof(dig[0]);
+    int tam = strlen(dig);
 
     for (int i = 0; i < tam; i++){
         if(!(dig[i] >= '0' && dig[i] <='9')){

@@ -56,13 +56,13 @@ void tela_cheque(void) {
 } 
 
 void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
-  char cheque_num[16];
-  char cod_banco[30];
-  char nome_cliente[30];
-  char agencia[15];
-  char num_conta[20];
+  char cheque_num[10];
+  char cod_banco[10];
+  char nome_cliente[10];
+  char agencia[10];
+  char num_conta[10];
   int valor;
-  char data[20];
+  char data[10];
   system("clear||cls");
   printf("____________________________________________________\n");
   printf("                                                    \n");
@@ -73,18 +73,31 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("          Nome do cliente: "); //Assim ele vai pegar todas as informações do usuario do arquivo
   scanf("%[A-Z a-z]",nome_cliente);
   getchar();
-  printf("          Número do cheque: ");
-  scanf("%[0-9]",cheque_num);
-  getchar();
-  printf("          Código do banco: ");
-  scanf("%[A-z a-z]",cod_banco);
-  getchar();
-  printf("          Número agência: ");
-  scanf("%[0-9]",agencia);
-  getchar();
+
+  do {
+    printf("          Número do cheque: ");
+    scanf("%[0-9]",cheque_num);
+    getchar();
+  } while(!valida_dig(cheque_num));
+
+  do {
+    printf("          Código do banco: ");
+    scanf("%[0-9]",cod_banco);
+    getchar();
+  } while(!valida_dig(cod_banco));
+  
+  do {
+    printf("          Número agência: ");
+    scanf("%[0-9]",agencia);
+    getchar();
+  } while(!valida_dig(agencia));
+  
+  do {
   printf("          Número conta: ");
   scanf("%[0-9]",num_conta);
   getchar();
+  } while(!valida_dig(num_conta));
+  
   printf("          Valor do cheque: ");
   scanf("%d",&valor);
   getchar();
