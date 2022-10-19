@@ -71,7 +71,7 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("          Nome do cliente: "); //Assim ele vai pegar todas as informações do usuario do arquivo
-  scanf("%[A-Z a-z]",nome_cliente);
+  scanf("%50[^\n]",nome_cliente);
   getchar();
 
   do {
