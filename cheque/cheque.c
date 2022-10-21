@@ -93,9 +93,9 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   } while(!valida_dig(agencia));
   
   do {
-  printf("          Número conta: ");
-  scanf("%[0-9]",num_conta);
-  getchar();
+    printf("          Número conta: ");
+    scanf("%[0-9]",num_conta);
+    getchar();
   } while(!valida_dig(num_conta));
   
   printf("          Valor do cheque: ");
