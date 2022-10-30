@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include "aux.h"
 
 int ddd[27] = {11,21,27,31,41,47,51,61,62,63,65,67,68,69,71,79,81,82,83,84,85,86,91,92,95,96,98};
@@ -60,7 +61,19 @@ int busca_num(int tam, char celular[]){
 //Criado com base no algoritmo do professor Flavius Gorgonio
 //////////
 int data_int(int dia, int mes, int ano){
+
+    struct tm *atual;
+
+    time_t segundos;
+    time(&segundos);
+
+    atual = localtime(&segundos);
+    
     int md;
+    int dia_atual = atual->tm_mday;
+    int mes_atual = (atual->tm_mon)+1;
+    int ano_atual = (atual->tm_year)+1900;
+
     if (ano < 0 || mes > 12 || mes < 0 || dia < 1){
         return 0;
     }
@@ -83,6 +96,18 @@ int data_int(int dia, int mes, int ano){
     }
 
     if (dia > md){
+        return 0;
+    }
+
+    if (ano < ano_atual){
+        return 0;
+    }
+
+    else if (mes < mes_atual){
+        return 0;
+    }
+    
+    else if((dia < dia_atual) && (mes <= mes_atual)){
         return 0;
     }
 
