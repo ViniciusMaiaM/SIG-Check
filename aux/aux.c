@@ -128,6 +128,8 @@ int data_str(char data[]){
     return 0;
 }
 
+/* Inspirado no algoritmo de https://pt.stackoverflow.com/users/110948/rog%C3%A9rio-dec */
+
 int valida_email(char email[]){
 
     int arroba = 0, pont = 0;
@@ -135,17 +137,30 @@ int valida_email(char email[]){
     if (strlen(email) > 0){
         for(int i = 0; i < strlen(email); i++){
             
-            if(email[i] == '@'){
-                arroba ++;
+            if (email[i] == '@'){
+
+                if (arroba){
+                    return 0;
+                }
+
+                else if(i < 3){
+                    return 0;
+                }
+
+                arroba++;
             }
 
-            else if(email[i] == '.'){
-                pont++;
+            if(arroba){
 
+                if(email[i] == '.'){
+                    if(email[i-1] != '@' && email[i-2] != '@' && email[i-3] != '@'){
+                        pont++;
+                    }
+                }   
             }
         }
 
-        if(arroba == 1 && pont!= 0){
+        if(arroba == 1 && pont != 0){
             return 1;
         }
 
