@@ -106,6 +106,7 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("                                                    \n");
   printf("                                                    \n");
   printf("____________________________________________________\n");
+  free(che);
   printf("\nPressione enter para continuar!\n");
   getchar();
 }
