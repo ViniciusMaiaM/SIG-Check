@@ -90,6 +90,7 @@ void cadastro_cliente(void){
     printf("                                                    \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
+    free(cli);
     printf("\nPressione enter para continuar!\n");
     getchar();
 }
