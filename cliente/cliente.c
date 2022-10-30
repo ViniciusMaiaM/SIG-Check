@@ -57,10 +57,8 @@ void tela_cliente(void) {
 
 
 void cadastro_cliente(void){
-    char nome[30];
-    char cpf[15];
-    char celular[19];
-    char email[30];
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -68,25 +66,25 @@ void cadastro_cliente(void){
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("          Nome completo: ");
-    scanf("%[A-Z a-z]",nome);
+    scanf("%30[^\n]",cli->nome_cliente);
     getchar();
     
     do{
         printf("          CPF: ");
-        scanf("%s",cpf);
+        scanf("%s",cli->cpf_cliente);
         getchar();
-    }while(!valida_cpf(cpf));
+    }while(!valida_cpf(cli->cpf_cliente));
 
     do{
         printf("          Celular (apenas números | Insira DDD): ");
-        scanf("%[0-9]",celular);
+        scanf("%[0-9]",cli->cel_cliente);
         getchar();
-    }while(!valida_cel(celular));
+    }while(!valida_cel(cli->cel_cliente));
     
     do{
         printf("          Email: ");
-        fgets(email,30,stdin);
-    }while(!valida_email(email));
+        fgets(cli->email_cliente,30,stdin);
+    }while(!valida_email(cli->email_cliente));
 
     printf("                                                    \n");
     printf("                                                    \n");
