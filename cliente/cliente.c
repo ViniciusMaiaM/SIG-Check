@@ -84,6 +84,7 @@ void cadastro_cliente(void){
     do{
         printf("          Email: ");
         fgets(cli->email_cliente,30,stdin);
+        getchar();
     }while(!valida_email(cli->email_cliente));
 
     printf("                                                    \n");
