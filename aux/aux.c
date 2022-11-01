@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include "aux.h"
 
 int ddd[27] = {11,21,27,31,41,47,51,61,62,63,65,67,68,69,71,79,81,82,83,84,85,86,91,92,95,96,98};
@@ -60,7 +61,19 @@ int busca_num(int tam, char celular[]){
 //Criado com base no algoritmo do professor Flavius Gorgonio
 //////////
 int data_int(int dia, int mes, int ano){
+
+    struct tm *atual;
+
+    time_t segundos;
+    time(&segundos);
+
+    atual = localtime(&segundos);
+    
     int md;
+    int dia_atual = atual->tm_mday;
+    int mes_atual = (atual->tm_mon)+1;
+    int ano_atual = (atual->tm_year)+1900;
+
     if (ano < 0 || mes > 12 || mes < 0 || dia < 1){
         return 0;
     }
@@ -83,6 +96,18 @@ int data_int(int dia, int mes, int ano){
     }
 
     if (dia > md){
+        return 0;
+    }
+
+    if (ano < ano_atual){
+        return 0;
+    }
+
+    else if (mes < mes_atual){
+        return 0;
+    }
+    
+    else if((dia < dia_atual) && (mes <= mes_atual)){
         return 0;
     }
 
@@ -128,6 +153,8 @@ int data_str(char data[]){
     return 0;
 }
 
+/* Inspirado no algoritmo de https://pt.stackoverflow.com/users/110948/rog%C3%A9rio-dec */
+
 int valida_email(char email[]){
 
     int arroba = 0, pont = 0;
@@ -135,17 +162,30 @@ int valida_email(char email[]){
     if (strlen(email) > 0){
         for(int i = 0; i < strlen(email); i++){
             
-            if(email[i] == '@'){
-                arroba ++;
+            if (email[i] == '@'){
+
+                if (arroba){
+                    return 0;
+                }
+
+                else if(i < 3){
+                    return 0;
+                }
+
+                arroba++;
             }
 
-            else if(email[i] == '.'){
-                pont++;
+            if(arroba){
 
+                if(email[i] == '.'){
+                    if(email[i-1] != '@' && email[i-2] != '@' && email[i-3] != '@'){
+                        pont++;
+                    }
+                }   
             }
         }
 
-        if(arroba == 1 && pont!= 0){
+        if(arroba == 1 && pont != 0){
             return 1;
         }
 
@@ -265,3 +305,15 @@ return validador;
     
 //     return 0;
 // }
+
+int valida_dig(char dig[]){
+    int tam = strlen(dig);
+
+    for (int i = 0; i < tam; i++){
+        if(!(dig[i] >= '0' && dig[i] <='9')){
+            return 0;
+        }
+    }
+
+    return 1;
+}

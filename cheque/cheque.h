@@ -1,14 +1,15 @@
-/*struct cheque {
-    char id[19];
-    char cpf[11];
-    char nome[30];
-    char celular[19];
-    int valor;
-    char receptor[20];
-};
 typedef struct cheque Cheque;
-void set_cadastro(Cheque c, char id[19], char cpf[11], char nome[30], char celular[19], int valor, char receptor[20]);
-void print_struct(cheque *c);*/
+
+struct cheque {
+    char agencia[10];
+    char cheque_num[10];
+    char cod_banco[10];
+    char data[10];
+    char nome_cliente[10];
+    char num_conta[10];
+    int valor;
+};
+
 
 void tela_cheque(void);
 void cadastrar_cheque(void);
