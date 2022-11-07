@@ -9,15 +9,18 @@
 
 void muda_tela_cheque(char escolha) //cadastro de cheque
 { 
+  Cheque* che;
   switch (escolha)
   {
     case '1':
-      cadastrar_cheque();
+      che = cadastrar_cheque();
+      grava_cheque(che);
+      free(che);
       break;
       
     case '2':
       pesquisar_cheque();
-      break;
+      break;  
       
     case '3': 
       excluir_cheque();
@@ -55,7 +58,7 @@ void tela_cheque(void) {
   muda_tela_cheque(escolha);
 } 
 
-void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
+Cheque* cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, precisamos criar validacoes
   Cheque* che;
   che = (Cheque*) malloc(sizeof(Cheque));
   system("clear||cls");
@@ -66,30 +69,30 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
   printf("____________________________________________________\n");
   printf("                                                    \n");
   printf("          Nome do cliente: "); //Assim ele vai pegar todas as informações do usuario do arquivo
-  scanf("%50[^\n]",che->nome_cliente);
+  scanf(" %50[^\n]",che->nome_cliente);
   getchar();
 
   do {
     printf("          Número do cheque: ");
-    scanf("%[0-9]",che->cheque_num);
+    scanf(" %[0-9]",che->cheque_num);
     getchar();
   } while(!valida_dig(che->cheque_num));
 
   do {
     printf("          Código do banco: ");
-    scanf("%[0-9]",che->cod_banco);
+    scanf(" %[0-9]",che->cod_banco);
     getchar();
   } while(!valida_dig(che->cod_banco));
   
   do {
     printf("          Número agência: ");
-    scanf("%[0-9]",che->agencia);
+    scanf(" %[0-9]",che->agencia);
     getchar();
   } while(!valida_dig(che->agencia));
   
   do {
     printf("          Número conta: ");
-    scanf("%[0-9]",che->num_conta);
+    scanf(" %[0-9]",che->num_conta);
     getchar();
   } while(!valida_dig(che->num_conta));
   
@@ -99,16 +102,16 @@ void cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user, pr
 
   do{
     printf("          Data para ser descontado: ");
-    scanf("%[0-9 / -]", che->data);
+    scanf(" %[0-9 / -]", che->data);
     getchar();
   }while(!data_str(che->data));
   printf("                                                    \n");
   printf("                                                    \n");
   printf("                                                    \n");
   printf("____________________________________________________\n");
-  free(che);
   printf("\nPressione enter para continuar!\n");
   getchar();
+  return che;
 }
 
 
@@ -188,3 +191,16 @@ void relatorio_cheque(){
 }
 
 
+
+void grava_cheque(Cheque* che){
+    FILE* fp;
+    fp = fopen("cheque.dat","ab");
+
+    if(fp == NULL) {
+        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        exit(1);
+    }
+
+    fwrite(che,sizeof(Cheque),1,fp);
+    fclose(fp);
+}
