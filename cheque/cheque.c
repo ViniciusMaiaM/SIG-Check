@@ -20,7 +20,7 @@ void muda_tela_cheque(char escolha) //cadastro de cheque
       
     case '2':
       che = busca_cheque();
-
+      exibe_cheque(che);
       break;  
       
     case '3': 
@@ -187,7 +187,7 @@ void grava_cheque(Cheque* che){
 Cheque* busca_cheque(){
   FILE* fp;
   Cheque* che;
-  char che_num[15];
+  char che_num[10];
   system("clear||cls");
   printf("____________________________________________________\n");
   printf("                                                    \n");
@@ -195,7 +195,8 @@ Cheque* busca_cheque(){
   printf("                                                    \n");
   printf("____________________________________________________\n");
   printf("           Informe o número do cheque: ");
-  scanf(" %[0-9]",che_num);
+  scanf("%[0-9]",che_num);
+  getchar();
   che = (Cheque*) malloc(sizeof(Cheque));
   fp = fopen("cheque.dat","rb");
   
@@ -206,7 +207,7 @@ Cheque* busca_cheque(){
 
   while(!feof(fp)){ //Busca até o final do arquivo
       fread(che, sizeof(Cheque),1,fp);
-      if((che->cheque_num == che_num) && (che->status != 'x')){ /*Verifica se o código é igual e o status*/
+      if(strcmp(che->cheque_num,che_num) == 0 && (che->status != 'x')){ /*Verifica se o código é igual e o status*/
           fclose(fp);
           return che;
       }
@@ -215,4 +216,39 @@ Cheque* busca_cheque(){
   
   fclose(fp);
   return NULL;
+}
+
+void exibe_cheque(Cheque* che){
+  system("clear||cls");
+  char situacao[20];
+  if ((che == NULL) || che->status=='x'){
+      printf("\nCheque não encontrado\n");
+  }
+
+  else{
+      printf("\nAgência: %s\n",che->agencia);
+      printf("Número Cheque: %s\n",che->cheque_num);
+      printf("Código Banco: %s\n",che->cod_banco);
+      printf("Data de postagem: %s\n",che->data);
+      printf("Nome do cliente: %s\n",che->nome_cliente);
+      printf("Número da conta: %s\n",che->num_conta);
+      printf("Valor do cheque: %d\n",che->valor);
+
+      if (che->status == 'c'){
+          strcpy(situacao,"Cadastrado");
+      }
+
+      else if (che->status == 'p'){
+          strcpy(situacao,"Pago");
+          
+      }
+
+      else{
+          strcpy(situacao,"Não reconhecido");
+      }
+
+      printf("Situação do Cheque: %s",situacao);
+  }
+  printf("\nPressione enter...\n");
+  getchar();
 }

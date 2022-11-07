@@ -1,12 +1,12 @@
 typedef struct cheque Cheque;
 
 struct cheque {
-    char agencia[10];
-    char cheque_num[10];
-    char cod_banco[10];
-    char data[10];
-    char nome_cliente[10];
-    char num_conta[10];
+    char agencia[40];
+    char cheque_num[40];
+    char cod_banco[40];
+    char data[40];
+    char nome_cliente[40];
+    char num_conta[40];
     int valor;
     char status;
 };
@@ -21,4 +21,5 @@ void pesquisar_cheque(void);
 void excluir_cheque(void);
 void relatorio_cheque();
 int valida_cpf(char cpf[]);
+void exibe_cheque(Cheque* che);
 //int valida_string(char array[]);
