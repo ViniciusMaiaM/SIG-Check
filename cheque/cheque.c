@@ -19,7 +19,8 @@ void muda_tela_cheque(char escolha) //cadastro de cheque
       break;
       
     case '2':
-      pesquisar_cheque();
+      che = busca_cheque();
+
       break;  
       
     case '3': 
@@ -111,31 +112,9 @@ Cheque* cadastrar_cheque(void) { //Tela que recebe informacoes iniciais do user,
   printf("____________________________________________________\n");
   printf("\nPressione enter para continuar!\n");
   getchar();
+  che->status = 'c';
   return che;
 }
-
-
-void pesquisar_cheque(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
-  system("clear||cls");
-  char id[16];
-  printf("\n");
-  printf("____________________________________________________\n");
-  printf("                                                    \n");
-  printf("          - - - - Pesquisar cheque - - - -          \n");
-  printf("                                                    \n");
-  printf("____________________________________________________\n");
-  printf("                                                    \n");
-  printf("           Informe o ID (apenas números): ");
-  scanf("%[A-Z a-z.,0-9]",id);
-  printf("                                                    \n");
-  printf("                                                    \n");
-  printf("                                                    \n");
-  printf("____________________________________________________\n");
-  printf("\n");
-  printf("Pressione enter para continuar!\n");
-  getchar();
-}
-
 
 void excluir_cheque(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
   system("clear||cls");
@@ -203,4 +182,37 @@ void grava_cheque(Cheque* che){
 
     fwrite(che,sizeof(Cheque),1,fp);
     fclose(fp);
+}
+
+Cheque* busca_cheque(){
+  FILE* fp;
+  Cheque* che;
+  char che_num[15];
+  system("clear||cls");
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("          - - - - Buscar Cheque - - - -             \n");
+  printf("                                                    \n");
+  printf("____________________________________________________\n");
+  printf("           Informe o número do cheque: ");
+  scanf(" %[0-9]",che_num);
+  che = (Cheque*) malloc(sizeof(Cheque));
+  fp = fopen("cheque.dat","rb");
+  
+  if(fp == NULL) {
+      printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+      exit(1);
+  }  
+
+  while(!feof(fp)){ //Busca até o final do arquivo
+      fread(che, sizeof(Cheque),1,fp);
+      if((che->cheque_num == che_num) && (che->status != 'x')){ /*Verifica se o código é igual e o status*/
+          fclose(fp);
+          return che;
+      }
+
+  }
+  
+  fclose(fp);
+  return NULL;
 }

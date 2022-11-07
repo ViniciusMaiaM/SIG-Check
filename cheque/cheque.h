@@ -8,12 +8,13 @@ struct cheque {
     char nome_cliente[10];
     char num_conta[10];
     int valor;
+    char status;
 };
 
 
 void tela_cheque(void);
 Cheque* cadastrar_cheque(void);
-// Cheque* busca_cheque();
+Cheque* busca_cheque();
 void grava_cheque(Cheque* che);
 void muda_tela_cheque(char escolha);
 void pesquisar_cheque(void);
