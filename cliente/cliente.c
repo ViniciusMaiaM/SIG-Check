@@ -56,7 +56,7 @@ void tela_cliente(void) {
 } 
 
 
-void cadastro_cliente(void){
+Cliente* cadastro_cliente(void){
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
     system("clear||cls");
@@ -91,9 +91,10 @@ void cadastro_cliente(void){
     printf("                                                    \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
-    free(cli);
     printf("\nPressione enter para continuar!\n");
     getchar();
+    cli->status = 'c';
+    return cli;
 }
 
 void pesquisar_cliente(void) { //Implementar ferramenta de busca quando salvarmos em arquivos
@@ -162,4 +163,3 @@ void relatorio_cliente(){
     printf("\nPressione enter para continuar!\n");
     getchar();
 }
-
