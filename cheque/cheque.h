@@ -20,7 +20,6 @@ void muda_tela_cheque(char escolha);
 void pesquisar_cheque(void);
 void excluir_cheque(void);
 void relatorio_cheque();
-int valida_cpf(char cpf[]);
 void exibe_cheque(Cheque* che);
 //int valida_string(char array[]);
 void lista_cheque();
