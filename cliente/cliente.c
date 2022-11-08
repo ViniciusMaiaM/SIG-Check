@@ -18,7 +18,7 @@ void escolha_cliente (char escolha) //cadastro de cheque
         
         case '2':
         cli = busca_cliente();
-
+        relatorio_cliente(cli);
         break;
         
         case '3': 
@@ -26,7 +26,6 @@ void escolha_cliente (char escolha) //cadastro de cheque
         break;
         
         case '4':
-        relatorio_cliente();
         break;
 
         default:
@@ -146,25 +145,30 @@ void excluir_cliente(void) { //Implementar ferramenta de busca quando salvarmos 
 
 void relatorio_cliente(Cliente* cli){
     system("clear||cls");
-    printf("____________________________________________________\n");
-    printf("                                                    \n");
-    printf("          - - - - Relatório cliente - - - -         \n");
-    printf("                                                    \n");
-    printf("____________________________________________________\n");
-    printf("                                                    \n");
-    printf("          Nome: Vinicius\n");
-    printf("          CPF: 123.456.789-10\n");
-    printf("          Celular: 912345678\n");
-    printf("          Email: vinicius.maia.123@ufrn.edu.br\n");
-    printf("____________________________________________________\n");
-    printf("                                                    \n");
-    printf("          Nome: Thamiris\n");
-    printf("          CPF: 123.456.789-10\n");
-    printf("          Celular: 912345678\n");
-    printf("          Email: thamiris.123@ufrn.edu.br\n");
-    printf("                                                    \n");
-    printf("____________________________________________________\n");
-    printf("\nPressione enter para continuar!\n");
+    char situacao[20];
+    if ((cli == NULL) || cli->status=='x'){
+        printf("\nCliente não encontrado\n");
+    }
+
+    else{
+        printf("\n____________________________________________________\n");
+        printf("\nNome: %s\n",cli->nome_cliente);
+        printf("CPF: %s\n",cli->cpf_cliente);
+        printf("Celular: %s\n",cli->cel_cliente);
+        printf("Email: %s\n",cli->email_cliente);
+
+        if (cli->status == 'c'){
+            strcpy(situacao,"Cadastrado");
+        }
+
+        else{
+            strcpy(situacao,"Não reconhecido");
+        }
+
+        printf("Situação do cliente: %s",situacao);
+    }
+    printf("\n____________________________________________________\n");
+    printf("\nPressione enter...\n");
     getchar();
 }
 
@@ -188,10 +192,10 @@ Cliente* busca_cliente(){
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("          - - - - Buscar Cheque - - - -             \n");
+    printf("          - - - - Buscar Cliente - - - -             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
-    printf("           Informe o número do cheque: ");
+    printf("           Informe o número do cliente: ");
     scanf("%[0-9]",cpf);
     getchar();
     cli = (Cliente*) malloc(sizeof(Cliente));
@@ -203,7 +207,7 @@ Cliente* busca_cliente(){
     }  
     while(!feof(fp)){ //Busca até o final do arquivo
         fread(cli, sizeof(Cliente),1,fp);
-        if(strcmp(cli->cpf_cliente,cpf) == 0 && (cli->cpf_cliente != 'x')){ /*Verifica se o código é igual e o status*/
+        if(strcmp(cli->cpf_cliente,cpf) == 0 && (cli->status != 'x')){ /*Verifica se o código é igual e o status*/
             fclose(fp);
             return cli;
         }
