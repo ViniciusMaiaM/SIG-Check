@@ -173,7 +173,7 @@ void relatorio_cheque(){
 
 void grava_cheque(Cheque* che){
     FILE* fp;
-    fp = fopen("cheque.dat","ab");
+    fp = fopen("cheque.txt","at");
 
     if(fp == NULL) {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
@@ -187,7 +187,7 @@ void grava_cheque(Cheque* che){
 Cheque* busca_cheque(){
   FILE* fp;
   Cheque* che;
-  char che_num[10];
+  char num_conta[10];
   system("clear||cls");
   printf("____________________________________________________\n");
   printf("                                                    \n");
@@ -195,19 +195,19 @@ Cheque* busca_cheque(){
   printf("                                                    \n");
   printf("____________________________________________________\n");
   printf("           Informe o número do cheque: ");
-  scanf("%[0-9]",che_num);
+  scanf("%[0-9]",num_conta);
   getchar();
   che = (Cheque*) malloc(sizeof(Cheque));
-  fp = fopen("cheque.dat","rb");
+  fp = fopen("cheque.txt","rt");
   
   if(fp == NULL) {
       printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
       exit(1);
   }  
-
   while(!feof(fp)){ //Busca até o final do arquivo
       fread(che, sizeof(Cheque),1,fp);
-      if(strcmp(che->cheque_num,che_num) == 0 && (che->status != 'x')){ /*Verifica se o código é igual e o status*/
+      int comp = compareTwoString(che->num_conta,num_conta);
+      if(comp && (che->status != 'x')){ /*Verifica se o código é igual e o status*/
           fclose(fp);
           return che;
       }
@@ -226,29 +226,53 @@ void exibe_cheque(Cheque* che){
   }
 
   else{
-      printf("\nAgência: %s\n",che->agencia);
-      printf("Número Cheque: %s\n",che->cheque_num);
-      printf("Código Banco: %s\n",che->cod_banco);
-      printf("Data de postagem: %s\n",che->data);
-      printf("Nome do cliente: %s\n",che->nome_cliente);
-      printf("Número da conta: %s\n",che->num_conta);
-      printf("Valor do cheque: %d\n",che->valor);
+    printf("\nAgência: %s\n",che->agencia);
+    printf("Número Cheque: %s\n",che->cheque_num);
+    printf("Código Banco: %s\n",che->cod_banco);
+    printf("Data de postagem: %s\n",che->data);
+    printf("Nome do cliente: %s\n",che->nome_cliente);
+    printf("Número da conta: %s\n",che->num_conta);
+    printf("Valor do cheque: %d\n",che->valor);
 
-      if (che->status == 'c'){
-          strcpy(situacao,"Cadastrado");
-      }
+    if (che->status == 'c'){
+      strcpy(situacao,"Cadastrado");
+    }
 
-      else if (che->status == 'p'){
-          strcpy(situacao,"Pago");
-          
-      }
+    else if (che->status == 'p'){
+      strcpy(situacao,"Pago");  
+    }
 
-      else{
-          strcpy(situacao,"Não reconhecido");
-      }
+    else{
+      strcpy(situacao,"Não reconhecido");
+    }
 
-      printf("Situação do Cheque: %s",situacao);
+    printf("Situação do Cheque: %s",situacao);
   }
   printf("\nPressione enter...\n");
   getchar();
 }
+
+int compareTwoString(char a[],char b[])  
+{  
+  int flag=0,i=0;  // integer variables declaration  
+  while(a[i]!='\0' && b[i]!='\0')  // while loop  
+  {  
+      if(a[i]!=b[i]) {  
+          flag=1;  
+          break;  
+      }  
+      i++;  
+  } 
+
+  if(a[i]!='\0' && b[i]!='\0'){
+      return 1;
+  }
+  
+  if(flag==1){
+    return 0;
+  }
+  
+  else{  
+    return 1;  
+  }
+}  
