@@ -16,4 +16,4 @@ Cliente* busca_cliente(void);
 void grava_cliente(Cliente* cli);
 void pesquisar_cliente(void);
 void excluir_cliente(void);
-void relatorio_cliente(void);
+void relatorio_cliente(Cliente* cli);

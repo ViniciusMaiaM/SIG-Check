@@ -17,7 +17,8 @@ void escolha_cliente (char escolha) //cadastro de cheque
         break;
         
         case '2':
-        pesquisar_cliente();
+        cli = busca_cliente();
+
         break;
         
         case '3': 
@@ -143,7 +144,7 @@ void excluir_cliente(void) { //Implementar ferramenta de busca quando salvarmos 
     getchar();
 }
 
-void relatorio_cliente(){
+void relatorio_cliente(Cliente* cli){
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -178,4 +179,37 @@ void grava_cliente(Cliente* cli){
 
     fwrite(cli,sizeof(Cliente),1,fp);
     fclose(fp);
+}
+
+Cliente* busca_cliente(){
+    FILE* fp;
+    Cliente* cli;
+    char cpf[15];
+    system("clear||cls");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          - - - - Buscar Cheque - - - -             \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("           Informe o número do cheque: ");
+    scanf("%[0-9]",cpf);
+    getchar();
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("cliente.txt","rt");
+
+    if(fp == NULL) {
+        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        exit(1);
+    }  
+    while(!feof(fp)){ //Busca até o final do arquivo
+        fread(cli, sizeof(Cliente),1,fp);
+        if(strcmp(cli->cpf_cliente,cpf) == 0 && (cli->cpf_cliente != 'x')){ /*Verifica se o código é igual e o status*/
+            fclose(fp);
+            return cli;
+        }
+
+    }
+
+    fclose(fp);
+    return NULL;
 }
