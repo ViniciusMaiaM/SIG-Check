@@ -23,4 +23,4 @@ void relatorio_cheque();
 int valida_cpf(char cpf[]);
 void exibe_cheque(Cheque* che);
 //int valida_string(char array[]);
-int compareTwoString(char a[],char b[]);
+void lista_cheque();

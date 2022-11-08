@@ -28,7 +28,7 @@ void muda_tela_cheque(char escolha) //cadastro de cheque
       break;
       
     case '4':
-      relatorio_cheque();
+      lista_cheque();
       break;
 
     default:
@@ -206,8 +206,7 @@ Cheque* busca_cheque(){
   }  
   while(!feof(fp)){ //Busca até o final do arquivo
       fread(che, sizeof(Cheque),1,fp);
-      int comp = compareTwoString(che->num_conta,num_conta);
-      if(comp && (che->status != 'x')){ /*Verifica se o código é igual e o status*/
+      if(strcmp(che->num_conta,num_conta) == 0 && (che->status != 'x')){ /*Verifica se o código é igual e o status*/
           fclose(fp);
           return che;
       }
@@ -226,6 +225,7 @@ void exibe_cheque(Cheque* che){
   }
 
   else{
+    printf("\n____________________________________________________\n");
     printf("\nAgência: %s\n",che->agencia);
     printf("Número Cheque: %s\n",che->cheque_num);
     printf("Código Banco: %s\n",che->cod_banco);
@@ -248,31 +248,29 @@ void exibe_cheque(Cheque* che){
 
     printf("Situação do Cheque: %s",situacao);
   }
+  printf("\n____________________________________________________\n");
   printf("\nPressione enter...\n");
   getchar();
 }
 
-int compareTwoString(char a[],char b[])  
-{  
-  int flag=0,i=0;  // integer variables declaration  
-  while(a[i]!='\0' && b[i]!='\0')  // while loop  
-  {  
-      if(a[i]!=b[i]) {  
-          flag=1;  
-          break;  
-      }  
-      i++;  
+void lista_cheque(){
+  FILE* fp;
+  Cheque* che;
+  printf("\n\tListagem\n");
+  che = (Cheque*) malloc(sizeof(Cheque));
+  fp = fopen("cheque.txt","rt");
+
+  if(fp == NULL) {
+      printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+      exit(1);
   } 
 
-  if(a[i]!='\0' && b[i]!='\0'){
-      return 1;
+  while(fread(che, sizeof(Cheque), 1, fp)){
+      if (che->status != 'x'){
+          exibe_cheque(che);
+      }
   }
-  
-  if(flag==1){
-    return 0;
-  }
-  
-  else{  
-    return 1;  
-  }
-}  
+
+  fclose(fp);
+  free(che);
+}
