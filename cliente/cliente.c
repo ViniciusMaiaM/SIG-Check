@@ -7,10 +7,13 @@
 
 void escolha_cliente (char escolha) //cadastro de cheque
 { 
+    Cliente* cli;
     switch (escolha)
     {
         case '1':
-        cadastro_cliente();
+        cli = cadastro_cliente();
+        grava_cliente(cli);
+        free(cli);
         break;
         
         case '2':
@@ -162,4 +165,17 @@ void relatorio_cliente(){
     printf("____________________________________________________\n");
     printf("\nPressione enter para continuar!\n");
     getchar();
+}
+
+void grava_cliente(Cliente* cli){
+    FILE* fp;
+    fp = fopen("cliente.txt","at");
+
+    if(fp == NULL) {
+        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        exit(1);
+    }
+
+    fwrite(cli,sizeof(Cliente),1,fp);
+    fclose(fp);
 }
