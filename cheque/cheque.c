@@ -138,39 +138,6 @@ void excluir_cheque(void) { //Implementar ferramenta de busca quando salvarmos e
 }
 
 
-
-void relatorio_cheque(){
-  system("clear||cls");
-  printf("____________________________________________________\n");
-  printf("                                                    \n");
-  printf("          - - - - Relatório Cheque - - - -          \n");
-  printf("                                                    \n");
-  printf("____________________________________________________\n");
-  printf("                                                    \n");
-  printf("          Nome do cliente: Flávius\n");
-  printf("          Número do cheque: 000158\n");
-  printf("          Número do banco: 001\n");
-  printf("          Número agência: 4321\n");
-  printf("          Número conta: 468293-1\n");
-  printf("          Valor do cheque: 1500.00\n");
-  printf("          Receptor do cheque: Vinicius\n");
-  printf("____________________________________________________\n");
-  printf("                                                    \n");
-  printf("          Nome do cliente: Thamirys\n");
-  printf("          Número do cheque: 000132\n");
-  printf("          Número do banco: 001\n");
-  printf("          Número agência: 1234\n");
-  printf("          Número conta: 273673-1\n");
-  printf("          Valor do cheque: 300.00\n");
-  printf("          Receptor do cheque: Italo\n");
-  printf("                                                    \n");
-  printf("____________________________________________________\n");
-  printf("\nPressione enter para continuar!\n");
-  getchar();
-}
-
-
-
 void grava_cheque(Cheque* che){
     FILE* fp;
     fp = fopen("cheque.txt","at");
@@ -220,12 +187,16 @@ Cheque* busca_cheque(){
 void exibe_cheque(Cheque* che){
   system("clear||cls");
   char situacao[20];
+  printf("____________________________________________________\n");
+  printf("                                                    \n");
+  printf("          - - - - Relatório Cheque - - - -          \n");
+  printf("                                                    \n");
+  printf("____________________________________________________\n");
   if ((che == NULL) || che->status=='x'){
       printf("\nCheque não encontrado\n");
   }
 
   else{
-    printf("\n____________________________________________________\n");
     printf("\nAgência: %s\n",che->agencia);
     printf("Número Cheque: %s\n",che->cheque_num);
     printf("Código Banco: %s\n",che->cod_banco);
