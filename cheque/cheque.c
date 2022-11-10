@@ -323,7 +323,7 @@ void att_cheque(Cheque* che){
         exit(1);
     }
 
-    fp = fopen("cheque.txt","rt");
+    fp = fopen("cheque.txt","r+t");
     if(fp == NULL){
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
         exit(1);
