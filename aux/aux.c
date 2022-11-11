@@ -95,7 +95,7 @@ int data_int(int dia, int mes, int ano){
         md = meses[mes-1];
     }
 
-    if (dia > md){
+    if (dia > md) {
         return 0;
     }
 
@@ -103,11 +103,11 @@ int data_int(int dia, int mes, int ano){
         return 0;
     }
 
-    else if (mes < mes_atual){
+    else if ((mes < mes_atual) && (ano <= ano_atual)){
         return 0;
     }
     
-    else if((dia < dia_atual) && (mes <= mes_atual)){
+    else if (((dia < dia_atual) && (mes <= mes_atual) && (ano <= ano_atual))){
         return 0;
     }
 
