@@ -15,7 +15,6 @@ void excluir_cliente(Cliente* cli);
 void exibe_cliente(Cliente* cli);
 void grava_cliente(Cliente* cli);
 void lista_cliente(void);
-void pesquisar_cliente(void);
 void tela_cliente(void);
 int valida_cliente(Cliente* cli);
 Cliente* cadastro_cliente(void);

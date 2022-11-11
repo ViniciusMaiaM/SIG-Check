@@ -28,6 +28,12 @@ void escolha_cliente(char escolha) // cadastro de cheque
         break;
 
     case '4':
+        cli = busca_cliente();
+        att_cliente(cli);
+        free(cli);
+        break;
+
+    case '5':
         lista_cliente();
         break;
 
@@ -52,7 +58,8 @@ void tela_cliente(void)
     printf("             1 - Cadastrar Cliente                  \n");
     printf("             2 - Pesquisar Cliente                  \n");
     printf("             3 - Excluir   Cliente                  \n");
-    printf("             4 - Relatório Cliente                  \n");
+    printf("             4 - Atualizar Cliente                  \n");
+    printf("             5 - Relatório Cliente                  \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
@@ -72,27 +79,27 @@ Cliente *cadastro_cliente(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("          Nome completo: ");
-    scanf("%30[^\n]", cli->nome_cliente);
+    scanf(" %30[^\n]", cli->nome_cliente);
     getchar();
 
     do
     {
         printf("          CPF: ");
-        scanf("%s", cli->cpf_cliente);
+        scanf("%[0-9]", cli->cpf_cliente);
         getchar();
     } while (!valida_cpf(cli->cpf_cliente));
 
     do
     {
         printf("          Celular (apenas números | Insira DDD): ");
-        scanf("%[0-9]", cli->cel_cliente);
+        scanf(" %[0-9]", cli->cel_cliente);
         getchar();
     } while (!valida_cel(cli->cel_cliente));
 
     do
     {
         printf("          Email: ");
-        fgets(cli->email_cliente, 30, stdin);
+        scanf(" %30[^\n]", cli->cpf_cliente);
         getchar();
     } while (!valida_email(cli->email_cliente));
 
@@ -106,32 +113,10 @@ Cliente *cadastro_cliente(void)
     return cli;
 }
 
-void pesquisar_cliente(void)
-{ // Implementar ferramenta de busca quando salvarmos em arquivos
-    system("clear||cls");
-    char nome[30];
-    printf("\n");
-    printf("____________________________________________________\n");
-    printf("                                                    \n");
-    printf("          - - - - Pesquisar cliente - - - -         \n");
-    printf("                                                    \n");
-    printf("____________________________________________________\n");
-    printf("                                                    \n");
-    printf("                                                    \n");
-    printf("           Informe o nome: ");
-    scanf("%s", nome);
-    printf("                                                    \n");
-    printf("                                                    \n");
-    printf("                                                    \n");
-    printf("____________________________________________________\n");
-    printf("\nPressione enter para continuar!\n");
-    getchar();
-}
-
 void excluir_cliente(Cliente *cli)
 {
-    FILE* fp;
-    Cliente* cli_arq;
+    FILE *fp;
+    Cliente *cli_arq;
     int achou = 0;
     char escolha;
 
@@ -142,39 +127,43 @@ void excluir_cliente(Cliente *cli)
 
     else
     {
-        cli_arq = (Cliente*) malloc(sizeof(Cliente));
-        fp = fopen("cliente.txt","r+t");
+        cli_arq = (Cliente *)malloc(sizeof(Cliente));
+        fp = fopen("cliente.txt", "r+t");
         if (fp == NULL)
         {
             printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
             exit(1);
         }
 
-        while(!feof(fp)){
+        while (!feof(fp))
+        {
 
-            fread(cli_arq,sizeof(Cliente),1,fp);
-            if((strcmp(cli_arq->cpf_cliente, cli->cpf_cliente) == 0 && (cli_arq->status != 'x'))){
+            fread(cli_arq, sizeof(Cliente), 1, fp);
+            if ((strcmp(cli_arq->cpf_cliente, cli->cpf_cliente) == 0 && (cli_arq->status != 'x')))
+            {
                 exibe_cliente(cli);
                 printf("\nEsse é o cliente que você quer apagar(S/s)? ");
-                scanf(" %c",&escolha);
+                scanf(" %c", &escolha);
                 achou = 1;
 
                 if (escolha == 'S' || escolha == 's')
                 {
                     cli_arq->status = 'x';
-                    fseek(fp,-1 * sizeof(Cliente),SEEK_CUR);
-                    fwrite(cli_arq,sizeof(Cliente),1,fp);
+                    fseek(fp, -1 * sizeof(Cliente), SEEK_CUR);
+                    fwrite(cli_arq, sizeof(Cliente), 1, fp);
                     printf("\nCliente excluído!\n");
                     break;
                 }
 
-                else{
+                else
+                {
                     break;
                 }
             }
         }
 
-        if(!achou){
+        if (!achou)
+        {
             printf("\nCliente não encontrado\n");
         }
 
@@ -313,4 +302,103 @@ void lista_cliente(void)
     getchar();
     fclose(fp);
     free(cli);
+}
+
+void att_cliente(Cliente *cli)
+{
+    FILE *fp;
+    char resp;
+    char escolha;
+
+    if ((cli == NULL) || (cli->status == 'x'))
+    {
+        printf("\nCliente não encontrado\n");
+        exit(1);
+    }
+
+    fp = fopen("cliente.txt", "r+t");
+    if (fp == NULL)
+    {
+        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        exit(1);
+    }
+
+    exibe_cliente(cli);
+    printf("\nEste é o cliente que você quer(S/s)? ");
+    scanf("%c", &resp);
+    getchar();
+
+    if (resp == 'S' || resp == 's')
+    {
+        printf("____________________________________________________\n");
+        printf("                                                    \n");
+        printf("             1 - Nome                               \n");
+        printf("             2 - Cpf                                \n");
+        printf("             3 - Celular                            \n");
+        printf("             4 - Email                              \n");
+        printf("             5 - Tudo                               \n");
+        printf("             0 - Voltar                             \n");
+        printf("                                                    \n");
+        printf("____________________________________________________\n");
+        printf("             O que você quer atualizar: ");
+        scanf("%c", &escolha);
+        getchar();
+
+        while (escolha != '0')
+        {
+            switch (escolha)
+            {
+            case '1':
+                printf("\nInforme o nome: ");
+                scanf(" %30[^\n]", cli->nome_cliente);
+                printf("\nCliente editado com sucesso!\n");
+                break;
+
+            case '2':
+                printf("\nInforme o cpf: ");
+                scanf(" %30[^\n]", cli->cpf_cliente);
+                printf("\nCliente editado com sucesso!\n");
+                break;
+
+            case '3':
+                printf("\nInforme o celular: ");
+                scanf(" %[0-9]", cli->cel_cliente);
+                printf("\nCliente editado com sucesso!\n");
+                break;
+
+            case '4':
+                printf("\nInforme o email: ");
+                scanf(" %30[^\n]", cli->email_cliente);
+                printf("\nCliente editado com sucesso!\n");
+                break;
+
+            case '5':
+                printf("\nInforme o nome: ");
+                scanf(" %30[^\n]", cli->nome_cliente);
+                printf("\nInforme o cpf: ");
+                scanf(" %30[^\n]", cli->cpf_cliente);
+                printf("\nInforme o celular: ");
+                scanf(" %[0-9]", cli->cel_cliente);
+                printf("\nInforme o email: ");
+                scanf(" %30[^\n]", cli->email_cliente);
+                printf("\nCliente editado com sucesso!\n");
+                break;
+
+            default:
+                printf("\nPor favor insira uma opcao valida.\n");
+                break;
+            }
+            escolha = '0';
+        }
+        fseek(fp, (-1) * sizeof(Cliente), SEEK_CUR);
+        fwrite(cli, sizeof(Cliente), 1, fp);
+        printf("\nCliente editado com sucesso!\n");
+    }
+
+    else
+    {
+        printf("\nOk, os dados não foram alterados!\n");
+    }
+
+    fclose(fp);
 }
