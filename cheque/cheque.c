@@ -280,7 +280,7 @@ void excluir_cheque(Cheque *che)
     Cheque *che_arq;
     int achou = 0;
     char escolha;
-    
+
     if (che == NULL)
     {
         printf("\nCheque não encontrado!\n");
@@ -383,43 +383,43 @@ void att_cheque(Cheque *che)
             case '1':
                 printf("Informe a agência: ");
                 scanf(" %[0-9]", che->agencia);
-                printf("\nAnimal editado com sucesso!\n");
+                printf("\nCheque editado com sucesso!\n");
                 break;
 
             case '2':
                 printf("Informe a o número do cheque: ");
                 scanf(" %[0-9]", che->cheque_num);
-                printf("\nAnimal editado com sucesso!\n");
+                printf("\nCheque editado com sucesso!\n");
                 break;
 
             case '3':
                 printf("Informe o código do banco: ");
                 scanf(" %[0-9]", che->cod_banco);
-                printf("\nAnimal editado com sucesso!\n");
+                printf("\nCheque editado com sucesso!\n");
                 break;
 
             case '4':
                 printf("Informe a data: ");
                 scanf(" %[0-9]", che->data);
-                printf("\nAnimal editado com sucesso!\n");
+                printf("\nCheque editado com sucesso!\n");
                 break;
 
             case '5':
                 printf("Informe o nome do cliente: ");
                 scanf(" %15[^\n]", che->nome_cliente);
-                printf("\nAnimal editado com sucesso!\n");
+                printf("\nCheque editado com sucesso!\n");
                 break;
 
             case '6':
                 printf("Informe o número da conta: ");
                 scanf(" %[0-9]", che->num_conta);
-                printf("\nAnimal editado com sucesso!\n");
+                printf("\nCheque editado com sucesso!\n");
                 break;
 
             case '7':
                 printf("Informe o valor: ");
                 scanf(" %d", &che->valor);
-                printf("\nAnimal editado com sucesso!\n");
+                printf("\nCheque editado com sucesso!\n");
                 break;
 
             case '8':
@@ -437,7 +437,7 @@ void att_cheque(Cheque *che)
                 scanf(" %[0-9]", che->num_conta);
                 printf("\nInforme o valor: ");
                 scanf(" %d", &che->valor);
-                printf("\nAnimal editado com sucesso!\n");
+                printf("\nCheque editado com sucesso!\n");
                 break;
 
             default:
