@@ -11,7 +11,7 @@ struct cliente {
 
 void att_cliente(Cliente* cli);
 void escolha_cliente(char);
-void excluir_cliente(void);
+void excluir_cliente(Cliente* cli);
 void exibe_cliente(Cliente* cli);
 void grava_cliente(Cliente* cli);
 void lista_cliente(void);

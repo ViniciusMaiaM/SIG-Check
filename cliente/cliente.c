@@ -22,7 +22,9 @@ void escolha_cliente(char escolha) // cadastro de cheque
         break;
 
     case '3':
-        excluir_cliente();
+        cli = busca_cliente();
+        excluir_cliente(cli);
+        free(cli);
         break;
 
     case '4':
@@ -126,26 +128,60 @@ void pesquisar_cliente(void)
     getchar();
 }
 
-void excluir_cliente(void)
-{ // Implementar ferramenta de busca quando salvarmos em arquivos
-    system("clear||cls");
-    char nome[30];
-    printf("\n");
-    printf("____________________________________________________\n");
-    printf("                                                    \n");
-    printf("          - - - - Excluir cliente - - - -           \n");
-    printf("                                                    \n");
-    printf("____________________________________________________\n");
-    printf("                                                    \n");
-    printf("                                                    \n");
-    printf("           Informe o nome: ");
-    scanf("%s", nome);
-    printf("                                                    \n");
-    printf("                                                    \n");
-    printf("                                                    \n");
-    printf("____________________________________________________\n");
-    printf("\nCliente %s excluido com sucesso!", nome);
-    printf("\nPressione enter para continuar!\n");
+void excluir_cliente(Cliente *cli)
+{
+    FILE* fp;
+    Cliente* cli_arq;
+    int achou = 0;
+    char escolha;
+
+    if (cli == NULL)
+    {
+        printf("\nCliente não encontrado!\n");
+    }
+
+    else
+    {
+        cli_arq = (Cliente*) malloc(sizeof(Cliente));
+        fp = fopen("cliente.txt","r+t");
+        if (fp == NULL)
+        {
+            printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+            exit(1);
+        }
+
+        while(!feof(fp)){
+
+            fread(cli_arq,sizeof(Cliente),1,fp);
+            if((strcmp(cli_arq->cpf_cliente, cli->cpf_cliente) == 0 && (cli_arq->status != 'x'))){
+                exibe_cliente(cli);
+                printf("\nEsse é o cliente que você quer apagar(S/s)? ");
+                scanf(" %c",&escolha);
+                achou = 1;
+
+                if (escolha == 'S' || escolha == 's')
+                {
+                    cli_arq->status = 'x';
+                    fseek(fp,-1 * sizeof(Cliente),SEEK_CUR);
+                    fwrite(cli_arq,sizeof(Cliente),1,fp);
+                    printf("\nCliente excluído!\n");
+                    break;
+                }
+
+                else{
+                    break;
+                }
+            }
+        }
+
+        if(!achou){
+            printf("\nCliente não encontrado\n");
+        }
+
+        fclose(fp);
+        free(cli_arq);
+    }
+    printf("\nPressione enter...");
     getchar();
 }
 
