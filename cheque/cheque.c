@@ -280,9 +280,10 @@ void excluir_cheque(Cheque *che)
     Cheque *che_arq;
     int achou = 0;
     char escolha;
+    
     if (che == NULL)
     {
-        printf("\nJogo não encontrado!\n");
+        printf("\nCheque não encontrado!\n");
     }
 
     else
