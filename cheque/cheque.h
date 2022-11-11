@@ -21,5 +21,6 @@ void muda_tela_cheque(char escolha);
 void pesquisar_cheque(void);
 void relatorio_cheque(void);
 void tela_cheque(void);
+int valida_cheque(Cheque* che);
 Cheque* busca_cheque(void);
 Cheque* cadastrar_cheque(void);
