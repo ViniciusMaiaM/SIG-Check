@@ -14,7 +14,8 @@ void muda_tela_cheque(char escolha) // cadastro de cheque
     {
     case '1':
         che = cadastrar_cheque();
-        if(!valida_cheque(che)){
+        if (!valida_cheque(che))
+        {
             break;
         }
         grava_cheque(che);
@@ -238,10 +239,10 @@ void lista_cheque()
     system("clear||cls");
     FILE *fp;
     Cheque *che;
+    int cont = 0;
     printf("\n\tListagem\n");
     che = (Cheque *)malloc(sizeof(Cheque));
     fp = fopen("cheque.txt", "rt");
-    int cont = 0;
 
     if (fp == NULL)
     {
@@ -258,12 +259,14 @@ void lista_cheque()
         }
     }
 
-    if (cont > 0){
-        printf("\nVocê possúi %d cheques cadastrados!\n",cont);
+    if (cont > 0)
+    {
+        printf("\nVocê possúi %d cheque(s) cadastrados!\n", cont);
     }
 
-    else{
-        printf("\nVocê não possui cheque cadastrados!");
+    else
+    {
+        printf("\nVocê não possui cheque(s) cadastrados!");
     }
     printf("\nPressione enter...");
     getchar();
@@ -454,24 +457,27 @@ void att_cheque(Cheque *che)
     fclose(fp);
 }
 
-int valida_cheque(Cheque* che){
-    FILE* fp;
-    Cheque* che_arq;
+int valida_cheque(Cheque *che)
+{
+    FILE *fp;
+    Cheque *che_arq;
 
-    che_arq = (Cheque*)malloc(sizeof(Cheque));
-    fp = fopen("cheque.txt","rt");
-    if(fp == NULL){
+    che_arq = (Cheque *)malloc(sizeof(Cheque));
+    fp = fopen("cheque.txt", "rt");
+    if (fp == NULL)
+    {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
         exit(1);
     }
 
-    while(!feof(fp)){
-        fread(che_arq,sizeof(Cheque),1,fp);
-        if(strcmp(che->num_conta,che_arq->num_conta) == 0 && (che_arq->status != 'x')){
+    while (!feof(fp))
+    {
+        fread(che_arq, sizeof(Cheque), 1, fp);
+        if (strcmp(che->num_conta, che_arq->num_conta) == 0 && (che_arq->status != 'x'))
+        {
             printf("\nO jogo que você quer cadastra já existe em nossos arquivos,\npor favor tente novamente");
             return 0;
         }
-        
     }
 
     return 1;
