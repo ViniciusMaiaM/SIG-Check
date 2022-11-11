@@ -9,11 +9,14 @@ struct cliente {
 };
 
 
-void tela_cliente(void);
+void att_cliente(Cliente* cli);
 void escolha_cliente(char);
+void excluir_cliente(void);
+void exibe_cliente(Cliente* cli);
+void grava_cliente(Cliente* cli);
+void lista_cliente(void);
+void pesquisar_cliente(void);
+void tela_cliente(void);
+int valida_cliente(Cliente* cli);
 Cliente* cadastro_cliente(void);
 Cliente* busca_cliente(void);
-void grava_cliente(Cliente* cli);
-void pesquisar_cliente(void);
-void excluir_cliente(void);
-void relatorio_cliente(Cliente* cli);

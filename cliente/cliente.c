@@ -18,7 +18,7 @@ void escolha_cliente (char escolha) //cadastro de cheque
         
         case '2':
         cli = busca_cliente();
-        relatorio_cliente(cli);
+        exibe_cliente(cli);
         break;
         
         case '3': 
@@ -143,7 +143,7 @@ void excluir_cliente(void) { //Implementar ferramenta de busca quando salvarmos 
     getchar();
 }
 
-void relatorio_cliente(Cliente* cli){
+void exibe_cliente(Cliente* cli){
     system("clear||cls");
     char situacao[20];
     if ((cli == NULL) || cli->status=='x'){
