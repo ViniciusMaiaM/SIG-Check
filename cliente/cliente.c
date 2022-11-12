@@ -99,8 +99,7 @@ Cliente *cadastro_cliente(void)
     do
     {
         printf("          Email: ");
-        scanf(" %30[^\n]", cli->cpf_cliente);
-        getchar();
+        fgets(cli->email_cliente, 30, stdin);
     } while (!valida_email(cli->email_cliente));
 
     printf("                                                    \n");
