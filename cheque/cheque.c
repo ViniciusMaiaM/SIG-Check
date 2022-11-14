@@ -16,6 +16,8 @@ void muda_tela_cheque(char escolha) // cadastro de cheque
         che = cadastrar_cheque();
         if (!valida_cheque(che))
         {
+            printf("\nO cheque que você quer cadastrar já existe em nossos arquivos.\nPor favor tente novamente!");
+            espera();
             break;
         }
         grava_cheque(che);
@@ -130,8 +132,7 @@ Cheque *cadastrar_cheque(void)
     printf("                                                    \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
-    printf("\nPressione enter para continuar!\n");
-    getchar();
+    espera();
     che->status = 'c';
     return che;
 }
@@ -230,8 +231,7 @@ void exibe_cheque(Cheque *che)
         printf("Situação do Cheque: %s", situacao);
     }
     printf("\n____________________________________________________\n");
-    printf("\nPressione enter...\n");
-    getchar();
+    espera();
 }
 
 void lista_cheque()
@@ -240,7 +240,11 @@ void lista_cheque()
     FILE *fp;
     Cheque *che;
     int cont = 0;
-    printf("\n\tListagem\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          - - - - Listagem - - - -                  \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
     che = (Cheque *)malloc(sizeof(Cheque));
     fp = fopen("cheque.txt", "rt");
 
@@ -268,8 +272,7 @@ void lista_cheque()
     {
         printf("\nVocê não possui cheque(s) cadastrados!");
     }
-    printf("\nPressione enter...");
-    getchar();
+    espera();
     fclose(fp);
     free(che);
 }
@@ -329,8 +332,7 @@ void excluir_cheque(Cheque *che)
         fclose(fp);
         free(che_arq);
     }
-    printf("\nPressione enter...");
-    getchar();
+    espera();
 }
 
 void att_cheque(Cheque *che)
@@ -476,7 +478,6 @@ int valida_cheque(Cheque *che)
         fread(che_arq, sizeof(Cheque), 1, fp);
         if (strcmp(che->num_conta, che_arq->num_conta) == 0 && (che_arq->status != 'x'))
         {
-            printf("\nO jogo que você quer cadastra já existe em nossos arquivos,\npor favor tente novamente");
             return 0;
         }
     }
