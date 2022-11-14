@@ -317,3 +317,8 @@ int valida_dig(char dig[]){
 
     return 1;
 }
+
+void espera(){
+    printf("\nPressione enter para continuar...");
+    getchar();
+}
