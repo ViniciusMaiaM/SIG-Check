@@ -12,6 +12,12 @@ void escolha_cliente(char escolha) // cadastro de cheque
     {
     case '1':
         cli = cadastro_cliente();
+        if (!valida_cliente(cli))
+        {
+            printf("\nO cliente que você quer cadastrar já existe em nossos arquivos.\nPor favor tente novamente!");
+            espera();
+            break;
+        }
         grava_cliente(cli);
         free(cli);
         break;
@@ -106,8 +112,7 @@ Cliente *cadastro_cliente(void)
     printf("                                                    \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
-    printf("\nPressione enter para continuar!\n");
-    getchar();
+    espera();
     cli->status = 'c';
     return cli;
 }
@@ -139,7 +144,7 @@ void excluir_cliente(Cliente *cli)
 
             fread(cli_arq, sizeof(Cliente), 1, fp);
             if ((strcmp(cli_arq->cpf_cliente, cli->cpf_cliente) == 0 && (cli_arq->status != 'x')))
-            {
+            {   
                 exibe_cliente(cli);
                 printf("\nEsse é o cliente que você quer apagar(S/s)? ");
                 scanf(" %c", &escolha);
@@ -169,8 +174,7 @@ void excluir_cliente(Cliente *cli)
         fclose(fp);
         free(cli_arq);
     }
-    printf("\nPressione enter...");
-    getchar();
+    espera();
 }
 
 void exibe_cliente(Cliente *cli)
@@ -207,8 +211,7 @@ void exibe_cliente(Cliente *cli)
         printf("Situação do cliente: %s", situacao);
     }
     printf("\n____________________________________________________\n");
-    printf("\nPressione enter...\n");
-    getchar();
+    espera();
 }
 
 void grava_cliente(Cliente *cli)
@@ -269,6 +272,11 @@ void lista_cliente(void)
     int cont = 0;
     FILE *fp;
     Cliente *cli;
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          - - - - Listagem - - - -                  \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
     cli = (Cliente *)malloc(sizeof(Cliente));
     fp = fopen("cliente.txt", "rt");
 
@@ -297,8 +305,7 @@ void lista_cliente(void)
         printf("\nVocê não possui cliente(s) cadastrados!");
     }
 
-    printf("\nPressione enter...");
-    getchar();
+    espera();
     fclose(fp);
     free(cli);
 }
@@ -400,4 +407,29 @@ void att_cliente(Cliente *cli)
     }
 
     fclose(fp);
+}
+
+int valida_cliente(Cliente *cli)
+{
+    FILE *fp;
+    Cliente *cli_arq;
+
+    cli_arq = (Cliente *)malloc(sizeof(Cliente));
+    fp = fopen("cliente.txt", "rt");
+    if (fp == NULL)
+    {
+        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        exit(1);
+    }
+
+    while (!feof(fp))
+    {
+        fread(cli_arq, sizeof(Cliente), 1, fp);
+        if (strcmp(cli->cpf_cliente, cli_arq->cpf_cliente) == 0 && (cli_arq->status != 'x'))
+        {
+            return 0;
+        }
+    }
+
+    return 1;
 }
