@@ -12,12 +12,12 @@ void escolha_cliente(char escolha) // cadastro de cheque
     {
     case '1':
         cli = cadastro_cliente();
-        if (!valida_cliente(cli))
-        {
-            printf("\nO cliente que você quer cadastrar já existe em nossos arquivos.\nPor favor tente novamente!");
-            espera();
-            break;
-        }
+        // if (!valida_cliente(cli))
+        // {
+        //     printf("\nO cliente que você quer cadastrar já existe em nossos arquivos.\nPor favor tente novamente!");
+        //     espera();
+        //     break;
+        // }
         grava_cliente(cli);
         free(cli);
         break;
@@ -78,36 +78,26 @@ Cliente *cadastro_cliente(void)
 {
     Cliente *cli;
     cli = (Cliente *)malloc(sizeof(Cliente));
+    char nome[100];
+    char cpf[30];
+    char cel[30];
+    char email[100];
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("          - - - - Cadastrar cliente - - - -         \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
-    printf("          Nome completo: ");
-    scanf(" %30[^\n]", cli->nome_cliente);
-    getchar();
-
-    do
-    {
-        printf("          CPF: ");
-        scanf("%[0-9]", cli->cpf_cliente);
-        getchar();
-    } while (!valida_cpf(cli->cpf_cliente));
-
-    do
-    {
-        printf("          Celular (apenas números | Insira DDD): ");
-        scanf(" %[0-9]", cli->cel_cliente);
-        getchar();
-    } while (!valida_cel(cli->cel_cliente));
-
-    do
-    {
-        printf("          Email: ");
-        fgets(cli->email_cliente, 30, stdin);
-    } while (!valida_email(cli->email_cliente));
-
+    ler_nome(nome);
+    strcpy(cli->nome_cliente,nome);
+    
+    ler_cpf(cpf);
+    strcpy(cli->cpf_cliente,cpf);
+    ler_cel(cel);
+    strcpy(cli->cel_cliente,cel);
+    
+    ler_email(email);
+    strcpy(cli->email_cliente,email);
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
@@ -144,7 +134,7 @@ void excluir_cliente(Cliente *cli)
 
             fread(cli_arq, sizeof(Cliente), 1, fp);
             if ((strcmp(cli_arq->cpf_cliente, cli->cpf_cliente) == 0 && (cli_arq->status != 'x')))
-            {   
+            {
                 exibe_cliente(cli);
                 printf("\nEsse é o cliente que você quer apagar(S/s)? ");
                 scanf(" %c", &escolha);
@@ -315,6 +305,10 @@ void att_cliente(Cliente *cli)
     FILE *fp;
     char resp;
     char escolha;
+    char nome[100];
+    char cpf[30];
+    char cel[30];
+    char email[100];
 
     if ((cli == NULL) || (cli->status == 'x'))
     {
@@ -355,38 +349,38 @@ void att_cliente(Cliente *cli)
             switch (escolha)
             {
             case '1':
-                printf("\nInforme o nome: ");
-                scanf(" %30[^\n]", cli->nome_cliente);
+                ler_nome(nome);
+                strcpy(cli->nome_cliente,nome);
                 printf("\nCliente editado com sucesso!\n");
                 break;
 
             case '2':
-                printf("\nInforme o cpf: ");
-                scanf(" %30[^\n]", cli->cpf_cliente);
+                ler_cpf(cpf);
+                strcpy(cli->cpf_cliente,cpf);
                 printf("\nCliente editado com sucesso!\n");
                 break;
 
             case '3':
-                printf("\nInforme o celular: ");
-                scanf(" %[0-9]", cli->cel_cliente);
+                ler_cel(cel);
+                strcpy(cli->cel_cliente,cel);
                 printf("\nCliente editado com sucesso!\n");
                 break;
 
             case '4':
-                printf("\nInforme o email: ");
-                scanf(" %30[^\n]", cli->email_cliente);
+                ler_email(email);
+                strcpy(cli->email_cliente,email);
                 printf("\nCliente editado com sucesso!\n");
                 break;
 
             case '5':
-                printf("\nInforme o nome: ");
-                scanf(" %30[^\n]", cli->nome_cliente);
-                printf("\nInforme o cpf: ");
-                scanf(" %30[^\n]", cli->cpf_cliente);
-                printf("\nInforme o celular: ");
-                scanf(" %[0-9]", cli->cel_cliente);
-                printf("\nInforme o email: ");
-                scanf(" %30[^\n]", cli->email_cliente);
+                ler_nome(nome);
+                strcpy(cli->nome_cliente,nome);
+                ler_cpf(cpf);
+                strcpy(cli->cpf_cliente,cpf);
+                ler_cel(cel);
+                strcpy(cli->cel_cliente,cel);
+                ler_email(email);
+                strcpy(cli->email_cliente,email);
                 printf("\nCliente editado com sucesso!\n");
                 break;
 
@@ -398,14 +392,13 @@ void att_cliente(Cliente *cli)
         }
         fseek(fp, (-1) * sizeof(Cliente), SEEK_CUR);
         fwrite(cli, sizeof(Cliente), 1, fp);
-        printf("\nCliente editado com sucesso!\n");
     }
 
     else
     {
         printf("\nOk, os dados não foram alterados!\n");
     }
-
+    espera();
     fclose(fp);
 }
 
@@ -432,4 +425,39 @@ int valida_cliente(Cliente *cli)
     }
 
     return 1;
+}
+
+void ler_nome(char *nome)
+{
+    printf("\n\tNome completo: ");
+    scanf(" %30[^\n]", nome);
+}
+
+void ler_cpf(char *cpf)
+{
+    do
+    {
+        printf("\n\tCPF: ");
+        scanf(" %[0-9]", cpf);
+        getchar();
+    } while (!valida_cpf(cpf));
+}
+
+void ler_cel(char *cel)
+{
+    do
+    {
+        printf("\n\tCelular (apenas números | Insira DDD): ");
+        scanf(" %[0-9]", cel);
+        getchar();
+    } while (!valida_cel(cel));
+}
+
+void ler_email(char *email)
+{
+    do
+    {
+        printf("\n\tEmail: ");
+        fgets(email, 30, stdin);
+    } while (!valida_email(email));
 }
