@@ -14,12 +14,12 @@ void muda_tela_cheque(char escolha) // cadastro de cheque
     {
     case '1':
         che = cadastrar_cheque();
-        if (!valida_cheque(che))
-        {
-            printf("\nO cheque que você quer cadastrar já existe em nossos arquivos.\nPor favor tente novamente!");
-            espera();
-            break;
-        }
+        // if (!valida_cheque(che))
+        // {
+        //     printf("\nO cheque que você quer cadastrar já existe em nossos arquivos.\nPor favor tente novamente!");
+        //     espera();
+        //     break;
+        // }
         grava_cheque(che);
         free(che);
         break;
@@ -86,16 +86,19 @@ Cheque *cadastrar_cheque(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("          Nome do cliente: "); // Assim ele vai pegar todas as informações do usuario do arquivo
-    scanf(" %50[^\n]", che->nome_cliente);
-    getchar();
-
     do
     {
-        printf("          Número do cheque: ");
-        scanf(" %[0-9]", che->cheque_num);
+        printf("          Número agência: ");
+        scanf(" %[0-9]", che->agencia);
         getchar();
-    } while (!valida_dig(che->cheque_num));
+    } while (!valida_dig(che->agencia));
+    
+    do
+    {
+        printf("          Número conta: ");
+        scanf(" %[0-9]", che->num_conta);
+        getchar();
+    } while (!valida_dig(che->num_conta));
 
     do
     {
@@ -104,19 +107,7 @@ Cheque *cadastrar_cheque(void)
         getchar();
     } while (!valida_dig(che->cod_banco));
 
-    do
-    {
-        printf("          Número agência: ");
-        scanf(" %[0-9]", che->agencia);
-        getchar();
-    } while (!valida_dig(che->agencia));
 
-    do
-    {
-        printf("          Número conta: ");
-        scanf(" %[0-9]", che->num_conta);
-        getchar();
-    } while (!valida_dig(che->num_conta));
 
     printf("          Valor do cheque: ");
     scanf("%d", &che->valor);
@@ -128,6 +119,9 @@ Cheque *cadastrar_cheque(void)
         scanf(" %[0-9 / -]", che->data);
         getchar();
     } while (!data_str(che->data));
+
+    che->id = def_id();
+    printf("\tSeu id: %d",che->id);
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
@@ -191,7 +185,6 @@ Cheque *busca_cheque()
 
 void exibe_cheque(Cheque *che)
 {
-    system("clear||cls");
     char situacao[20];
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -206,10 +199,9 @@ void exibe_cheque(Cheque *che)
     else
     {
         printf("\nAgência: %s\n", che->agencia);
-        printf("Número Cheque: %s\n", che->cheque_num);
+        printf("Número Cheque: %d\n", che->id);
         printf("Código Banco: %s\n", che->cod_banco);
         printf("Data de postagem: %s\n", che->data);
-        printf("Nome do cliente: %s\n", che->nome_cliente);
         printf("Número da conta: %s\n", che->num_conta);
         printf("Valor do cheque: %d\n", che->valor);
 
@@ -236,7 +228,7 @@ void exibe_cheque(Cheque *che)
 
 void lista_cheque()
 {
-    system("clear||cls");
+    system("clear||cls"); 
     FILE *fp;
     Cheque *che;
     int cont = 0;
@@ -255,7 +247,7 @@ void lista_cheque()
     }
 
     while (fread(che, sizeof(Cheque), 1, fp))
-    {
+    {   
         if (che->status != 'x')
         {
             exibe_cheque(che);
@@ -367,10 +359,9 @@ void att_cheque(Cheque *che)
         printf("             2 - Número Cheque                      \n");
         printf("             3 - Código Banco                       \n");
         printf("             4 - Data                               \n");
-        printf("             5 - Nome Cliente                       \n");
-        printf("             6 - Número conta                       \n");
-        printf("             7 - Valor                              \n");
-        printf("             8 - Tudo                               \n");
+        printf("             5 - Número conta                       \n");
+        printf("             6 - Valor                              \n");
+        printf("             7 - Tudo                               \n");
         printf("             0 - Voltar                             \n");
         printf("                                                    \n");
         printf("____________________________________________________\n");
@@ -389,9 +380,9 @@ void att_cheque(Cheque *che)
                 break;
 
             case '2':
-                printf("Informe a o número do cheque: ");
-                scanf(" %[0-9]", che->cheque_num);
-                printf("\nCheque editado com sucesso!\n");
+                // printf("Informe a o número do cheque: ");
+                // scanf(" %[0-9]", che->id);
+                // printf("\nCheque editado com sucesso!\n");
                 break;
 
             case '3':
@@ -407,34 +398,26 @@ void att_cheque(Cheque *che)
                 break;
 
             case '5':
-                printf("Informe o nome do cliente: ");
-                scanf(" %15[^\n]", che->nome_cliente);
-                printf("\nCheque editado com sucesso!\n");
-                break;
-
-            case '6':
                 printf("Informe o número da conta: ");
                 scanf(" %[0-9]", che->num_conta);
                 printf("\nCheque editado com sucesso!\n");
                 break;
 
-            case '7':
+            case '6':
                 printf("Informe o valor: ");
                 scanf(" %d", &che->valor);
                 printf("\nCheque editado com sucesso!\n");
                 break;
 
-            case '8':
+            case '7':
                 printf("\nInforme a agência: ");
                 scanf(" %[0-9]", che->agencia);
-                printf("\nInforme a o número do cheque: ");
-                scanf(" %[0-9]", che->cheque_num);
+                // printf("\nInforme a o número do cheque: ");
+                // scanf(" %[0-9]", che->id);
                 printf("\nInforme o código do banco: ");
                 scanf(" %[0-9]", che->cod_banco);
                 printf("\nInforme a data: ");
                 scanf(" %[0-9]", che->data);
-                printf("\nInforme o nome do cliente: ");
-                scanf(" %15[^\n]", che->nome_cliente);
                 printf("\nInforme o número da conta: ");
                 scanf(" %[0-9]", che->num_conta);
                 printf("\nInforme o valor: ");
@@ -483,4 +466,21 @@ int valida_cheque(Cheque *che)
     }
 
     return 1;
+}
+
+int def_id(){
+    FILE* fp;
+    Cheque* che_arq;
+    che_arq = (Cheque*) malloc(sizeof(Cheque));
+    fp = fopen("cheque.txt","rt");
+
+    if (fp == NULL){
+        return 1;
+    }
+
+    else{
+        fseek(fp, -1*sizeof(Cheque), SEEK_END);
+        fread(che_arq,sizeof(Cheque),1,fp);
+        return (che_arq->id + 1);
+    }
 }
