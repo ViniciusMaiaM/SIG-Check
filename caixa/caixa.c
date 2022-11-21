@@ -8,36 +8,36 @@
 #include "../cliente/cliente.h"
 #include "../aux/aux.h"
 
-
-void escolha_caixa(char escolha){
+void escolha_caixa(char escolha)
+{
     Caixa *cai;
     switch (escolha)
     {
     case '1':
-      cai = cadastrar_caixa();
-      grava_caixa(cai);
-      free(cai);
-      break;
+        cai = cadastrar_caixa();
+        grava_caixa(cai);
+        free(cai);
+        break;
     case '2':
-      cai = busca_caixa();
-      exibe_caixa(cai);
+        cai = busca_caixa();
+        exibe_caixa(cai);
         break;
     case '3':
-      cai = busca_caixa();
-      excluir_caixa(cai);
-      free(cai);
-      break;
+        cai = busca_caixa();
+        excluir_caixa(cai);
+        free(cai);
+        break;
     case '4':
-      cai = busca_caixa();
-      att_caixa(cai);
-      free(cai);
-      break;
+        cai = busca_caixa();
+        att_caixa(cai);
+        free(cai);
+        break;
     case '5':
-      lista_caixa();
-      break;
-    
+        lista_caixa();
+        break;
+
     default:
-      break;
+        break;
     }
 }
 
@@ -67,7 +67,7 @@ void tela_caixa(void)
 }
 
 Caixa *cadastrar_caixa(void)
-{ 
+{
     Caixa *cai;
     cai = (Caixa *)malloc(sizeof(Caixa));
     char cpf[30];
@@ -79,29 +79,29 @@ Caixa *cadastrar_caixa(void)
     printf("____________________________________________________\n");
     printf("                                                    \n");
     ler_cpf(cpf);
-    strcpy(cai->cpf_cliente,cpf);
-  
+    strcpy(cai->cpf_cliente, cpf);
+
     printf("\n\tEntrada ou saída(E/S): ");
-    scanf("%1[^\n]",cai -> entrada_saida_caixa);
+    scanf("%1[^\n]", cai->entrada_saida_caixa);
     getchar();
 
     printf("\n\tValor do cheque: ");
     scanf("%f", &cai->valor_caixa);
     getchar();
-  
+
     do
     {
         printf("\n\tData: ");
         scanf(" %[0-9 / -]", cai->data_caixa);
         getchar();
     } while (!data_str(cai->data_caixa));
-  
+
     printf("\n\tId do cheque: ");
     scanf("%d", &cai->id_cheque);
     getchar();
-  
+
     cai->id_transacao_caixa = id_tra();
-    printf("\n\tSeu id de transação: %d",cai->id_transacao_caixa);
+    printf("\n\tSeu id de transação: %d", cai->id_transacao_caixa);
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
@@ -125,7 +125,6 @@ void grava_caixa(Caixa *cai)
     fwrite(cai, sizeof(Caixa), 1, fp);
     fclose(fp);
 }
-
 
 Caixa *busca_caixa()
 {
@@ -153,7 +152,7 @@ Caixa *busca_caixa()
     while (!feof(fp))
     { // Busca até o final do arquivo
         fread(cai, sizeof(Caixa), 1, fp);
-        if (cai->id_transacao_caixa == id && (cai->status !='x'))
+        if (cai->id_transacao_caixa == id && (cai->status != 'x'))
         { /*Verifica se o código é igual*/
             fclose(fp);
             return cai;
@@ -162,7 +161,7 @@ Caixa *busca_caixa()
 
     fclose(fp);
     return NULL;
-}   
+}
 
 void exibe_caixa(Caixa *cai)
 {
@@ -190,7 +189,6 @@ void exibe_caixa(Caixa *cai)
     espera();
 }
 
-
 void excluir_caixa(Caixa *cai)
 {
     FILE *fp;
@@ -217,7 +215,7 @@ void excluir_caixa(Caixa *cai)
         {
 
             fread(cai_arq, sizeof(Caixa), 1, fp);
-            if ((strcmp(cai->cpf_cliente, cai->cpf_cliente) == 0 ))
+            if ((strcmp(cai->cpf_cliente, cai->cpf_cliente) == 0))
             {
                 exibe_caixa(cai);
                 printf("\nEssa é a transação que você quer apagar(S/s)? ");
@@ -225,7 +223,7 @@ void excluir_caixa(Caixa *cai)
                 achou = 1;
 
                 if (escolha == 'S' || escolha == 's')
-                {  
+                {
                     cai_arq->status = 'x';
                     fseek(fp, -1 * sizeof(Caixa), SEEK_CUR);
                     fwrite(cai_arq, sizeof(Caixa), 1, fp);
@@ -251,7 +249,6 @@ void excluir_caixa(Caixa *cai)
     espera();
 }
 
-  
 void att_caixa(Caixa *cai)
 {
     FILE *fp;
@@ -295,9 +292,9 @@ void att_caixa(Caixa *cai)
             {
             case '1':
                 ler_cpf(cpf);
-                strcpy(cai->cpf_cliente,cpf);
+                strcpy(cai->cpf_cliente, cpf);
                 printf("Entrada ou saida (E/S):");
-                scanf("%1[^\n]",cai -> entrada_saida_caixa);
+                scanf("%1[^\n]", cai->entrada_saida_caixa);
                 printf("\n\tValor do cheque: ");
                 scanf("%f", &cai->valor_caixa);
                 do
@@ -306,7 +303,7 @@ void att_caixa(Caixa *cai)
                     scanf(" %[0-9 / -]", cai->data_caixa);
                     getchar();
                 } while (!data_str(cai->data_caixa));
-              
+
                 printf("\n\tId do cheque: ");
                 scanf("%d", &cai->id_cheque);
                 printf("\nTransação editada com sucesso!\n");
@@ -329,7 +326,6 @@ void att_caixa(Caixa *cai)
     espera();
     fclose(fp);
 }
-
 
 void lista_caixa(void)
 {
@@ -376,19 +372,22 @@ void lista_caixa(void)
 }
 
 //--------------------------------
-int id_tra(){
-    FILE* fp;
-    Caixa* cai_arq;
-    cai_arq = (Caixa*) malloc(sizeof(Caixa));
-    fp = fopen("caixa.txt","rt");
+int id_tra()
+{
+    FILE *fp;
+    Caixa *cai_arq;
+    cai_arq = (Caixa *)malloc(sizeof(Caixa));
+    fp = fopen("caixa.txt", "rt");
 
-    if (fp == NULL){
+    if (fp == NULL)
+    {
         return 1;
     }
 
-    else{
-        fseek(fp, -1*sizeof(Caixa), SEEK_END);
-        fread(cai_arq,sizeof(Caixa),1,fp);
+    else
+    {
+        fseek(fp, -1 * sizeof(Caixa), SEEK_END);
+        fread(cai_arq, sizeof(Caixa), 1, fp);
         return (cai_arq->id_transacao_caixa + 1);
     }
 }
