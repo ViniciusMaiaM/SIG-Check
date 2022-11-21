@@ -4,6 +4,7 @@
 #include "../aux/aux.h"
 #include <string.h>
 #include <math.h>
+#include <unistd.h>
 
 void escolha_cliente(char escolha) // cadastro de cheque
 {
@@ -88,16 +89,19 @@ Cliente *cadastro_cliente(void)
     printf("          - - - - Cadastrar cliente - - - -         \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
+
     ler_nome(nome);
-    strcpy(cli->nome_cliente,nome);
-    
+    strcpy(cli->nome_cliente, nome);
+
     ler_cpf(cpf);
-    strcpy(cli->cpf_cliente,cpf);
+    strcpy(cli->cpf_cliente, cpf);
+
     ler_cel(cel);
-    strcpy(cli->cel_cliente,cel);
-    
+    strcpy(cli->cel_cliente, cel);
+
     ler_email(email);
-    strcpy(cli->email_cliente,email);
+    strcpy(cli->email_cliente, email);
+    
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
@@ -125,7 +129,7 @@ void excluir_cliente(Cliente *cli)
         fp = fopen("cliente.txt", "r+t");
         if (fp == NULL)
         {
-            printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+            printf("\nOcorreu um erro na abertura do arquivo, não é possivel continuar o programa\n");
             exit(1);
         }
 
@@ -223,7 +227,7 @@ Cliente *busca_cliente()
 {
     FILE *fp;
     Cliente *cli;
-    char cpf[15];
+    char cpf[30];
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -231,8 +235,7 @@ Cliente *busca_cliente()
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("           Informe o número do cpf: ");
-    scanf("%[0-9]", cpf);
-    getchar();
+    ler_cpf(cpf);
     cli = (Cliente *)malloc(sizeof(Cliente));
     fp = fopen("cliente.txt", "rt");
 
@@ -350,37 +353,37 @@ void att_cliente(Cliente *cli)
             {
             case '1':
                 ler_nome(nome);
-                strcpy(cli->nome_cliente,nome);
+                strcpy(cli->nome_cliente, nome);
                 printf("\nCliente editado com sucesso!\n");
                 break;
 
             case '2':
                 ler_cpf(cpf);
-                strcpy(cli->cpf_cliente,cpf);
+                strcpy(cli->cpf_cliente, cpf);
                 printf("\nCliente editado com sucesso!\n");
                 break;
 
             case '3':
                 ler_cel(cel);
-                strcpy(cli->cel_cliente,cel);
+                strcpy(cli->cel_cliente, cel);
                 printf("\nCliente editado com sucesso!\n");
                 break;
 
             case '4':
                 ler_email(email);
-                strcpy(cli->email_cliente,email);
+                strcpy(cli->email_cliente, email);
                 printf("\nCliente editado com sucesso!\n");
                 break;
 
             case '5':
                 ler_nome(nome);
-                strcpy(cli->nome_cliente,nome);
+                strcpy(cli->nome_cliente, nome);
                 ler_cpf(cpf);
-                strcpy(cli->cpf_cliente,cpf);
+                strcpy(cli->cpf_cliente, cpf);
                 ler_cel(cel);
-                strcpy(cli->cel_cliente,cel);
+                strcpy(cli->cel_cliente, cel);
                 ler_email(email);
-                strcpy(cli->email_cliente,email);
+                strcpy(cli->email_cliente, email);
                 printf("\nCliente editado com sucesso!\n");
                 break;
 
@@ -412,7 +415,6 @@ int valida_cliente(Cliente *cli)
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
     }
 
     while (!feof(fp))

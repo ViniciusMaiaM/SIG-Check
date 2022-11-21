@@ -5,6 +5,7 @@ struct cliente {
     char cpf_cliente[30];
     char cel_cliente[30];
     char email_cliente[100];
+    char data_nasc[15];
     char status;
 };
 
