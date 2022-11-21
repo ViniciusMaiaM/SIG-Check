@@ -1,10 +1,11 @@
+#include "aux/aux.h"
+#include "cheque/cheque.h"
+#include "cliente/cliente.h"
+#include "lucro/lucro.h"
+#include "movimentacao/movimentacao.h"
+#include "caixa/caixa.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "cheque/cheque.h"
-#include "movimentacao/movimentacao.h"
-#include "lucro/lucro.h"
-#include "cliente/cliente.h"
-#include "aux/aux.h"
 
 /////
 // Assinatura das funções
@@ -12,45 +13,49 @@
 char tela_principal(void);
 void tela_sobre(void);
 void sleep();
-///// 
+/////
 // Programa principal
 /////
 int main(void) {
   char modulo = ' ';
-  do{
+  do {
 
-    modulo = tela_principal(); 
+    modulo = tela_principal();
     switch (modulo) {
-      case '1':
-        tela_cliente();
-        break;
+    case '1':
+      tela_cliente();
+      break;
 
-      case '2':
-        tela_cheque();
-        break;  
+    case '2':
+      tela_cheque();
+      break;
+
+    case '3':
+      tela_movimenta();
+      break;
+
+    case '4':
+      tela_caixa();
+      break;
+
+    case '5':
+      relatorio_lucro();
+      break;  
       
-      case '3':
-        tela_movimenta();
-        break;
+    case '6':
+      tela_sobre();
+      break;
 
-      case '4':
-        relatorio_lucro();
-        break;
+    case '0':
+      printf("\nAte a proxima!\n");
+      break;
 
-      case '5':
-        tela_sobre();
-        break;
-  
-      case '0':
-        printf("\nAte a proxima!\n");
-        break;
-
-      default:
-        printf("\nEm desenvolvimento!\n");
-        sleep(1);
-        break;
+    default:
+      printf("\nEm desenvolvimento!\n");
+      sleep(1);
+      break;
     }
-  }while (modulo != '0');
+  } while (modulo != '0');
 
   return 0;
 }
@@ -73,8 +78,9 @@ char tela_principal(void) {
   printf("             1 - Modulo Cliente                     \n");
   printf("             2 - Modulo Cheque                      \n");
   printf("             3 - Modulo Movimentação                \n");
-  printf("             4 - Relatorio de Lucro                 \n");
-  printf("             5 - Sobre o sistema                    \n");
+  printf("             4 - Modulo Caixa                       \n");
+  printf("             5 - Relatorio de Lucro                 \n");
+  printf("             6 - Sobre o sistema                    \n");
   printf("             0 - Sair                               \n");
   printf("                                                    \n");
   printf("____________________________________________________\n");
@@ -83,7 +89,7 @@ char tela_principal(void) {
   return escolha;
 }
 
-void tela_sobre(void) { 
+void tela_sobre(void) {
   system("clear||cls");
   printf("____________________________________________________\n");
   printf("                                                    \n");
