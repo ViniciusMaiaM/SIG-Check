@@ -139,11 +139,12 @@ void grava_cheque(Cheque *che)
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
     }
-
-    fwrite(che, sizeof(Cheque), 1, fp);
-    fclose(fp);
+    
+    else{
+        fwrite(che, sizeof(Cheque), 1, fp);
+        fclose(fp);
+    }
 }
 
 Cheque *busca_cheque()
@@ -166,7 +167,6 @@ Cheque *busca_cheque()
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
     }
 
     while (!feof(fp))
@@ -243,7 +243,6 @@ void lista_cheque()
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
     }
 
     while (fread(che, sizeof(Cheque), 1, fp))
@@ -288,7 +287,6 @@ void excluir_cheque(Cheque *che)
         if (fp == NULL)
         {
             printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-            exit(1);
         }
 
         while (!feof(fp))
@@ -336,14 +334,12 @@ void att_cheque(Cheque *che)
     if ((che == NULL) || (che->status == 'x'))
     {
         printf("\nCheque não encontrado\n");
-        exit(1);
     }
 
     fp = fopen("cheque.txt", "r+t");
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
     }
 
     exibe_cheque(che);
@@ -453,7 +449,6 @@ int valida_cheque(Cheque *che)
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
     }
 
     while (!feof(fp))
