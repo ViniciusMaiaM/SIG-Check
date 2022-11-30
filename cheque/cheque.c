@@ -120,8 +120,10 @@ Cheque *cadastrar_cheque(void)
         getchar();
     } while (!data_str(che->data));
 
-    che->id = def_id();
-    printf("\tSeu id: %d",che->id);
+    che->num_cheque = def_num();
+    printf("          Seu Número de cheque: %d\n",che->num_cheque);
+    gera_id(che);
+    printf("          Id de cheque: %s",che->id);
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
@@ -151,7 +153,7 @@ Cheque *busca_cheque()
 {
     FILE *fp;
     Cheque *che;
-    char num_conta[10];
+    char id_bus[26];
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -159,7 +161,7 @@ Cheque *busca_cheque()
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("           Informe o número do cheque: ");
-    scanf("%[0-9]", num_conta);
+    scanf("%[0-9]", id_bus);
     getchar();
     che = (Cheque *)malloc(sizeof(Cheque));
     fp = fopen("cheque.txt", "rt");
@@ -172,7 +174,7 @@ Cheque *busca_cheque()
     while (!feof(fp))
     { // Busca até o final do arquivo
         fread(che, sizeof(Cheque), 1, fp);
-        if (strcmp(che->num_conta, num_conta) == 0 && (che->status != 'x'))
+        if (strcmp(che->id, id_bus) == 0 && (che->status != 'x'))
         { /*Verifica se o código é igual e o status*/
             fclose(fp);
             return che;
@@ -199,11 +201,12 @@ void exibe_cheque(Cheque *che)
     else
     {
         printf("\nAgência: %s\n", che->agencia);
-        printf("Número Cheque: %d\n", che->id);
-        printf("Código Banco: %s\n", che->cod_banco);
-        printf("Data de postagem: %s\n", che->data);
         printf("Número da conta: %s\n", che->num_conta);
+        printf("Código Banco: %s\n", che->cod_banco);
+        printf("Número Cheque: %d\n", che->num_cheque);
         printf("Valor do cheque: %d\n", che->valor);
+        printf("Data de postagem: %s\n", che->data);
+        printf("Id do cheque: %s\n",che->id);
 
         if (che->status == 'c')
         {
@@ -377,7 +380,7 @@ void att_cheque(Cheque *che)
 
             case '2':
                 // printf("Informe a o número do cheque: ");
-                // scanf(" %[0-9]", che->id);
+                // scanf(" %[0-9]", che->num_cheque);
                 // printf("\nCheque editado com sucesso!\n");
                 break;
 
@@ -409,7 +412,7 @@ void att_cheque(Cheque *che)
                 printf("\nInforme a agência: ");
                 scanf(" %[0-9]", che->agencia);
                 // printf("\nInforme a o número do cheque: ");
-                // scanf(" %[0-9]", che->id);
+                // scanf(" %[0-9]", che->num_cheque);
                 printf("\nInforme o código do banco: ");
                 scanf(" %[0-9]", che->cod_banco);
                 printf("\nInforme a data: ");
@@ -463,7 +466,7 @@ int valida_cheque(Cheque *che)
     return 1;
 }
 
-int def_id(){
+int def_num(){
     FILE* fp;
     Cheque* che_arq;
     che_arq = (Cheque*) malloc(sizeof(Cheque));
@@ -476,6 +479,13 @@ int def_id(){
     else{
         fseek(fp, -1*sizeof(Cheque), SEEK_END);
         fread(che_arq,sizeof(Cheque),1,fp);
-        return (che_arq->id + 1);
+        return (che_arq->num_cheque + 1);
     }
+}
+
+void gera_id(Cheque* che){
+    memset(che->id,0,sizeof(che->id)); // Função para limpar a string 
+    strcat(che->id,che->agencia);
+    strcat(che->id,che->num_conta);
+    strcat(che->id,che->cod_banco);
 }
