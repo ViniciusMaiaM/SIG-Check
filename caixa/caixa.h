@@ -2,13 +2,19 @@ typedef struct caixa Caixa;
 
 struct caixa {
     char cpf_cliente[30];
-    char entrada_saida_caixa[2];
+    char id_cheque[30];
+    char entrada_saida_caixa;
     float valor_caixa;
     char data_caixa[40];
-    int id_cheque;
     int id_transacao_caixa;
     char status;
 };
+
+/*
+a = acompensar
+c = compensado
+d = devolvido
+*/
 
 void tela_caixa(void);
 void escolha_caixa(char);

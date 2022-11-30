@@ -69,7 +69,7 @@ void tela_caixa(void)
 Caixa *cadastrar_caixa(void)
 {
     Caixa *cai;
-    cai = (Caixa *)malloc(sizeof(Caixa));
+    cai = (Caixa*)malloc(sizeof(Caixa));
     char cpf[30];
     system("clear||cls");
     printf("____________________________________________________\n");
@@ -80,9 +80,13 @@ Caixa *cadastrar_caixa(void)
     printf("                                                    \n");
     ler_cpf(cpf);
     strcpy(cai->cpf_cliente, cpf);
+    
+    printf("\n\tId do cheque: ");
+    scanf(" %[0-9]",cai->id_cheque);
+    getchar();
 
     printf("\n\tEntrada ou saída(E/S): ");
-    scanf("%1[^\n]", cai->entrada_saida_caixa);
+    scanf("%c",&cai->entrada_saida_caixa);
     getchar();
 
     printf("\n\tValor do cheque: ");
@@ -96,9 +100,6 @@ Caixa *cadastrar_caixa(void)
         getchar();
     } while (!data_str(cai->data_caixa));
 
-    printf("\n\tId do cheque: ");
-    scanf("%d", &cai->id_cheque);
-    getchar();
 
     cai->id_transacao_caixa = id_tra();
     printf("\n\tSeu id de transação: %d", cai->id_transacao_caixa);
@@ -179,10 +180,10 @@ void exibe_caixa(Caixa *cai)
     else
     {
         printf("CPF: %s\n", cai->cpf_cliente);
-        printf("Entrada ou saida: %s\n", cai->entrada_saida_caixa);
+        printf("Entrada ou saida: %c\n", cai->entrada_saida_caixa);
         printf("Valor: %.2f\n", cai->valor_caixa);
         printf("\nData: %s\n", cai->data_caixa);
-        printf("\nId do check: %d\n", cai->id_cheque);
+        printf("\nId do check: %s\n", cai->id_cheque);
         printf("\nId da transação: %d\n", cai->id_transacao_caixa);
     }
     printf("\n____________________________________________________\n");
@@ -294,7 +295,7 @@ void att_caixa(Caixa *cai)
                 ler_cpf(cpf);
                 strcpy(cai->cpf_cliente, cpf);
                 printf("Entrada ou saida (E/S):");
-                scanf("%1[^\n]", cai->entrada_saida_caixa);
+                scanf("%c", &cai->entrada_saida_caixa);
                 printf("\n\tValor do cheque: ");
                 scanf("%f", &cai->valor_caixa);
                 do
@@ -305,7 +306,7 @@ void att_caixa(Caixa *cai)
                 } while (!data_str(cai->data_caixa));
 
                 printf("\n\tId do cheque: ");
-                scanf("%d", &cai->id_cheque);
+                scanf(" %[0-9]", cai->id_cheque);
                 printf("\nTransação editada com sucesso!\n");
                 break;
 
