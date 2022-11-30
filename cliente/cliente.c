@@ -127,35 +127,37 @@ void excluir_cliente(Cliente *cli)
     {
         cli_arq = (Cliente *)malloc(sizeof(Cliente));
         fp = fopen("cliente.txt", "r+t");
+
         if (fp == NULL)
         {
             printf("\nOcorreu um erro na abertura do arquivo, não é possivel continuar o programa\n");
-            exit(1);
         }
 
-        while (!feof(fp))
-        {
-
-            fread(cli_arq, sizeof(Cliente), 1, fp);
-            if ((strcmp(cli_arq->cpf_cliente, cli->cpf_cliente) == 0 && (cli_arq->status != 'x')))
+        else {
+            while (!feof(fp))
             {
-                exibe_cliente(cli);
-                printf("\nEsse é o cliente que você quer apagar(S/s)? ");
-                scanf(" %c", &escolha);
-                achou = 1;
 
-                if (escolha == 'S' || escolha == 's')
+                fread(cli_arq, sizeof(Cliente), 1, fp);
+                if ((strcmp(cli_arq->cpf_cliente, cli->cpf_cliente) == 0 && (cli_arq->status != 'x')))
                 {
-                    cli_arq->status = 'x';
-                    fseek(fp, -1 * sizeof(Cliente), SEEK_CUR);
-                    fwrite(cli_arq, sizeof(Cliente), 1, fp);
-                    printf("\nCliente excluído!\n");
-                    break;
-                }
+                    exibe_cliente(cli);
+                    printf("\nEsse é o cliente que você quer apagar(S/s)? ");
+                    scanf(" %c", &escolha);
+                    achou = 1;
 
-                else
-                {
-                    break;
+                    if (escolha == 'S' || escolha == 's')
+                    {
+                        cli_arq->status = 'x';
+                        fseek(fp, -1 * sizeof(Cliente), SEEK_CUR);
+                        fwrite(cli_arq, sizeof(Cliente), 1, fp);
+                        printf("\nCliente excluído!\n");
+                        break;
+                    }
+
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -216,11 +218,12 @@ void grava_cliente(Cliente *cli)
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
     }
 
-    fwrite(cli, sizeof(Cliente), 1, fp);
-    fclose(fp);
+    else{
+        fwrite(cli, sizeof(Cliente), 1, fp);
+        fclose(fp);
+    }
 }
 
 Cliente *busca_cliente()
@@ -242,16 +245,17 @@ Cliente *busca_cliente()
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
     }
 
-    while (!feof(fp))
-    { // Busca até o final do arquivo
-        fread(cli, sizeof(Cliente), 1, fp);
-        if (strcmp(cli->cpf_cliente, cpf) == 0 && (cli->status != 'x'))
-        { /*Verifica se o código é igual e o status*/
-            fclose(fp);
-            return cli;
+    else{
+        while (!feof(fp))
+        { // Busca até o final do arquivo
+            fread(cli, sizeof(Cliente), 1, fp);
+            if (strcmp(cli->cpf_cliente, cpf) == 0 && (cli->status != 'x'))
+            { /*Verifica se o código é igual e o status*/
+                fclose(fp);
+                return cli;
+            }
         }
     }
 
@@ -273,18 +277,18 @@ void lista_cliente(void)
     cli = (Cliente *)malloc(sizeof(Cliente));
     fp = fopen("cliente.txt", "rt");
 
-    if (fp == NULL)
-    {
+    if (fp == NULL) {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
     }
 
-    while (fread(cli, sizeof(Cliente), 1, fp))
-    {
-        if (cli->status != 'x')
+    else {
+        while (fread(cli, sizeof(Cliente), 1, fp))
         {
-            exibe_cliente(cli);
-            cont++;
+            if (cli->status != 'x')
+            {
+                exibe_cliente(cli);
+                cont++;
+            }
         }
     }
 
@@ -316,20 +320,22 @@ void att_cliente(Cliente *cli)
     if ((cli == NULL) || (cli->status == 'x'))
     {
         printf("\nCliente não encontrado\n");
-        exit(1);
+        resp = 'n';
     }
 
     fp = fopen("cliente.txt", "r+t");
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
+        resp = 'n';
     }
 
-    exibe_cliente(cli);
-    printf("\nEste é o cliente que você quer(S/s)? ");
-    scanf("%c", &resp);
-    getchar();
+    else{
+        exibe_cliente(cli);
+        printf("\nEste é o cliente que você quer(S/s)? ");
+        scanf("%c", &resp);
+        getchar();
+    }
 
     if (resp == 'S' || resp == 's')
     {
