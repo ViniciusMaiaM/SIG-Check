@@ -22,7 +22,7 @@ void ler_cpf(char* cpf);
 void ler_cel(char* cel);
 void ler_email(char* email);
 
-int valida_cliente(Cliente* cli);
+int valida_cliente(char* cli);
 
 Cliente* cadastro_cliente(void);
 Cliente* busca_cliente(void);

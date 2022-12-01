@@ -278,7 +278,7 @@ void lista_cliente(void)
     fp = fopen("cliente.txt", "rt");
 
     if (fp == NULL) {
-        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        printf("\nNão foi possível abrir o arquivo.\n");
     }
 
     else {
@@ -411,23 +411,19 @@ void att_cliente(Cliente *cli)
     fclose(fp);
 }
 
-int valida_cliente(Cliente *cli)
+int valida_cliente(char* cpf)
 {
     FILE *fp;
     Cliente *cli_arq;
 
     cli_arq = (Cliente *)malloc(sizeof(Cliente));
     fp = fopen("cliente.txt", "rt");
-    if (fp == NULL)
-    {
-        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-    }
-
     while (!feof(fp))
     {
         fread(cli_arq, sizeof(Cliente), 1, fp);
-        if (strcmp(cli->cpf_cliente, cli_arq->cpf_cliente) == 0 && (cli_arq->status != 'x'))
+        if (strcmp(cpf, cli_arq->cpf_cliente) == 0 && (cli_arq->status != 'x'))
         {
+            printf("\n\tCpf já cadastradado\n");
             return 0;
         }
     }
@@ -448,7 +444,7 @@ void ler_cpf(char *cpf)
         printf("\n\tCPF: ");
         scanf(" %[0-9]", cpf);
         getchar();
-    } while (!valida_cpf(cpf));
+    } while (!((valida_cpf(cpf)) && (valida_cliente(cpf))));
 }
 
 void ler_cel(char *cel)
