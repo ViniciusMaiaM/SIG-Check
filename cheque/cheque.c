@@ -86,43 +86,45 @@ Cheque *cadastrar_cheque(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    do
-    {
-        printf("          Número agência: ");
-        scanf(" %[0-9]", che->agencia);
+    do{
+        do
+        {
+            printf("          Número agência: ");
+            scanf(" %[0-9]", che->agencia);
+            getchar();
+        } while (!valida_dig(che->agencia));
+        
+        do
+        {
+            printf("          Número conta: ");
+            scanf(" %[0-9]", che->num_conta);
+            getchar();
+        } while (!valida_dig(che->num_conta));
+
+        do
+        {
+            printf("          Código do banco: ");
+            scanf(" %[0-9]", che->cod_banco);
+            getchar();
+        } while (!valida_dig(che->cod_banco));
+
+
+
+        printf("          Valor do cheque: ");
+        scanf("%d", &che->valor);
         getchar();
-    } while (!valida_dig(che->agencia));
-    
-    do
-    {
-        printf("          Número conta: ");
-        scanf(" %[0-9]", che->num_conta);
-        getchar();
-    } while (!valida_dig(che->num_conta));
 
-    do
-    {
-        printf("          Código do banco: ");
-        scanf(" %[0-9]", che->cod_banco);
-        getchar();
-    } while (!valida_dig(che->cod_banco));
+        do
+        {
+            printf("          Data para ser descontado: ");
+            scanf(" %[0-9 / -]", che->data);
+            getchar();
+        } while (!data_str(che->data));
 
-
-
-    printf("          Valor do cheque: ");
-    scanf("%d", &che->valor);
-    getchar();
-
-    do
-    {
-        printf("          Data para ser descontado: ");
-        scanf(" %[0-9 / -]", che->data);
-        getchar();
-    } while (!data_str(che->data));
-
-    che->num_cheque = def_num();
-    printf("          Seu Número de cheque: %d\n",che->num_cheque);
-    gera_id(che);
+        che->num_cheque = def_num();
+        printf("          Seu Número de cheque: %d\n",che->num_cheque);
+        gera_id(che);
+    }while(!(valida_cheque(che->id)));
     printf("          Id de cheque: %s",che->id);
     printf("                                                    \n");
     printf("                                                    \n");
@@ -442,23 +444,24 @@ void att_cheque(Cheque *che)
     fclose(fp);
 }
 
-int valida_cheque(Cheque *che)
+int valida_cheque(char* id)
 {
     FILE *fp;
     Cheque *che_arq;
 
     che_arq = (Cheque *)malloc(sizeof(Cheque));
     fp = fopen("cheque.txt", "rt");
-    if (fp == NULL)
-    {
-        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-    }
+    // if (fp == NULL)
+    // {
+    //     printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+    // }
 
     while (!feof(fp))
     {
         fread(che_arq, sizeof(Cheque), 1, fp);
-        if (strcmp(che->num_conta, che_arq->num_conta) == 0 && (che_arq->status != 'x'))
+        if (strcmp(id, che_arq->id) == 0 && (che_arq->status != 'x'))
         {
+            printf("\n\tCheque já cadastrado,\n\tpor favor insira novas informações");
             return 0;
         }
     }
