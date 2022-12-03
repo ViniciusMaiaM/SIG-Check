@@ -15,7 +15,6 @@ void escolha_cliente(char);
 void excluir_cliente(Cliente* cli);
 void exibe_cliente(Cliente* cli);
 void grava_cliente(Cliente* cli);
-void lista_cliente(void);
 void tela_cliente(void);
 void ler_nome(char* nome);
 void ler_cpf(char* cpf);

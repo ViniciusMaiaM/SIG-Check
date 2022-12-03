@@ -40,10 +40,6 @@ void escolha_cliente(char escolha) // cadastro de cheque
         free(cli);
         break;
 
-    case '5':
-        lista_cliente();
-        break;
-
     default:
         printf("Por favor insira uma opcao valida.\n");
         break;
@@ -66,7 +62,6 @@ void tela_cliente(void)
     printf("             2 - Pesquisar Cliente                  \n");
     printf("             3 - Excluir   Cliente                  \n");
     printf("             4 - Atualizar Cliente                  \n");
-    printf("             5 - Relatório Cliente                  \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
@@ -261,50 +256,6 @@ Cliente *busca_cliente()
 
     fclose(fp);
     return NULL;
-}
-
-void lista_cliente(void)
-{
-    system("clear||cls");
-    int cont = 0;
-    FILE *fp;
-    Cliente *cli;
-    printf("____________________________________________________\n");
-    printf("                                                    \n");
-    printf("          - - - - Listagem - - - -                  \n");
-    printf("                                                    \n");
-    printf("____________________________________________________\n");
-    cli = (Cliente *)malloc(sizeof(Cliente));
-    fp = fopen("cliente.txt", "rt");
-
-    if (fp == NULL) {
-        printf("\nNão foi possível abrir o arquivo.\n");
-    }
-
-    else {
-        while (fread(cli, sizeof(Cliente), 1, fp))
-        {
-            if (cli->status != 'x')
-            {
-                exibe_cliente(cli);
-                cont++;
-            }
-        }
-    }
-
-    if (cont > 0)
-    {
-        printf("\nVocê possúi %d cliente(s) cadastrados!\n", cont);
-    }
-
-    else
-    {
-        printf("\nVocê não possui cliente(s) cadastrados!");
-    }
-
-    espera();
-    fclose(fp);
-    free(cli);
 }
 
 void att_cliente(Cliente *cli)
