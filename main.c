@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "aux/aux.h"
+#include "caixa/caixa.h"
 #include "cheque/cheque.h"
 #include "cliente/cliente.h"
 #include "lucro/lucro.h"
 #include "movimentacao/movimentacao.h"
-#include "caixa/caixa.h"
+#include "relatorio/relatorio.h"
 
 /////
 // Assinatura das funções
@@ -39,7 +40,7 @@ int main(void) {
       break;
 
     case '5':
-      relatorio_lucro();
+      tela_relatorio();
       break;  
       
     case '6':
@@ -79,7 +80,7 @@ char tela_principal(void) {
   printf("             2 - Modulo Cheque                      \n");
   printf("             3 - Modulo Movimentação                \n");
   printf("             4 - Modulo Caixa                       \n");
-  printf("             5 - Relatorio de Lucro                 \n");
+  printf("             5 - Relatorio                          \n");
   printf("             6 - Sobre o sistema                    \n");
   printf("             0 - Sair                               \n");
   printf("                                                    \n");
