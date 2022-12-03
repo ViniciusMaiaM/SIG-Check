@@ -7,7 +7,7 @@
 #include "../cheque/cheque.h"
 #include "../cliente/cliente.h"
 
-void escolha_relatorio(char escolha) // cadastro de cheque
+void escolhe_relatorio(char escolha) // cadastro de cheque
 {
     switch (escolha)
     {
@@ -15,7 +15,7 @@ void escolha_relatorio(char escolha) // cadastro de cheque
         break;
 
     case '2':
-        lista_cheque();
+        relatorio_cheque();
         break;
 
     case '3':
@@ -46,8 +46,46 @@ void tela_relatorio(void)
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    escolha_relatorio(escolha); 
+    escolhe_relatorio(escolha); 
 }
+
+void relatorio_cheque(void){
+    char escolha;
+    system("clear||cls");
+    printf("\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("               - - - - Cheque - - - -               \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("             1 - Listagem de todos                  \n");
+    printf("             0 - Voltar                             \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    escolha = input();
+    escolhe_cheque(escolha); 
+}
+
+void escolhe_cheque(char escolha){
+    switch (escolha){
+        case '1':
+            lista_cheque();
+            break;
+
+        case '2':
+            break;
+
+        case '3':
+            break;
+
+        default:
+            printf("Por favor insira uma opcao valida.\n");
+            break;
+        }
+    }
+
 
 void lista_cheque()
 {
