@@ -104,7 +104,12 @@ Cheque *cadastrar_cheque(void)
             getchar();
         } while (!valida_dig(che->cod_banco));
 
-
+        do
+        {
+            printf("          CPF: ");
+            scanf(" %[0-9]", che->cpf_cliente);
+            getchar();
+        } while (!valida_cpf(che->cpf_cliente));
 
         printf("          Valor do cheque: ");
         scanf("%d", &che->valor);
@@ -166,7 +171,7 @@ Cheque *busca_cheque()
 
     if (fp == NULL)
     {
-        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar a busca");
     }
 
     while (!feof(fp))
@@ -405,10 +410,10 @@ int valida_cheque(char* id)
 
     che_arq = (Cheque *)malloc(sizeof(Cheque));
     fp = fopen("cheque.txt", "rt");
-    // if (fp == NULL)
-    // {
-    //     printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-    // }
+    if (fp == NULL)
+    {
+        return 1;
+    }
 
     while (!feof(fp))
     {
