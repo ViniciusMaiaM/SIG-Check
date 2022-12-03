@@ -42,9 +42,6 @@ void muda_tela_cheque(char escolha) // cadastro de cheque
         free(che);
         break;
 
-    case '5':
-        lista_cheque();
-
     default:
         printf("Por favor insira uma opcao valida.\n");
         break;
@@ -66,7 +63,6 @@ void tela_cheque(void)
     printf("             2 - Pesquisar cheque                   \n");
     printf("             3 - Excluir cheque                     \n");
     printf("             4 - Atualizar cheque                   \n");
-    printf("             5 - Relatório                          \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
@@ -229,48 +225,6 @@ void exibe_cheque(Cheque *che)
     }
     printf("\n____________________________________________________\n");
     espera();
-}
-
-void lista_cheque()
-{
-    system("clear||cls"); 
-    FILE *fp;
-    Cheque *che;
-    int cont = 0;
-    printf("____________________________________________________\n");
-    printf("                                                    \n");
-    printf("          - - - - Listagem - - - -                  \n");
-    printf("                                                    \n");
-    printf("____________________________________________________\n");
-    che = (Cheque *)malloc(sizeof(Cheque));
-    fp = fopen("cheque.txt", "rt");
-
-    if (fp == NULL)
-    {
-        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-    }
-
-    while (fread(che, sizeof(Cheque), 1, fp))
-    {   
-        if (che->status != 'x')
-        {
-            exibe_cheque(che);
-            cont++;
-        }
-    }
-
-    if (cont > 0)
-    {
-        printf("\nVocê possúi %d cheque(s) cadastrados!\n", cont);
-    }
-
-    else
-    {
-        printf("\nVocê não possui cheque(s) cadastrados!");
-    }
-    espera();
-    fclose(fp);
-    free(che);
 }
 
 void excluir_cheque(Cheque *che)

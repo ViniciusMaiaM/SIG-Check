@@ -17,7 +17,6 @@ void exibe_cheque(Cheque* che);
 void excluir_cheque(Cheque* che);
 void grava_cheque(Cheque* che);
 void gera_id(Cheque* che);
-void lista_cheque(void);
 void muda_tela_cheque(char escolha);
 void pesquisar_cheque(void);
 void relatorio_cheque(void);
