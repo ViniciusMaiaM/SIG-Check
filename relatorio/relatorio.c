@@ -49,6 +49,25 @@ void tela_relatorio(void)
     escolhe_relatorio(escolha); 
 }
 
+void relatorio_cliente(void){
+    char escolha;
+    system("clear||cls");
+    printf("\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("               - - - - Cliente - - - -              \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("             1 - Listagem de todos                  \n");
+    printf("             0 - Voltar                             \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    escolha = input();
+    escolhe_cheque(escolha); 
+}
+
 void relatorio_cheque(void){
     char escolha;
     system("clear||cls");
