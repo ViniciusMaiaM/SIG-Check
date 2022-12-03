@@ -46,10 +46,11 @@ void tela_relatorio(void)
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    escolhe_relatorio(escolha); 
+    escolhe_relatorio(escolha);
 }
 
-void relatorio_cliente(void){
+void relatorio_cliente(void)
+{
     char escolha;
     system("clear||cls");
     printf("\n");
@@ -65,10 +66,77 @@ void relatorio_cliente(void){
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    escolhe_cheque(escolha); 
+    escolhe_cliente(escolha);
 }
 
-void relatorio_cheque(void){
+void escolhe_cliente(char escolha)
+{
+    switch (escolha)
+    {
+    case '1':
+        lista_cliente();
+        break;
+
+    case '2':
+        break;
+
+    case '3':
+        break;
+
+    default:
+        printf("Por favor insira uma opcao valida.\n");
+        break;
+    }
+}
+
+void lista_cliente(void)
+{
+    system("clear||cls");
+    int cont = 0;
+    FILE *fp;
+    Cliente *cli;
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          - - - - Listagem - - - -                  \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    cli = (Cliente *)malloc(sizeof(Cliente));
+    fp = fopen("cliente.txt", "rt");
+
+    if (fp == NULL)
+    {
+        printf("\nNão foi possível abrir o arquivo.\n");
+    }
+
+    else
+    {
+        while (fread(cli, sizeof(Cliente), 1, fp))
+        {
+            if (cli->status != 'x')
+            {
+                exibe_cliente(cli);
+                cont++;
+            }
+        }
+    }
+
+    if (cont > 0)
+    {
+        printf("\nVocê possúi %d cliente(s) cadastrados!\n", cont);
+    }
+
+    else
+    {
+        printf("\nVocê não possui cliente(s) cadastrados!");
+    }
+
+    espera();
+    fclose(fp);
+    free(cli);
+}
+
+void relatorio_cheque(void)
+{
     char escolha;
     system("clear||cls");
     printf("\n");
@@ -84,31 +152,32 @@ void relatorio_cheque(void){
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    escolhe_cheque(escolha); 
+    escolhe_cheque(escolha);
 }
 
-void escolhe_cheque(char escolha){
-    switch (escolha){
-        case '1':
-            lista_cheque();
-            break;
+void escolhe_cheque(char escolha)
+{
+    switch (escolha)
+    {
+    case '1':
+        lista_cheque();
+        break;
 
-        case '2':
-            break;
+    case '2':
+        break;
 
-        case '3':
-            break;
+    case '3':
+        break;
 
-        default:
-            printf("Por favor insira uma opcao valida.\n");
-            break;
-        }
+    default:
+        printf("Por favor insira uma opcao valida.\n");
+        break;
     }
-
+}
 
 void lista_cheque()
 {
-    system("clear||cls"); 
+    system("clear||cls");
     FILE *fp;
     Cheque *che;
     int cont = 0;
@@ -126,7 +195,7 @@ void lista_cheque()
     }
 
     while (fread(che, sizeof(Cheque), 1, fp))
-    {   
+    {
         if (che->status != 'x')
         {
             exibe_cheque(che);
