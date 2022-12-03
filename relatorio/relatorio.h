@@ -1,8 +1,13 @@
-void tela_relatorio(void);
 void escolhe_relatorio(char escolha);
-void lista_cheque(void);
-void relatorio_cheque(void);
-void escolhe_cheque(char escolha);
-void relatorio_cliente(void);
+void tela_relatorio(void);
+
+//// Cliente ////
 void escolhe_cliente(char escolha);
 void lista_cliente(void);
+void relatorio_cliente(void);
+
+//// Cheque ////
+void escolhe_cheque(char escolha);
+void lista_cheque(void);
+void relatorio_cheque(void);
+void lista_cpf(void);
