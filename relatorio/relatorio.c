@@ -4,8 +4,29 @@
 #include <string.h>
 #include "relatorio.h"
 #include "../aux/aux.h"
+#include "../cheque/cheque.h"
+#include "../cliente/cliente.h"
 
-void tela_cheque(void)
+void escolha_relatorio(char escolha) // cadastro de cheque
+{
+    switch (escolha)
+    {
+    case '1':
+        break;
+
+    case '2':
+        break;
+
+    case '3':
+        break;
+
+    default:
+        printf("Por favor insira uma opcao valida.\n");
+        break;
+    }
+}
+
+void tela_relatorio(void)
 {
     char escolha;
     system("clear||cls");
@@ -24,4 +45,5 @@ void tela_cheque(void)
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
+    escolha_relatorio(escolha); 
 }
