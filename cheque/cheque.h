@@ -26,6 +26,7 @@ void tela_cheque(void);
 
 int def_num();
 int valida_cheque(char* id);
+int valida_cli(char* cpf);
 
 Cheque* busca_cheque(void);
 Cheque* cadastrar_cheque(void);

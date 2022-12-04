@@ -6,6 +6,7 @@
 #include <time.h> //biblioteca de data e hora
 #include "cheque.h"
 #include "../aux/aux.h"
+#include "../cliente/cliente.h"
 
 void muda_tela_cheque(char escolha) // cadastro de cheque
 {
@@ -85,6 +86,23 @@ Cheque *cadastrar_cheque(void)
     do{
         do
         {
+            printf("          CPF: ");
+            scanf(" %[0-9]", che->cpf_cliente);
+            getchar();
+        } while (!valida_cpf(che->cpf_cliente));
+        
+        if(!valida_cli(che->cpf_cliente)){
+            printf("\nCPF não cadastrado, por favor cadastre o cliente!");
+            espera();
+            Cliente* cli;
+            cli = cadastro_cliente();
+            grava_cliente(cli);
+            free(cli);
+            system("clear||cls");
+        }
+
+        do
+        {
             printf("          Número agência: ");
             scanf(" %[0-9]", che->agencia);
             getchar();
@@ -104,12 +122,6 @@ Cheque *cadastrar_cheque(void)
             getchar();
         } while (!valida_dig(che->cod_banco));
 
-        do
-        {
-            printf("          CPF: ");
-            scanf(" %[0-9]", che->cpf_cliente);
-            getchar();
-        } while (!valida_cpf(che->cpf_cliente));
 
         printf("          Valor do cheque: ");
         scanf("%d", &che->valor);
@@ -450,4 +462,31 @@ void gera_id(Cheque* che){
     strcat(che->id,che->agencia);
     strcat(che->id,che->num_conta);
     strcat(che->id,che->cod_banco);
+}
+
+int valida_cli(char* cpf){
+    FILE* fp;
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("cliente.txt","rt");
+
+    if (fp == NULL){
+        free(cli);
+        return 0;
+    }
+
+    else{
+        while(!feof(fp)){
+            fread(cli,sizeof(Cliente),1,fp);
+            if(strcmp(cli->cpf_cliente,cpf) == 0 && (cli->status != 'x')){
+                fclose(fp);
+                free(cli);
+                return 1;
+            }
+        }
+    }
+
+    fclose(fp);
+    free(cli);
+    return 0;
 }
