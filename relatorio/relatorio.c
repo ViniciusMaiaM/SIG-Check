@@ -64,6 +64,7 @@ void relatorio_cliente(void)
     printf("             1 - Listagem de todos                  \n");
     printf("             2 - Listagem por status                \n");
     printf("             3 - Listagem por nascimento            \n");
+    printf("             4 - Listagem por ordem alfabetica      \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
@@ -81,9 +82,15 @@ void escolhe_cliente(char escolha)
         break;
 
     case '2':
+        printf("Por status");
         break;
 
     case '3':
+        printf("Por nascimento");
+        break;
+
+    case '4':
+        printf("Por ordem alfabetica");
         break;
 
     default:
@@ -174,6 +181,11 @@ void escolhe_cheque(char escolha)
         break;
 
     case '3':
+        printf("Por ordem de valor, crescente e decrescente");
+        break;
+
+    case '4':
+        printf("Por data, entre dadas, ultimo espaço de tempo");
         break;
 
     default:
