@@ -369,6 +369,11 @@ int valida_cliente(char* cpf)
 
     cli_arq = (Cliente *)malloc(sizeof(Cliente));
     fp = fopen("cliente.txt", "rt");
+
+    if(fp == NULL){
+        return 1;
+    }
+    
     while (!feof(fp))
     {
         fread(cli_arq, sizeof(Cliente), 1, fp);
