@@ -62,6 +62,8 @@ void relatorio_cliente(void)
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("             1 - Listagem de todos                  \n");
+    printf("             2 - Listagem por status                \n");
+    printf("             3 - Listagem por nascimento            \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
@@ -148,7 +150,9 @@ void relatorio_cheque(void)
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("             1 - Listagem de todos                  \n");
-    printf("             2 - Listagem por CPF                   \n");
+    printf("             2 - Listagem por cpf                   \n");
+    printf("             3 - Listagem por valor                 \n");
+    printf("             4 - Listagem por data                  \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
