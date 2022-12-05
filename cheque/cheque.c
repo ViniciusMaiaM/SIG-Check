@@ -124,7 +124,7 @@ Cheque *cadastrar_cheque(void)
 
 
         printf("          Valor do cheque: ");
-        scanf("%d", &che->valor);
+        scanf("%f", &che->valor);
         getchar();
 
         do
@@ -160,8 +160,8 @@ void grava_cheque(Cheque *che)
     
     else{
         fwrite(che, sizeof(Cheque), 1, fp);
+        fclose(fp);
     }
-    fclose(fp);
 }
 
 Cheque *busca_cheque()
@@ -184,6 +184,7 @@ Cheque *busca_cheque()
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar a busca");
+        return NULL;
     }
 
     while (!feof(fp))
@@ -219,7 +220,7 @@ void exibe_cheque(Cheque *che)
         printf("Número da conta: %s\n", che->num_conta);
         printf("Código Banco: %s\n", che->cod_banco);
         printf("Número Cheque: %d\n", che->num_cheque);
-        printf("Valor do cheque: %d\n", che->valor);
+        printf("Valor do cheque: %f\n", che->valor);
         printf("Data de postagem: %s\n", che->data);
         printf("Id do cheque: %s\n",che->id);
 
@@ -328,7 +329,7 @@ void att_cheque(Cheque *che)
         printf("____________________________________________________\n");
         printf("                                                    \n");
         printf("             1 - Agência                            \n");
-        printf("             2 - Número Cheque                      \n");
+        printf("             2 - CPF                                \n");
         printf("             3 - Código Banco                       \n");
         printf("             4 - Data                               \n");
         printf("             5 - Número conta                       \n");
@@ -352,9 +353,9 @@ void att_cheque(Cheque *che)
                 break;
 
             case '2':
-                // printf("Informe a o número do cheque: ");
-                // scanf(" %[0-9]", che->num_cheque);
-                // printf("\nCheque editado com sucesso!\n");
+                printf("Informe a do cpf: ");
+                scanf(" %[0-9]", che->cpf_cliente);
+                printf("\nCheque editado com sucesso!\n");
                 break;
 
             case '3':
@@ -377,7 +378,7 @@ void att_cheque(Cheque *che)
 
             case '6':
                 printf("Informe o valor: ");
-                scanf(" %d", &che->valor);
+                scanf(" %f", &che->valor);
                 printf("\nCheque editado com sucesso!\n");
                 break;
 
@@ -393,7 +394,7 @@ void att_cheque(Cheque *che)
                 printf("\nInforme o número da conta: ");
                 scanf(" %[0-9]", che->num_conta);
                 printf("\nInforme o valor: ");
-                scanf(" %d", &che->valor);
+                scanf(" %f", &che->valor);
                 printf("\nCheque editado com sucesso!\n");
                 break;
 

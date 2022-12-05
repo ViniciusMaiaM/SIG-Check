@@ -5,7 +5,7 @@ struct cheque {
     char num_conta[40];
     char cod_banco[40];
     char cpf_cliente[30];
-    int valor;
+    float valor;
     int num_cheque;
     char data[40];
     char id[40];
