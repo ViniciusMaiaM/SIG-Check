@@ -61,7 +61,7 @@ void relatorio_cliente(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("             1 - Listagem de todos                  \n");
+    printf("             1 - Listagem de cadastrados            \n");
     printf("             2 - Listagem por status                \n");
     printf("             3 - Listagem por nascimento            \n");
     printf("             4 - Listagem por ordem alfabetica      \n");
@@ -73,6 +73,34 @@ void relatorio_cliente(void)
     escolhe_cliente(escolha);
 }
 
+void relatorio_status(void)
+{
+    char escolha;
+    system("clear||cls");
+    printf("\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("               - - - - Status - - - -               \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("             1 - Listagem dos deletados             \n");
+    printf("             2 - Listagem de todos                  \n");
+    printf("             0 - Voltar                             \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    escolha = input();
+    
+    if(escolha != '0'){
+        lista_status(escolha);
+    }
+
+    else{
+        printf("\nOk!\n");
+    }
+}
+
 void escolhe_cliente(char escolha)
 {
     switch (escolha)
@@ -82,7 +110,7 @@ void escolhe_cliente(char escolha)
         break;
 
     case '2':
-        printf("Por status");
+        relatorio_status();
         break;
 
     case '3':
@@ -98,6 +126,7 @@ void escolhe_cliente(char escolha)
         break;
     }
 }
+
 
 void lista_cliente(void)
 {
@@ -145,6 +174,59 @@ void lista_cliente(void)
     free(cli);
 }
 
+void lista_status(char escolha){
+    system("clear||cls");
+    FILE* fp;
+    Cliente *cli;
+    int cont = 0;
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("        - - - - Listagem por status - - - -         \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    cli = (Cliente *)malloc(sizeof(Cliente));
+    fp = fopen("cliente.txt", "rt");
+
+    if (fp == NULL)
+    {
+        printf("\nNão foi possível abrir o arquivo.\n");
+    }
+
+    else{
+        if(escolha == '1'){
+            while (fread(cli, sizeof(Cliente), 1, fp))
+            {
+                if (cli->status == 'x')
+                {
+                    exibe_cliente(cli);
+                    cont++;
+                }
+            }
+        }
+
+        else{
+            while (fread(cli, sizeof(Cliente), 1, fp)){
+                        exibe_cliente(cli);
+                        cont++;
+            }
+        }
+
+        fclose(fp);
+    }
+
+    if (cont > 0)
+    {
+        printf("\nVocê possúi %d cliente(s) cadastrados!\n", cont);
+    }
+
+    else
+    {
+        printf("\nVocê não possui cliente(s) cadastrados!");
+    }
+
+    espera();
+    free(cli);
+}
 void relatorio_cheque(void)
 {
     char escolha;
