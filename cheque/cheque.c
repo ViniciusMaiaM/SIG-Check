@@ -160,8 +160,8 @@ void grava_cheque(Cheque *che)
     
     else{
         fwrite(che, sizeof(Cheque), 1, fp);
-        fclose(fp);
     }
+    fclose(fp);
 }
 
 Cheque *busca_cheque()

@@ -382,6 +382,7 @@ int id_tra()
 
     if (fp == NULL)
     {
+        fclose(fp);
         return 1;
     }
 
@@ -389,6 +390,7 @@ int id_tra()
     {
         fseek(fp, -1 * sizeof(Caixa), SEEK_END);
         fread(cai_arq, sizeof(Caixa), 1, fp);
+        fclose(fp);
         return (cai_arq->id_transacao_caixa + 1);
     }
 }

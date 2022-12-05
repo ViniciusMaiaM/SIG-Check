@@ -217,8 +217,8 @@ void grava_cliente(Cliente *cli)
 
     else{
         fwrite(cli, sizeof(Cliente), 1, fp);
-        fclose(fp);
     }
+    fclose(fp);
 }
 
 Cliente *busca_cliente()
@@ -371,6 +371,7 @@ int valida_cliente(char* cpf)
     fp = fopen("cliente.txt", "rt");
 
     if(fp == NULL){
+        fclose(fp);
         return 1;
     }
     
@@ -380,10 +381,11 @@ int valida_cliente(char* cpf)
         if (strcmp(cpf, cli_arq->cpf_cliente) == 0 && (cli_arq->status != 'x'))
         {
             printf("\n\tCpf já cadastradado\n");
+            fclose(fp);
             return 0;
         }
     }
-
+    fclose(fp);
     return 1;
 }
 
