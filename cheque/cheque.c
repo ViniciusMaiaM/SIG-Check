@@ -187,17 +187,20 @@ Cheque *busca_cheque()
         return NULL;
     }
 
-    while (!feof(fp))
-    { // Busca até o final do arquivo
-        fread(che, sizeof(Cheque), 1, fp);
-        if (strcmp(che->id, id_bus) == 0 && (che->status != 'x'))
-        { /*Verifica se o código é igual e o status*/
-            fclose(fp);
-            return che;
+    else{
+        while (!feof(fp))
+        { // Busca até o final do arquivo
+            fread(che, sizeof(Cheque), 1, fp);
+            if (strcmp(che->id, id_bus) == 0 && (che->status != 'x'))
+            { /*Verifica se o código é igual e o status*/
+                fclose(fp);
+                return che;
+            }
         }
-    }
 
-    fclose(fp);
+        fclose(fp);
+    }
+    
     return NULL;
 }
 
@@ -266,29 +269,32 @@ void excluir_cheque(Cheque *che)
             printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
         }
 
-        while (!feof(fp))
-        {
-            fread(che_arq, sizeof(Cheque), 1, fp);
-            if ((strcmp(che_arq->num_conta, che->num_conta) == 0 && (che_arq->status != 'x')))
+        else{
+            while (!feof(fp))
             {
-                exibe_cheque(che);
-                printf("\nEsse é o cheque que você quer excluir(S/N)? ");
-                scanf("%c", &escolha);
-                achou = 1;
-                if (escolha == 'S' || escolha == 's')
+                fread(che_arq, sizeof(Cheque), 1, fp);
+                if ((strcmp(che_arq->num_conta, che->num_conta) == 0 && (che_arq->status != 'x')))
                 {
-                    che_arq->status = 'x';
-                    fseek(fp, -1 * sizeof(Cheque), SEEK_CUR);
-                    fwrite(che_arq, sizeof(Cheque), 1, fp);
-                    printf("\nCheque excluído!\n");
-                    break;
-                }
+                    exibe_cheque(che);
+                    printf("\nEsse é o cheque que você quer excluir(S/N)? ");
+                    scanf("%c", &escolha);
+                    achou = 1;
+                    if (escolha == 'S' || escolha == 's')
+                    {
+                        che_arq->status = 'x';
+                        fseek(fp, -1 * sizeof(Cheque), SEEK_CUR);
+                        fwrite(che_arq, sizeof(Cheque), 1, fp);
+                        printf("\nCheque excluído!\n");
+                        break;
+                    }
 
-                else
-                {
-                    break;
+                    else
+                    {
+                        break;
+                    }
                 }
             }
+            fclose(fp);
         }
 
         if (!achou)
@@ -296,7 +302,6 @@ void excluir_cheque(Cheque *che)
             printf("\nCheque não encontrado\n");
         }
 
-        fclose(fp);
         free(che_arq);
     }
     espera();
@@ -314,106 +319,109 @@ void att_cheque(Cheque *che)
     }
 
     fp = fopen("cheque.txt", "r+t");
+
     if (fp == NULL)
     {
-        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        printf("\nNão existem dados cadastrados no arquivo\n");
     }
 
-    exibe_cheque(che);
-    printf("\nEste é o cheque que você quer atualizar(S/s)? ");
-    scanf("%c", &resp);
-    getchar();
-
-    if (resp == 'S' || resp == 's')
-    {
-        printf("____________________________________________________\n");
-        printf("                                                    \n");
-        printf("             1 - Agência                            \n");
-        printf("             2 - CPF                                \n");
-        printf("             3 - Código Banco                       \n");
-        printf("             4 - Data                               \n");
-        printf("             5 - Número conta                       \n");
-        printf("             6 - Valor                              \n");
-        printf("             7 - Tudo                               \n");
-        printf("             0 - Voltar                             \n");
-        printf("                                                    \n");
-        printf("____________________________________________________\n");
-        printf("             O que você quer atualizar: ");
-        scanf("%c", &escolha);
+    else{
+        exibe_cheque(che);
+        printf("\nEste é o cheque que você quer atualizar(S/s)? ");
+        scanf("%c", &resp);
         getchar();
 
-        while (escolha != '0')
+        if (resp == 'S' || resp == 's')
         {
-            switch (escolha)
+            printf("____________________________________________________\n");
+            printf("                                                    \n");
+            printf("             1 - Agência                            \n");
+            printf("             2 - CPF                                \n");
+            printf("             3 - Código Banco                       \n");
+            printf("             4 - Data                               \n");
+            printf("             5 - Número conta                       \n");
+            printf("             6 - Valor                              \n");
+            printf("             7 - Tudo                               \n");
+            printf("             0 - Voltar                             \n");
+            printf("                                                    \n");
+            printf("____________________________________________________\n");
+            printf("             O que você quer atualizar: ");
+            scanf("%c", &escolha);
+            getchar();
+
+            while (escolha != '0')
             {
-            case '1':
-                printf("Informe a agência: ");
-                scanf(" %[0-9]", che->agencia);
-                printf("\nCheque editado com sucesso!\n");
-                break;
+                switch (escolha)
+                {
+                case '1':
+                    printf("Informe a agência: ");
+                    scanf(" %[0-9]", che->agencia);
+                    printf("\nCheque editado com sucesso!\n");
+                    break;
 
-            case '2':
-                printf("Informe a do cpf: ");
-                scanf(" %[0-9]", che->cpf_cliente);
-                printf("\nCheque editado com sucesso!\n");
-                break;
+                case '2':
+                    printf("Informe a do cpf: ");
+                    scanf(" %[0-9]", che->cpf_cliente);
+                    printf("\nCheque editado com sucesso!\n");
+                    break;
 
-            case '3':
-                printf("Informe o código do banco: ");
-                scanf(" %[0-9]", che->cod_banco);
-                printf("\nCheque editado com sucesso!\n");
-                break;
+                case '3':
+                    printf("Informe o código do banco: ");
+                    scanf(" %[0-9]", che->cod_banco);
+                    printf("\nCheque editado com sucesso!\n");
+                    break;
 
-            case '4':
-                printf("Informe a data: ");
-                scanf(" %[0-9]", che->data);
-                printf("\nCheque editado com sucesso!\n");
-                break;
+                case '4':
+                    printf("Informe a data: ");
+                    scanf(" %[0-9]", che->data);
+                    printf("\nCheque editado com sucesso!\n");
+                    break;
 
-            case '5':
-                printf("Informe o número da conta: ");
-                scanf(" %[0-9]", che->num_conta);
-                printf("\nCheque editado com sucesso!\n");
-                break;
+                case '5':
+                    printf("Informe o número da conta: ");
+                    scanf(" %[0-9]", che->num_conta);
+                    printf("\nCheque editado com sucesso!\n");
+                    break;
 
-            case '6':
-                printf("Informe o valor: ");
-                scanf(" %f", &che->valor);
-                printf("\nCheque editado com sucesso!\n");
-                break;
+                case '6':
+                    printf("Informe o valor: ");
+                    scanf(" %f", &che->valor);
+                    printf("\nCheque editado com sucesso!\n");
+                    break;
 
-            case '7':
-                printf("\nInforme a agência: ");
-                scanf(" %[0-9]", che->agencia);
-                // printf("\nInforme a o número do cheque: ");
-                // scanf(" %[0-9]", che->num_cheque);
-                printf("\nInforme o código do banco: ");
-                scanf(" %[0-9]", che->cod_banco);
-                printf("\nInforme a data: ");
-                scanf(" %[0-9]", che->data);
-                printf("\nInforme o número da conta: ");
-                scanf(" %[0-9]", che->num_conta);
-                printf("\nInforme o valor: ");
-                scanf(" %f", &che->valor);
-                printf("\nCheque editado com sucesso!\n");
-                break;
+                case '7':
+                    printf("\nInforme a agência: ");
+                    scanf(" %[0-9]", che->agencia);
+                    // printf("\nInforme a o número do cheque: ");
+                    // scanf(" %[0-9]", che->num_cheque);
+                    printf("\nInforme o código do banco: ");
+                    scanf(" %[0-9]", che->cod_banco);
+                    printf("\nInforme a data: ");
+                    scanf(" %[0-9]", che->data);
+                    printf("\nInforme o número da conta: ");
+                    scanf(" %[0-9]", che->num_conta);
+                    printf("\nInforme o valor: ");
+                    scanf(" %f", &che->valor);
+                    printf("\nCheque editado com sucesso!\n");
+                    break;
 
-            default:
-                printf("\nPor favor insira uma opcao valida.\n");
-                break;
+                default:
+                    printf("\nPor favor insira uma opcao valida.\n");
+                    break;
+                }
+                escolha = '0';
             }
-            escolha = '0';
+            fseek(fp, (-1) * sizeof(Cheque), SEEK_CUR);
+            fwrite(che, sizeof(Cheque), 1, fp);
         }
-        fseek(fp, (-1) * sizeof(Cheque), SEEK_CUR);
-        fwrite(che, sizeof(Cheque), 1, fp);
-    }
 
-    else
-    {
-        printf("\nOk, os dados não foram alterados!\n");
-    }
+        else
+        {
+            printf("\nOk, os dados não foram alterados!\n");
+        }
 
-    fclose(fp);
+        fclose(fp);
+    }
 }
 
 int valida_cheque(char* id)
