@@ -144,7 +144,7 @@ void lista_cliente(void)
 
     if (fp == NULL)
     {
-        printf("\nNão foi possível abrir o arquivo.\n");
+        printf("\nNão exitem clientes cadastrados, por favor cadastre para prosseguir.\n");
     }
 
     else
@@ -157,6 +157,7 @@ void lista_cliente(void)
                 cont++;
             }
         }
+        fclose(fp);
     }
 
     if (cont > 0)
@@ -170,7 +171,6 @@ void lista_cliente(void)
     }
 
     espera();
-    fclose(fp);
     free(cli);
 }
 
@@ -189,7 +189,7 @@ void lista_status(char escolha){
 
     if (fp == NULL)
     {
-        printf("\nNão foi possível abrir o arquivo.\n");
+        printf("\nNão exitem clientes cadastrados, por favor cadastre para prosseguir.\n");
     }
 
     else{
@@ -292,16 +292,18 @@ void lista_cheque()
 
     if (fp == NULL)
     {
-        printf("Ocorreu um erro na abertura do arquivo, não é possivel iniciar a listagem");
+        printf("Você não possui cheques cadastrados, por favor cadastre para então poder listar");
     }
 
-    while (fread(che, sizeof(Cheque), 1, fp))
-    {
-        if (che->status != 'x')
-        {
-            exibe_cheque(che);
-            cont++;
+    else{
+        while (fread(che, sizeof(Cheque), 1, fp)){
+            if (che->status != 'x')
+            {
+                exibe_cheque(che);
+                cont++;
+            }
         }
+        fclose(fp);
     }
 
     if (cont > 0)
@@ -313,8 +315,8 @@ void lista_cheque()
     {
         printf("\nVocê não possui cheque(s) cadastrados!");
     }
+
     espera();
-    fclose(fp);
     free(che);
 }
 
@@ -324,28 +326,34 @@ void lista_cpf(void){
     Cheque* che;
     char cpf[30];
     int cont = 0;
+    
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("          - - - - Listagem por cpf - - - -          \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
+    
     che = (Cheque *)malloc(sizeof(Cheque));
     fp = fopen("cheque.txt", "rt");
+
     printf("          Insira o cpf para ser buscado: ");
     scanf(" %[0-9]", cpf);
     getchar();
+
     if(fp == NULL){
         printf("\nArquivo sem cadastro, não foi possível fazer a listagem\n");
     }
 
-    while(!feof(fp)){
-        fread(che,sizeof(Cheque),1,fp);
-        if(strcmp(che->cpf_cliente,cpf) == 0 && (che->status != 'x')){
-            exibe_cheque(che);
-            cont++;
+    else{
+        while(!feof(fp)){
+            fread(che,sizeof(Cheque),1,fp);
+            if(strcmp(che->cpf_cliente,cpf) == 0 && (che->status != 'x')){
+                exibe_cheque(che);
+                cont++;
+            }
         }
+        fclose(fp);
     }
-
     if (cont > 0)
     {
         printf("\nVocê possúi %d cheque(s) cadastrados com esse cpf!\n", cont);
@@ -357,6 +365,5 @@ void lista_cpf(void){
     }
 
     espera();
-    fclose(fp);
     free(che);
 }
