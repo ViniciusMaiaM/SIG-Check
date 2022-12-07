@@ -7,7 +7,8 @@ struct cheque {
     char cpf_cliente[30];
     float valor;
     int num_cheque;
-    char data[40];
+    char data_desconto[40];
+    char data_cadastro[40];
     char id[40];
     char status;
 };

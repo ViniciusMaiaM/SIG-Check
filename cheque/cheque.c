@@ -15,12 +15,6 @@ void muda_tela_cheque(char escolha) // cadastro de cheque
     {
     case '1':
         che = cadastrar_cheque();
-        // if (!valida_cheque(che))
-        // {
-        //     printf("\nO cheque que você quer cadastrar já existe em nossos arquivos.\nPor favor tente novamente!");
-        //     espera();
-        //     break;
-        // }
         grava_cheque(che);
         free(che);
         break;
@@ -130,10 +124,12 @@ Cheque *cadastrar_cheque(void)
         do
         {
             printf("          Data para ser descontado: ");
-            scanf(" %[0-9 / -]", che->data);
+            scanf(" %[0-9 / -]", che->data_desconto);
             getchar();
-        } while (!data_str(che->data));
+        } while (!data_str(che->data_desconto,1));
 
+        data_atual(che->data_cadastro);
+        
         che->num_cheque = def_num();
         printf("          Seu Número de cheque: %d\n",che->num_cheque);
         gera_id(che);
@@ -224,7 +220,8 @@ void exibe_cheque(Cheque *che)
         printf("Código Banco: %s\n", che->cod_banco);
         printf("Número Cheque: %d\n", che->num_cheque);
         printf("Valor do cheque: %f\n", che->valor);
-        printf("Data de postagem: %s\n", che->data);
+        printf("Data de postagem: %s\n", che->data_cadastro);
+        printf("Data de desconto: %s\n", che->data_desconto);
         printf("Id do cheque: %s\n",che->id);
 
         if (che->status == 'c')
@@ -372,8 +369,8 @@ void att_cheque(Cheque *che)
                     break;
 
                 case '4':
-                    printf("Informe a data: ");
-                    scanf(" %[0-9]", che->data);
+                    printf("Informe a data de desconto: ");
+                    scanf(" %[0-9]", che->data_desconto);
                     printf("\nCheque editado com sucesso!\n");
                     break;
 
@@ -396,8 +393,8 @@ void att_cheque(Cheque *che)
                     // scanf(" %[0-9]", che->num_cheque);
                     printf("\nInforme o código do banco: ");
                     scanf(" %[0-9]", che->cod_banco);
-                    printf("\nInforme a data: ");
-                    scanf(" %[0-9]", che->data);
+                    printf("\nInforme a data de desconto: ");
+                    scanf(" %[0-9]", che->data_desconto);
                     printf("\nInforme o número da conta: ");
                     scanf(" %[0-9]", che->num_conta);
                     printf("\nInforme o valor: ");
