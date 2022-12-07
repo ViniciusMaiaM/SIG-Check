@@ -179,6 +179,8 @@ void exibe_cliente(Cliente *cli)
         printf("CPF: %s\n", cli->cpf_cliente);
         printf("Celular: %s\n", cli->cel_cliente);
         printf("Email: %s\n", cli->email_cliente);
+        printf("Data de nascimento: %s\n", cli->data_nasc);
+        printf("Genero: %c\n", cli->genero);
 
         if (cli->status == 'c')
         {
@@ -356,7 +358,7 @@ void att_cliente(Cliente *cli)
     {
         printf("\nOk, os dados não foram alterados!\n");
     }
-    
+
     espera();
     fclose(fp);
 }
