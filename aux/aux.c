@@ -60,7 +60,7 @@ int busca_num(int tam, char celular[]){
 ///////////
 //Criado com base no algoritmo do professor Flavius Gorgonio
 //////////
-int data_int(int dia, int mes, int ano){
+int data_int(int dia, int mes, int ano, int escolha){
 
     struct tm *atual;
 
@@ -99,16 +99,24 @@ int data_int(int dia, int mes, int ano){
         return 0;
     }
 
-    if (ano < ano_atual){
-        return 0;
+    if (escolha){
+        if (ano < ano_atual){
+            return 0;
+        }
+
+        else if ((mes < mes_atual) && (ano <= ano_atual)){
+            return 0;
+        }
+        
+        else if (((dia < dia_atual) && (mes <= mes_atual) && (ano <= ano_atual))){
+            return 0;
+        }
     }
 
-    else if ((mes < mes_atual) && (ano <= ano_atual)){
-        return 0;
-    }
-    
-    else if (((dia < dia_atual) && (mes <= mes_atual) && (ano <= ano_atual))){
-        return 0;
+    else{
+        if ((ano_atual - ano) < 18){
+            return 0;
+        }
     }
 
     return 1;
@@ -131,7 +139,7 @@ int bissexto (int ano){
     }
 }
 
-int data_str(char data[]){
+int data_str(char data[], int escolha){
     int dia, mes, ano;
 
     if (strlen(data) != 10){
@@ -146,7 +154,7 @@ int data_str(char data[]){
     mes = ((data[3] - '0') * 10) + (data[4] - '0');
     ano = ((data[6] - '0') * 1000) + ((data[7] - '0') * 100) + ((data[8] - '0') * 10) + (data[9] - '0');
     
-    if(data_int(dia,mes,ano)){
+    if(data_int(dia,mes,ano, escolha)){
         return 1;
     }
 
