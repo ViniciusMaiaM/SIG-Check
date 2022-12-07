@@ -330,3 +330,40 @@ void espera(){
     printf("\nPressione enter para continuar...");
     getchar();
 }
+
+void data_atual(char* total){
+    char dia[14];
+    char mes[14];
+    char ano[14];
+    struct tm *atual;
+
+    time_t segundos;
+    time(&segundos);
+
+    atual = localtime(&segundos);
+    
+    int dia_atual = atual->tm_mday;
+    int mes_atual = (atual->tm_mon)+1;
+    int ano_atual = (atual->tm_year)+1900;
+
+
+    sprintf(dia, "%d", dia_atual);
+    sprintf(mes, "%d", mes_atual);
+    sprintf(ano, "%d", ano_atual);
+
+    barra(dia,strlen(dia));
+    barra(mes,strlen(mes));
+
+    strcat(total,dia);
+    strcat(total,mes);
+    strcat(total,ano);
+}
+
+void barra(char* teste, int tam){
+    for(int i = 0; i != tam+1; i++){
+        if(teste[i] == '\0'){
+            teste[i] = '/';
+        }
+
+    }
+}
