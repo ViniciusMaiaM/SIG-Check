@@ -5,6 +5,7 @@
 #include <string.h>
 #include <math.h>
 #include <unistd.h>
+#include <ctype.h>
 
 void escolha_cliente(char escolha) // cadastro de cheque
 {
@@ -13,12 +14,6 @@ void escolha_cliente(char escolha) // cadastro de cheque
     {
     case '1':
         cli = cadastro_cliente();
-        // if (!valida_cliente(cli))
-        // {
-        //     printf("\nO cliente que você quer cadastrar já existe em nossos arquivos.\nPor favor tente novamente!");
-        //     espera();
-        //     break;
-        // }
         grava_cliente(cli);
         free(cli);
         break;
@@ -74,10 +69,6 @@ Cliente *cadastro_cliente(void)
 {
     Cliente *cli;
     cli = (Cliente *)malloc(sizeof(Cliente));
-    char nome[100];
-    char cpf[30];
-    char cel[30];
-    char email[100];
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -85,18 +76,18 @@ Cliente *cadastro_cliente(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
 
-    ler_nome(nome);
-    strcpy(cli->nome_cliente, nome);
+    ler_nome(cli->nome_cliente);
 
-    ler_cpf(cpf);
-    strcpy(cli->cpf_cliente, cpf);
+    ler_cpf(cli->cpf_cliente);
 
-    ler_cel(cel);
-    strcpy(cli->cel_cliente, cel);
+    ler_cel(cli->cel_cliente);
 
-    ler_email(email);
-    strcpy(cli->email_cliente, email);
+    ler_email(cli->email_cliente);
     
+    ler_nasc(cli->data_nasc);
+
+    cli->genero = ler_genero(cli->genero);
+
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
@@ -217,8 +208,8 @@ void grava_cliente(Cliente *cli)
 
     else{
         fwrite(cli, sizeof(Cliente), 1, fp);
+        fclose(fp);
     }
-    fclose(fp);
 }
 
 Cliente *busca_cliente()
@@ -239,7 +230,7 @@ Cliente *busca_cliente()
 
     if (fp == NULL)
     {
-        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        printf("\nNão existem clientes cadastrados, por favor faça o cadastro para buscar.\n");
     }
 
     else{
@@ -254,7 +245,6 @@ Cliente *busca_cliente()
         }
     }
 
-    fclose(fp);
     return NULL;
 }
 
@@ -371,7 +361,6 @@ int valida_cliente(char* cpf)
     fp = fopen("cliente.txt", "rt");
 
     if(fp == NULL){
-        fclose(fp);
         return 1;
     }
     
@@ -385,6 +374,7 @@ int valida_cliente(char* cpf)
             return 0;
         }
     }
+
     fclose(fp);
     return 1;
 }
@@ -422,4 +412,24 @@ void ler_email(char *email)
         printf("\n\tEmail: ");
         fgets(email, 30, stdin);
     } while (!valida_email(email));
+}
+
+void ler_nasc(char* data_nasc){
+    do{
+        printf("\n\tApenas Maiores de idade\n");
+        printf("\n\tData de nascimento: ");
+        scanf(" %[0-9 / -]", data_nasc);
+        getchar();
+    } while (!data_str(data_nasc,0));
+}
+
+char ler_genero(char genero){
+    do{
+        printf("\n\tGenero (M|F|O): ");
+        scanf(" %c",&genero);
+        getchar();
+        genero = toupper(genero);
+    }while(genero != 'M' && genero != 'F' && genero != 'O');
+    
+    return genero;
 }
