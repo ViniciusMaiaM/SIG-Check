@@ -224,7 +224,12 @@ Cliente *busca_cliente()
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("           Informe o número do cpf: ");
-    ler_cpf(cpf);
+    do
+    {
+        printf("\n\tCPF: ");
+        scanf(" %[0-9]", cpf);
+        getchar();
+    } while (!valida_cpf(cpf));
     cli = (Cliente *)malloc(sizeof(Cliente));
     fp = fopen("cliente.txt", "rt");
 
