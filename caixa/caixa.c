@@ -78,9 +78,24 @@ Caixa *cadastrar_caixa(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    ler_cpf(cpf);
-    strcpy(cai->cpf_cliente, cpf);
-    
+    do
+    {
+        printf("\n\tCPF: ");
+        scanf(" %[0-9]", cai->cpf_cliente);
+        getchar();
+    } while (!valida_cpf(cai->cpf_cliente));
+
+    if(!valida_cli(cai->cpf_cliente)){
+            printf("\nCPF não cadastrado, por favor cadastre o cliente!");
+            espera();
+            Cliente* cli;
+            cli = cadastro_cliente();
+            grava_cliente(cli);
+            free(cli);
+            system("clear||cls");
+    }
+
+
     printf("\n\tId do cheque: ");
     scanf(" %[0-9]",cai->id_cheque);
     getchar();
@@ -98,7 +113,7 @@ Caixa *cadastrar_caixa(void)
         printf("\n\tData: ");
         scanf(" %[0-9 / -]", cai->data_caixa);
         getchar();
-    } while (!data_str(cai->data_caixa));
+    } while (!data_str(cai->data_caixa,1));
 
 
     cai->id_transacao_caixa = id_tra();
@@ -120,11 +135,12 @@ void grava_caixa(Caixa *cai)
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
     }
 
-    fwrite(cai, sizeof(Caixa), 1, fp);
-    fclose(fp);
+    else{
+        fwrite(cai, sizeof(Caixa), 1, fp);
+        fclose(fp);
+    }
 }
 
 Caixa *busca_caixa()
@@ -146,8 +162,7 @@ Caixa *busca_caixa()
 
     if (fp == NULL)
     {
-        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
+        printf("Não existe nada cadastrado, por favor cadastre");
     }
 
     while (!feof(fp))
@@ -160,7 +175,10 @@ Caixa *busca_caixa()
         }
     }
 
-    fclose(fp);
+    if(fp!= NULL){
+        fclose(fp);
+    }
+
     return NULL;
 }
 
@@ -303,7 +321,7 @@ void att_caixa(Caixa *cai)
                     printf("\n\tData: ");
                     scanf(" %[0-9 / -]", cai->data_caixa);
                     getchar();
-                } while (!data_str(cai->data_caixa));
+                } while (!data_str(cai->data_caixa,1));
 
                 printf("\n\tId do cheque: ");
                 scanf(" %[0-9]", cai->id_cheque);
@@ -394,3 +412,4 @@ int id_tra()
         return (cai_arq->id_transacao_caixa + 1);
     }
 }
+
