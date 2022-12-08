@@ -128,7 +128,8 @@ Cheque *cadastrar_cheque(void)
             getchar();
         } while (!data_str(che->data_desconto,1));
 
-        data_atual(che->data_cadastro);
+        char* tempo = data_atual();
+        strcpy(che->data_cadastro,tempo);
         
         che->num_cheque = def_num();
         printf("          Seu Número de cheque: %d\n",che->num_cheque);
