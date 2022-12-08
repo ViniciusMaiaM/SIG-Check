@@ -10,5 +10,4 @@ int valida_email(char email[]);
 int valida_dig(char dig[]);
 void espera();
 //int valida_float(float dinheiro);
-void data_atual(char* total);
-void barra(char* teste, int tam);
+char* data_atual(void);
