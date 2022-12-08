@@ -70,7 +70,6 @@ Caixa *cadastrar_caixa(void)
 {
     Caixa *cai;
     cai = (Caixa*)malloc(sizeof(Caixa));
-    char cpf[30];
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -95,10 +94,14 @@ Caixa *cadastrar_caixa(void)
             system("clear||cls");
     }
 
+    printf("\nEsses são os cheques cadastrados para esse cpf");
+    cheque_cpf(cai->cpf_cliente);
 
-    printf("\n\tId do cheque: ");
-    scanf(" %[0-9]",cai->id_cheque);
-    getchar();
+    do{
+        printf("\n\tId do cheque: ");
+        scanf(" %[0-9]",cai->id_cheque);
+        getchar();
+    }while (!verifica_cheque(cai->id_cheque, cai->cpf_cliente));
 
     printf("\n\tEntrada ou saída(E/S): ");
     scanf("%c",&cai->entrada_saida_caixa);
@@ -413,3 +416,59 @@ int id_tra()
     }
 }
 
+void cheque_cpf(char* cpf){
+    system("clear||cls");
+    FILE* fp;
+    Cheque* che;
+    
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("          - - - - Cheques desse cpf - - - -         \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    
+    che = (Cheque *)malloc(sizeof(Cheque));
+    fp = fopen("cheque.txt", "rt");
+
+    if(fp == NULL){
+        printf("\nArquivo sem cadastro, não foi possível fazer a listagem\n");
+    }
+
+    else{
+        while(!feof(fp)){
+            fread(che,sizeof(Cheque),1,fp);
+            if(strcmp(che->cpf_cliente,cpf) == 0 && (che->status != 'x')){
+                exibe_cheque(che);
+            }
+        }
+        fclose(fp);
+    }
+
+    espera();
+    free(che);
+}
+
+int verifica_cheque(char* cheque, char* cpf){
+    FILE* fp;
+    Cheque* che;
+
+    che = (Cheque *)malloc(sizeof(Cheque));
+    fp = fopen("cheque.txt", "rt");
+
+    if(fp == NULL){
+        printf("\nArquivo sem cadastro, não foi possível fazer a listagem\n");
+        return 0;
+    }
+
+    else{
+        while(!feof(fp)){
+            fread(che,sizeof(Cheque),1,fp);
+            if(strcmp(che->cpf_cliente,cpf) == 0 && strcmp(che->id, cheque) == 0){
+                return 1;
+            }
+        }
+        fclose(fp);
+    }
+
+    return 0;
+}
