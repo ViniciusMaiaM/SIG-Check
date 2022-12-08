@@ -104,11 +104,11 @@ Caixa *cadastrar_caixa(void)
     }while (!verifica_cheque(cai->id_cheque, cai->cpf_cliente));
 
     printf("\n\tEntrada ou saída(E/S): ");
-    scanf("%c",&cai->entrada_saida_caixa);
+    scanf(" %c",&cai->entrada_saida_caixa);
     getchar();
 
     printf("\n\tValor do cheque: ");
-    scanf("%f", &cai->valor_caixa);
+    scanf(" %f", &cai->valor_caixa);
     getchar();
 
     do

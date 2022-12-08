@@ -439,7 +439,7 @@ int valida_cheque(char* id)
         fread(che_arq, sizeof(Cheque), 1, fp);
         if (strcmp(id, che_arq->id) == 0 && (che_arq->status != 'x'))
         {
-            printf("\n\tCheque já cadastrado,\n\tpor favor insira novas informações");
+            printf("\n\tCheque já cadastrado,\n\tpor favor insira novas informações\n");
             return 0;
         }
     }

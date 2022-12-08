@@ -354,6 +354,7 @@ void lista_cpf(void){
         }
         fclose(fp);
     }
+    
     if (cont > 0)
     {
         printf("\nVocê possúi %d cheque(s) cadastrados com esse cpf!\n", cont);
