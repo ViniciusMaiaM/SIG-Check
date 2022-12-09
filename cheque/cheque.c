@@ -136,6 +136,7 @@ Cheque *cadastrar_cheque(void)
         gera_id(che);
     }while(!(valida_cheque(che->id)));
     printf("          Id de cheque: %s",che->id);
+    che->prox = NULL;
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");

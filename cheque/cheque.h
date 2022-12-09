@@ -11,6 +11,7 @@ struct cheque {
     char data_cadastro[40];
     char id[40];
     char status;
+    Cheque* prox;
 };
 
 
