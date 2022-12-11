@@ -446,15 +446,12 @@ int cheque_cpf(char* cpf){
         return 0;
     }
 
-    else{
-        while(!feof(fp)){
-            fread(che,sizeof(Cheque),1,fp);
+        while(fread(che,sizeof(Cheque),1,fp)){
             if(strcmp(che->cpf_cliente,cpf) == 0 && (che->status != 'x')){
                 exibe_cheque(che);
             }
         }
         fclose(fp);
-    }
 
     espera();
     free(che);
