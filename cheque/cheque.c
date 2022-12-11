@@ -117,8 +117,8 @@ Cheque *cadastrar_cheque(void)
         } while (!valida_dig(che->cod_banco));
 
 
-        printf("          Valor do cheque: ");
-        scanf("%f", &che->valor);
+        printf("\n\tValor do cheque: ");
+        scanf(" %f", &che->valor);
         getchar();
 
         do
@@ -134,7 +134,7 @@ Cheque *cadastrar_cheque(void)
         che->num_cheque = def_num();
         printf("          Seu Número de cheque: %d\n",che->num_cheque);
         gera_id(che);
-    }while(!(valida_cheque(che->id)));
+    }while(!(valida_cheque(che)));
     printf("          Id de cheque: %s",che->id);
     che->prox = NULL;
     printf("                                                    \n");
@@ -423,7 +423,7 @@ void att_cheque(Cheque *che)
     }
 }
 
-int valida_cheque(char* id)
+int valida_cheque(Cheque* che)
 {
     FILE *fp;
     Cheque *che_arq;
@@ -438,7 +438,7 @@ int valida_cheque(char* id)
     while (!feof(fp))
     {
         fread(che_arq, sizeof(Cheque), 1, fp);
-        if (strcmp(id, che_arq->id) == 0 && (che_arq->status != 'x'))
+        if (strcmp(che->id, che_arq->id) == 0 && (che_arq->status != 'x') &&  strcmp(che->cpf_cliente, che_arq->cpf_cliente) != 0)
         {
             printf("\n\tCheque já cadastrado,\n\tpor favor insira novas informações\n");
             return 0;
