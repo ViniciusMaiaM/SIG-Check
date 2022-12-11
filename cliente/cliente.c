@@ -112,7 +112,7 @@ void excluir_cliente(Cliente *cli)
     else
     {
         cli_arq = (Cliente *)malloc(sizeof(Cliente));
-        fp = fopen("cliente.txt", "r+t");
+        fp = fopen("cliente.dat", "r+b");
 
         if (fp == NULL)
         {
@@ -201,7 +201,7 @@ void exibe_cliente(Cliente *cli)
 void grava_cliente(Cliente *cli)
 {
     FILE *fp;
-    fp = fopen("cliente.txt", "at");
+    fp = fopen("cliente.dat", "ab");
 
     if (fp == NULL)
     {
@@ -233,7 +233,7 @@ Cliente *busca_cliente()
         getchar();
     } while (!valida_cpf(cpf));
     cli = (Cliente *)malloc(sizeof(Cliente));
-    fp = fopen("cliente.txt", "rt");
+    fp = fopen("cliente.dat", "rb");
 
     if (fp == NULL)
     {
@@ -267,7 +267,7 @@ void att_cliente(Cliente *cli)
         resp = 'n';
     }
 
-    fp = fopen("cliente.txt", "r+t");
+    fp = fopen("cliente.dat", "r+b");
 
     if (fp == NULL)
     {
@@ -369,7 +369,7 @@ int valida_cliente(char* cpf)
     Cliente *cli_arq;
 
     cli_arq = (Cliente *)malloc(sizeof(Cliente));
-    fp = fopen("cliente.txt", "rt");
+    fp = fopen("cliente.dat", "rb");
 
     if(fp == NULL){
         return 1;

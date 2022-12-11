@@ -149,7 +149,7 @@ Cheque *cadastrar_cheque(void)
 void grava_cheque(Cheque *che)
 {
     FILE *fp;
-    fp = fopen("cheque.txt", "at");
+    fp = fopen("cheque.dat", "ab");
 
     if (fp == NULL)
     {
@@ -177,7 +177,7 @@ Cheque *busca_cheque()
     scanf("%[0-9]", id_bus);
     getchar();
     che = (Cheque *)malloc(sizeof(Cheque));
-    fp = fopen("cheque.txt", "rt");
+    fp = fopen("cheque.dat", "rb");
 
     if (fp == NULL)
     {
@@ -262,7 +262,7 @@ void excluir_cheque(Cheque *che)
     else
     {
         che_arq = (Cheque *)malloc(sizeof(Cheque));
-        fp = fopen("cheque.txt", "r+t");
+        fp = fopen("cheque.dat", "r+b");
         if (fp == NULL)
         {
             printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
@@ -317,7 +317,7 @@ void att_cheque(Cheque *che)
         printf("\nCheque não encontrado\n");
     }
 
-    fp = fopen("cheque.txt", "r+t");
+    fp = fopen("cheque.dat", "r+b");
 
     if (fp == NULL)
     {
@@ -429,7 +429,7 @@ int valida_cheque(Cheque* che)
     Cheque *che_arq;
 
     che_arq = (Cheque *)malloc(sizeof(Cheque));
-    fp = fopen("cheque.txt", "rt");
+    fp = fopen("cheque.dat", "rb");
     if (fp == NULL)
     {
         return 1;
@@ -452,7 +452,7 @@ int def_num(){
     FILE* fp;
     Cheque* che_arq;
     che_arq = (Cheque*) malloc(sizeof(Cheque));
-    fp = fopen("cheque.txt","rt");
+    fp = fopen("cheque.dat","rb");
 
     if (fp == NULL){
         return 1;
@@ -476,7 +476,7 @@ int valida_cli(char* cpf){
     FILE* fp;
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
-    fp = fopen("cliente.txt","rt");
+    fp = fopen("cliente.dat","rb");
 
     if (fp == NULL){
         free(cli);

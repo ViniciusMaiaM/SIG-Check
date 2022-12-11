@@ -136,6 +136,7 @@ Caixa *cadastrar_caixa(void)
         cai->status = 'c';
         return cai;
     }
+
     else{
         return NULL;
     }
@@ -144,7 +145,7 @@ Caixa *cadastrar_caixa(void)
 void grava_caixa(Caixa *cai)
 {
     FILE *fp;
-    fp = fopen("caixa.txt", "at");
+    fp = fopen("caixa.dat", "ab");
 
     if (fp == NULL)
     {
@@ -168,11 +169,11 @@ Caixa *busca_caixa()
     printf("          - - - - Buscar Transação - - - -          \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
-    printf("           Informe o número da transação: ");
-    scanf("%d", &id);
+    printf("           Informe o id da transação: ");
+    scanf(" %d", &id);
     getchar();
     cai = (Caixa *)malloc(sizeof(Caixa));
-    fp = fopen("caixa.txt", "rt");
+    fp = fopen("caixa.dat", "rb");
 
     if (fp == NULL)
     {
@@ -237,7 +238,7 @@ void excluir_caixa(Caixa *cai)
     else
     {
         cai_arq = (Caixa *)malloc(sizeof(Caixa));
-        fp = fopen("caixa.txt", "r+t");
+        fp = fopen("caixa.dat", "r+b");
         if (fp == NULL)
         {
             printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
@@ -295,7 +296,7 @@ void att_caixa(Caixa *cai)
         exit(1);
     }
 
-    fp = fopen("caixa.txt", "r+t");
+    fp = fopen("caixa.dat", "r+b");
     if (fp == NULL)
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
@@ -372,7 +373,7 @@ void lista_caixa(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     cai = (Caixa *)malloc(sizeof(Caixa));
-    fp = fopen("caixa.txt", "rt");
+    fp = fopen("caixa.dat", "rb");
 
     if (fp == NULL)
     {
@@ -410,11 +411,10 @@ int id_tra()
     FILE *fp;
     Caixa *cai_arq;
     cai_arq = (Caixa *)malloc(sizeof(Caixa));
-    fp = fopen("caixa.txt", "rt");
+    fp = fopen("caixa.dat", "rb");
 
     if (fp == NULL)
     {
-        fclose(fp);
         return 1;
     }
 
@@ -439,7 +439,7 @@ int cheque_cpf(char* cpf){
     printf("____________________________________________________\n");
     
     che = (Cheque *)malloc(sizeof(Cheque));
-    fp = fopen("cheque.txt", "rt");
+    fp = fopen("cheque.dat", "rb");
 
     if(fp == NULL){
         printf("\nArquivo sem cadastro, não foi possível fazer a listagem\n");
@@ -466,7 +466,7 @@ int verifica_cheque(char* cheque, char* cpf){
     Cheque* che;
 
     che = (Cheque *)malloc(sizeof(Cheque));
-    fp = fopen("cheque.txt", "rt");
+    fp = fopen("cheque.dat", "rb");
 
     if(fp == NULL){
         printf("\nArquivo sem cadastro, não foi possível fazer a listagem\n");
