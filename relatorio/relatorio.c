@@ -140,7 +140,7 @@ void lista_cliente(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     cli = (Cliente *)malloc(sizeof(Cliente));
-    fp = fopen("cliente.txt", "rt");
+    fp = fopen("cliente.dat", "rb");
 
     if (fp == NULL)
     {
@@ -185,7 +185,7 @@ void lista_status(char escolha){
     printf("                                                    \n");
     printf("____________________________________________________\n");
     cli = (Cliente *)malloc(sizeof(Cliente));
-    fp = fopen("cliente.txt", "rt");
+    fp = fopen("cliente.dat", "rb");
 
     if (fp == NULL)
     {
@@ -288,7 +288,7 @@ void lista_cheque()
     printf("                                                    \n");
     printf("____________________________________________________\n");
     che = (Cheque *)malloc(sizeof(Cheque));
-    fp = fopen("cheque.txt", "rt");
+    fp = fopen("cheque.dat", "rb");
 
     if (fp == NULL)
     {
@@ -334,7 +334,7 @@ void lista_cpf(void){
     printf("____________________________________________________\n");
     
     che = (Cheque *)malloc(sizeof(Cheque));
-    fp = fopen("cheque.txt", "rt");
+    fp = fopen("cheque.dat", "rb");
 
     printf("          Insira o cpf para ser buscado: ");
     scanf(" %[0-9]", cpf);
