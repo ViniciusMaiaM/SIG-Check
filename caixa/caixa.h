@@ -28,7 +28,7 @@ void lista_caixa(void);
 
 int id_tra();
 int verifica_cheque(char* cheque, char* cpf);
-void cheque_cpf(char* cpf);
+int cheque_cpf(char* cpf);
 
 Caixa* cadastrar_caixa(void);
 Caixa* busca_caixa(void);

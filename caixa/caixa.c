@@ -15,8 +15,16 @@ void escolha_caixa(char escolha)
     {
     case '1':
         cai = cadastrar_caixa();
-        grava_caixa(cai);
-        free(cai);
+        if(cai != NULL){
+            grava_caixa(cai);
+            free(cai);
+        }
+
+        else{
+            printf("\nNão foi possivel prosseguir pois você não tem cheques cadastrados para esse cliente.");
+            printf("\nPor favor, cadastre novos cheques para então prosseguir sua transação!\n");
+            espera();
+        }
         break;
     case '2':
         cai = busca_caixa();
@@ -85,49 +93,52 @@ Caixa *cadastrar_caixa(void)
     } while (!valida_cpf(cai->cpf_cliente));
 
     if(!valida_cli(cai->cpf_cliente)){
-            printf("\nCPF não cadastrado, por favor cadastre o cliente!");
-            espera();
-            Cliente* cli;
-            cli = cadastro_cliente();
-            grava_cliente(cli);
-            free(cli);
-            system("clear||cls");
+        printf("\nCPF não cadastrado, por favor cadastre o cliente!");
+        espera();
+        Cliente* cli;
+        cli = cadastro_cliente();
+        grava_cliente(cli);
+        free(cli);
+        system("clear||cls");
     }
+    
+    if(cheque_cpf(cai->cpf_cliente)){
 
-    printf("\nEsses são os cheques cadastrados para esse cpf");
-    cheque_cpf(cai->cpf_cliente);
+        do{
+            printf("\n\tId do cheque: ");
+            scanf(" %[0-9]",cai->id_cheque);
+            getchar();
+        }while (!verifica_cheque(cai->id_cheque, cai->cpf_cliente));
 
-    do{
-        printf("\n\tId do cheque: ");
-        scanf(" %[0-9]",cai->id_cheque);
+        printf("\n\tEntrada ou saída(E/S): ");
+        scanf(" %c",&cai->entrada_saida_caixa);
         getchar();
-    }while (!verifica_cheque(cai->id_cheque, cai->cpf_cliente));
 
-    printf("\n\tEntrada ou saída(E/S): ");
-    scanf(" %c",&cai->entrada_saida_caixa);
-    getchar();
-
-    printf("\n\tValor do cheque: ");
-    scanf(" %f", &cai->valor_caixa);
-    getchar();
-
-    do
-    {
-        printf("\n\tData: ");
-        scanf(" %[0-9 / -]", cai->data_caixa);
+        printf("\n\tValor do cheque: ");
+        scanf(" %f", &cai->valor_caixa);
         getchar();
-    } while (!data_str(cai->data_caixa,1));
+
+        do
+        {
+            printf("\n\tData: ");
+            scanf(" %[0-9 / -]", cai->data_caixa);
+            getchar();
+        } while (!data_str(cai->data_caixa,1));
 
 
-    cai->id_transacao_caixa = id_tra();
-    printf("\n\tSeu id de transação: %d", cai->id_transacao_caixa);
-    printf("                                                    \n");
-    printf("                                                    \n");
-    printf("                                                    \n");
-    printf("____________________________________________________\n");
-    espera();
-    cai->status = 'c';
-    return cai;
+        cai->id_transacao_caixa = id_tra();
+        printf("\n\tSeu id de transação: %d", cai->id_transacao_caixa);
+        printf("                                                    \n");
+        printf("                                                    \n");
+        printf("                                                    \n");
+        printf("____________________________________________________\n");
+        espera();
+        cai->status = 'c';
+        return cai;
+    }
+    else{
+        return NULL;
+    }
 }
 
 void grava_caixa(Caixa *cai)
@@ -416,7 +427,7 @@ int id_tra()
     }
 }
 
-void cheque_cpf(char* cpf){
+int cheque_cpf(char* cpf){
     system("clear||cls");
     FILE* fp;
     Cheque* che;
@@ -432,6 +443,7 @@ void cheque_cpf(char* cpf){
 
     if(fp == NULL){
         printf("\nArquivo sem cadastro, não foi possível fazer a listagem\n");
+        return 0;
     }
 
     else{
@@ -446,6 +458,7 @@ void cheque_cpf(char* cpf){
 
     espera();
     free(che);
+    return 1;
 }
 
 int verifica_cheque(char* cheque, char* cpf){
