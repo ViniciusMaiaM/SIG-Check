@@ -470,6 +470,11 @@ void gera_id(Cheque* che){
     strcat(che->id,che->agencia);
     strcat(che->id,che->num_conta);
     strcat(che->id,che->cod_banco);
+    int tamanho = snprintf( NULL, 0, "%d", che->num_cheque) + 1;
+    char* teste = malloc(tamanho);
+    snprintf(teste,tamanho,"%d",che->num_cheque);
+    strcat(che->id,teste);
+    free(teste);
 }
 
 int valida_cli(char* cpf){
