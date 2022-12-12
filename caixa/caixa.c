@@ -115,7 +115,7 @@ Caixa *cadastrar_caixa(void)
         getchar();
 
         gera_desconto(cai->cpf_cliente);
-        
+
         cai->valor_caixa = gera_valor(cai->cpf_cliente,cai->id_cheque);
         printf("\n\tValor do cheque: %.2f",cai->valor_caixa);
 
@@ -552,7 +552,6 @@ float gera_valor(char* cpf, char* id){
 
         while(fread(che,sizeof(Cheque),1,che_arq)){
             if(strcmp(che->cpf_cliente,cpf) == 0 && strcmp(che->id,id) == 0){
-                exibe_cheque(che);
                 valor = che->valor;
                 break;
             }
@@ -563,7 +562,6 @@ float gera_valor(char* cpf, char* id){
         if(che_arq != NULL){
             while(fread(cli,sizeof(Cliente),1,cli_arq)){
                 if(strcmp(cli->cpf_cliente,cpf) == 0){
-                    exibe_cliente(cli);
                     desconto = cli->desconto;
                     break;
                 }
@@ -577,6 +575,5 @@ float gera_valor(char* cpf, char* id){
     free(cli);
     free(che);
     float total = ((desconto/100) * valor) + valor;
-    printf("\n%f\t%i\t%f\n",total,desconto,valor);
     return total;
 }
