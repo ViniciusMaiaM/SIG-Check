@@ -8,6 +8,7 @@ struct cliente {
     char data_nasc[15];
     char genero;
     char status;
+    Cliente* prox;
 };
 
 
