@@ -73,6 +73,8 @@ Cheque *cadastrar_cheque(void)
     char cpf[30];
     char agencia[40];
     char num_conta[40];
+    char cod_banco[40];
+    char valor[30];
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -98,19 +100,16 @@ Cheque *cadastrar_cheque(void)
         strcpy(che->agencia,agencia);
 
         ler_conta(num_conta);
-        strcpy(che->agencia,agencia);
+        strcpy(che->num_conta,num_conta);
 
-        do
-        {
-            printf("          Código do banco: ");
-            scanf(" %[0-9]", che->cod_banco);
-            getchar();
-        } while (!valida_dig(che->cod_banco));
+        ler_cod(cod_banco);
+        strcpy(che->cod_banco,cod_banco);
 
-
-        printf("\n\tValor do cheque: ");
-        scanf(" %f", &che->valor);
-        getchar();
+        do{
+            printf("\n\tValor do cheque: ");
+            scanf(" %s", valor);
+        }while(!valida_dinheiro(valor, strlen(valor)));
+        che->valor = atof(valor);
 
         do
         {
@@ -121,7 +120,8 @@ Cheque *cadastrar_cheque(void)
 
         char* tempo = data_atual();
         strcpy(che->data_cadastro,tempo);
-        
+        free(tempo);
+
         che->num_cheque = def_num();
         printf("          Seu Número de cheque: %d\n",che->num_cheque);
         gera_id(che);
@@ -212,7 +212,7 @@ void exibe_cheque(Cheque *che)
         printf("Número da conta: %s\n", che->num_conta);
         printf("Código Banco: %s\n", che->cod_banco);
         printf("Número Cheque: %d\n", che->num_cheque);
-        printf("Valor do cheque: %f\n", che->valor);
+        printf("Valor do cheque: %.2f\n", che->valor);
         printf("Data de postagem: %s\n", che->data_cadastro);
         printf("Data de desconto: %s\n", che->data_desconto);
         printf("Id do cheque: %s\n",che->id);
@@ -519,4 +519,12 @@ void ler_conta(char* conta){
         scanf(" %[0-9]", conta);
         getchar();
     } while (!valida_dig(conta));
+}
+
+void ler_cod(char* cod){
+    do{
+        printf("          Código do banco: ");
+        scanf(" %[0-9]", cod);
+        getchar();
+    }while (!valida_dig(cod));
 }
