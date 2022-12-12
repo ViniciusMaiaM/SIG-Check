@@ -102,6 +102,8 @@ Cliente *cadastro_cliente(void)
     cli->genero = ler_genero(cli->genero);
 
     cli->prox = NULL;
+
+    cli->desconto = 10;
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
