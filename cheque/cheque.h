@@ -26,6 +26,7 @@ void relatorio_cheque(void);
 void tela_cheque(void);
 void leitura_cpf(char *cpf);
 void ler_agencia(char* agencia);
+void ler_conta(char* conta);
 
 int def_num();
 int valida_cheque(Cheque* che);

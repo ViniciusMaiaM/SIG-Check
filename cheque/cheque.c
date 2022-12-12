@@ -72,6 +72,7 @@ Cheque *cadastrar_cheque(void)
     che = (Cheque *)malloc(sizeof(Cheque));
     char cpf[30];
     char agencia[40];
+    char num_conta[40];
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -96,12 +97,8 @@ Cheque *cadastrar_cheque(void)
         ler_agencia(agencia);
         strcpy(che->agencia,agencia);
 
-        do
-        {
-            printf("          Número conta: ");
-            scanf(" %[0-9]", che->num_conta);
-            getchar();
-        } while (!valida_dig(che->num_conta));
+        ler_conta(num_conta);
+        strcpy(che->agencia,agencia);
 
         do
         {
@@ -514,4 +511,12 @@ void ler_agencia(char* agencia){
         scanf(" %[0-9]", agencia);
         getchar();
     } while (!valida_dig(agencia));
+}
+
+void ler_conta(char* conta){
+    do{
+        printf("          Número conta: ");
+        scanf(" %[0-9]", conta);
+        getchar();
+    } while (!valida_dig(conta));
 }
