@@ -114,6 +114,7 @@ Caixa *cadastrar_caixa(void)
         scanf(" %c",&cai->entrada_saida_caixa);
         getchar();
 
+        gera_desconto(cai->cpf_cliente);
         printf("\n\tValor do cheque: ");
         scanf(" %f", &cai->valor_caixa);
         getchar();
@@ -481,4 +482,61 @@ int verifica_cheque(char* cheque, char* cpf){
     }
 
     return 0;
+}
+
+void gera_desconto(char* cpf){
+    int positivo = 0;
+    int negativo = 0;
+    
+    FILE* arq_caixa;
+    FILE* arq_cliente;
+    Caixa* cai;
+    Cliente* cli;
+
+    cai = (Caixa*)malloc(sizeof(Caixa));
+    arq_caixa = fopen("caixa.dat","rb");
+
+    arq_cliente = fopen("cliente.dat","ab");
+    cli = (Cliente*)malloc(sizeof(Cliente));
+
+    if(arq_caixa == NULL){
+        free(cai);
+    }
+
+    else{
+        
+        while(fread(cai,sizeof(Caixa),1,arq_caixa)){
+            if((cai->status == 'C') && strcmp(cai->cpf_cliente, cpf) == 0){
+                positivo++;
+            }
+
+            else if((cai->status == 'D') && strcmp(cai->cpf_cliente, cpf) == 0){
+                negativo++;
+            }
+
+            fclose(arq_caixa);
+            free(cai);
+        }
+
+    
+        if(arq_cliente == NULL){
+            free(cli);
+        }
+
+        else{
+            while(fread(cli,sizeof(Caixa),1,arq_cliente)){
+                if(strcmp(cli->cpf_cliente,cpf) == 0 && (positivo%5) == 0){
+                    cli->desconto -= positivo/5;
+                }
+
+                else if(strcmp(cli->cpf_cliente,cpf) == 0 && negativo > 0){
+                    cli->desconto += negativo;
+                }
+            }
+            fclose(arq_cliente);
+            free(cli);
+        }
+        
+    }
+
 }

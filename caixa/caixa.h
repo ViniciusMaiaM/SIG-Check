@@ -25,6 +25,7 @@ void exibe_caixa(Caixa* cai);
 void excluir_caixa(Caixa* cai);
 void att_caixa(Caixa* cai);
 void lista_caixa(void);
+void gera_desconto(char* cpf);
 
 int id_tra();
 int verifica_cheque(char* cheque, char* cpf);
