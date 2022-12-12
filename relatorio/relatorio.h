@@ -14,3 +14,4 @@ void escolhe_cheque(char escolha);
 void lista_cheque(void);
 void relatorio_cheque(void);
 void lista_cpf(void);
+void lista_valor(void);

@@ -65,6 +65,7 @@ void relatorio_cliente(void)
     printf("             2 - Listagem por status                \n");
     printf("             3 - Listagem por nascimento            \n");
     printf("             4 - Listagem por ordem alfabetica      \n");
+    printf("             5 - Listagem por gênero                \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
@@ -344,7 +345,7 @@ void escolhe_cheque(char escolha)
         break;
 
     case '3':
-        printf("Por ordem de valor, crescente e decrescente");
+        lista_valor();
         break;
 
     case '4':
@@ -447,4 +448,93 @@ void lista_cpf(void){
 
     espera();
     free(che);
+}
+
+
+void lista_valor(void){
+    FILE* fp;
+    Cheque* che;
+    Cheque* lista;
+    Cheque* novo;
+
+    fp = fopen("cheque.dat","rb");
+
+    if (fp == NULL){
+        printf("\nNão é possível continuar a listagem");
+    }
+
+    else{
+        lista = NULL;
+        che = (Cheque*)malloc(sizeof(Cheque));
+
+        while(fread(che,sizeof(Cheque),1,fp)){
+            if(che->status != 'x'){
+                novo = (Cheque*)malloc(sizeof(Cheque));
+                
+                strcpy(novo->agencia, che->agencia);
+
+                strcpy(novo->num_conta, che->num_conta);
+
+                strcpy(novo->cod_banco, che->cod_banco);
+
+                strcpy(novo->cpf_cliente, che->cpf_cliente);
+
+                novo->valor = che->valor;
+
+                novo->num_cheque = che->num_cheque;
+
+                strcpy(novo->data_desconto, che->data_desconto);
+
+                strcpy(novo->data_cadastro, che->data_cadastro);
+
+                strcpy(novo->id, che->id);
+
+                novo->status = che->status;
+
+                novo->status = che->status;
+            }
+
+            if(lista == NULL){
+                lista = novo;
+                novo->prox = NULL;
+            }
+
+            else if(novo->valor < lista->valor){
+                novo->prox = lista;
+                lista = novo;
+            }
+
+            else{
+                Cheque* anterior = lista;
+                Cheque* atual = lista->prox;
+
+                while((atual != NULL) && atual->valor < novo->valor){
+                    anterior = atual;
+                    atual = novo->prox;
+                }
+
+                anterior->prox = novo;
+                novo->prox = atual;
+            }
+        }
+    }
+
+    free(che);
+    novo = lista;
+
+    while(novo != NULL){
+        exibe_cheque(novo);
+        espera();
+        novo = novo->prox;
+    }
+
+    novo = lista;
+
+    while(lista != NULL){
+        lista = lista->prox;
+        free(novo);
+        novo = lista;
+    }
+
+    fclose(fp);
 }
