@@ -31,6 +31,8 @@ int id_tra();
 int verifica_cheque(char* cheque, char* cpf);
 int cheque_cpf(char* cpf);
 
+float gera_valor(char* cpf, char* id);
+
 Caixa* cadastrar_caixa(void);
 Caixa* busca_caixa(void);
 

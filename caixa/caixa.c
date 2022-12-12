@@ -115,9 +115,9 @@ Caixa *cadastrar_caixa(void)
         getchar();
 
         gera_desconto(cai->cpf_cliente);
-        printf("\n\tValor do cheque: ");
-        scanf(" %f", &cai->valor_caixa);
-        getchar();
+        
+        cai->valor_caixa = gera_valor(cai->cpf_cliente,cai->id_cheque);
+        printf("\n\tValor do cheque: %.2f",cai->valor_caixa);
 
         do
         {
@@ -499,11 +499,8 @@ void gera_desconto(char* cpf){
     arq_cliente = fopen("cliente.dat","ab");
     cli = (Cliente*)malloc(sizeof(Cliente));
 
-    if(arq_caixa == NULL){
-        free(cai);
-    }
 
-    else{
+    if(arq_caixa != NULL){
         
         while(fread(cai,sizeof(Caixa),1,arq_caixa)){
             if((cai->status == 'C') && strcmp(cai->cpf_cliente, cpf) == 0){
@@ -514,16 +511,11 @@ void gera_desconto(char* cpf){
                 negativo++;
             }
 
-            fclose(arq_caixa);
-            free(cai);
         }
+        fclose(arq_caixa);
 
-    
-        if(arq_cliente == NULL){
-            free(cli);
-        }
 
-        else{
+        if(arq_cliente != NULL){
             while(fread(cli,sizeof(Caixa),1,arq_cliente)){
                 if(strcmp(cli->cpf_cliente,cpf) == 0 && (positivo%5) == 0){
                     cli->desconto -= positivo/5;
@@ -534,9 +526,57 @@ void gera_desconto(char* cpf){
                 }
             }
             fclose(arq_cliente);
-            free(cli);
         }
         
     }
 
+    free(cai);
+    free(cli);
+}
+
+float gera_valor(char* cpf, char* id){
+    FILE* cli_arq;
+    FILE* che_arq;
+    Cliente* cli;
+    Cheque* che;
+    cli = (Cliente*)malloc(sizeof(Cliente));
+    che = (Cheque*)malloc(sizeof(Cheque));
+    cli_arq = fopen("cliente.dat","rb");
+    che_arq = fopen("cheque.dat","rb");
+
+
+    int desconto;
+    float valor;
+
+    if(che_arq != NULL){
+
+        while(fread(che,sizeof(Cheque),1,che_arq)){
+            if(strcmp(che->cpf_cliente,cpf) == 0 && strcmp(che->id,id) == 0){
+                exibe_cheque(che);
+                valor = che->valor;
+                break;
+            }
+        }
+        
+        fclose(che_arq);
+
+        if(che_arq != NULL){
+            while(fread(cli,sizeof(Cliente),1,cli_arq)){
+                if(strcmp(cli->cpf_cliente,cpf) == 0){
+                    exibe_cliente(cli);
+                    desconto = cli->desconto;
+                    break;
+                }
+
+            }
+        fclose(cli_arq);
+
+        }
+    }
+    
+    free(cli);
+    free(che);
+    float total = ((desconto/100) * valor) + valor;
+    printf("\n%f\t%i\t%f\n",total,desconto,valor);
+    return total;
 }
