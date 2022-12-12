@@ -69,6 +69,13 @@ Cliente *cadastro_cliente(void)
 {
     Cliente *cli;
     cli = (Cliente *)malloc(sizeof(Cliente));
+
+    char nome[100];
+    char cpf[30];
+    char cel[30];
+    char email[100];
+    char data[100];
+
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -76,18 +83,25 @@ Cliente *cadastro_cliente(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
 
-    ler_nome(cli->nome_cliente);
+    ler_nome(nome);
 
-    ler_cpf(cli->cpf_cliente);
+    ler_cpf(cpf);
 
-    ler_cel(cli->cel_cliente);
+    ler_cel(cel);
 
-    ler_email(cli->email_cliente);
+    ler_email(email);
     
-    ler_nasc(cli->data_nasc);
+    ler_nasc(data);
 
+    strcpy(cli->nome_cliente,nome);
+    strcpy(cli->cpf_cliente,cpf);
+    strcpy(cli->cel_cliente,cel);
+    strcpy(cli->email_cliente,email);
+    strcpy(cli->data_nasc,data);
+    
     cli->genero = ler_genero(cli->genero);
 
+    cli->prox = NULL;
     printf("                                                    \n");
     printf("                                                    \n");
     printf("                                                    \n");
