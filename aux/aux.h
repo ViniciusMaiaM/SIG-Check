@@ -11,3 +11,4 @@ int valida_dig(char dig[]);
 void espera();
 //int valida_float(float dinheiro);
 char* data_atual(void);
+int valida_dinheiro(char* din, int tam);

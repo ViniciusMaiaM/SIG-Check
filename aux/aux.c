@@ -344,3 +344,37 @@ char* data_atual(void){
     return data;
 }
 
+int valida_dinheiro(char* din, int tam){ // Inspirado em https://github.com/W1ndeck/SIG-Finance/blob/main/auxiliares/funcoes_auxiliares.c
+    char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+    if (din[tam - 3] != '.')
+    {
+        return 0;
+    }
+    else
+    {
+
+        for (int i = 0; i <= (tam - 1); i++)
+        {
+            for (int j = 0; j <= 10; j++)
+            {
+
+                if ((j == 10) && (din[i] != decimais[j]))
+                {
+                    return 0;
+                }
+                else if (din[i] == decimais[j])
+                {
+                    break;
+                }
+                else if (i == (tam - 3))
+                {
+
+                    break;
+                }
+            }
+        }
+    }
+
+    return 1;
+}
