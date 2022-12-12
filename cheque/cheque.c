@@ -70,6 +70,7 @@ Cheque *cadastrar_cheque(void)
 { // Tela que recebe informacoes iniciais do user, precisamos criar validacoes
     Cheque *che;
     che = (Cheque *)malloc(sizeof(Cheque));
+    char cpf[30];
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -78,12 +79,8 @@ Cheque *cadastrar_cheque(void)
     printf("____________________________________________________\n");
     printf("                                                    \n");
     do{
-        do
-        {
-            printf("          CPF: ");
-            scanf(" %[0-9]", che->cpf_cliente);
-            getchar();
-        } while (!valida_cpf(che->cpf_cliente));
+        leitura_cpf(cpf);
+        strcpy(che->cpf_cliente,cpf);
         
         if(!valida_cli(che->cpf_cliente)){
             printf("\nCPF não cadastrado, por favor cadastre o cliente!");
@@ -438,7 +435,7 @@ int valida_cheque(Cheque* che)
     while (!feof(fp))
     {
         fread(che_arq, sizeof(Cheque), 1, fp);
-        if (strcmp(che->id, che_arq->id) == 0 && (che_arq->status != 'x') &&  strcmp(che->cpf_cliente, che_arq->cpf_cliente) != 0)
+        if (strcmp(che->id, che_arq->id) == 0 && (che_arq->status != 'x'))
         {
             printf("\n\tCheque já cadastrado,\n\tpor favor insira novas informações\n");
             return 0;
@@ -472,7 +469,7 @@ void gera_id(Cheque* che){
     strcat(che->id,che->cod_banco);
     int tamanho = snprintf( NULL, 0, "%d", che->num_cheque) + 1;
     char* teste = malloc(tamanho);
-    snprintf(teste,tamanho,"%d",che->num_cheque);
+    snprintf(teste,tamanho,"%d",che->num_cheque); // Baseado em https://stackoverflow.com/a/32819876
     strcat(che->id,teste);
     free(teste);
 }
@@ -502,4 +499,14 @@ int valida_cli(char* cpf){
     fclose(fp);
     free(cli);
     return 0;
+}
+
+void leitura_cpf(char *cpf)
+{
+    do
+    {
+        printf("\n\tCPF: ");
+        scanf(" %[0-9]", cpf);
+        getchar();
+    } while (!valida_cpf(cpf));
 }

@@ -24,7 +24,7 @@ void muda_tela_cheque(char escolha);
 void pesquisar_cheque(void);
 void relatorio_cheque(void);
 void tela_cheque(void);
-
+void leitura_cpf(char *cpf);
 
 int def_num();
 int valida_cheque(Cheque* che);
