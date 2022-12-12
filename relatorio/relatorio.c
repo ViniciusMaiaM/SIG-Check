@@ -332,6 +332,34 @@ void relatorio_cheque(void)
     escolhe_cheque(escolha);
 }
 
+void relatorio_valor(void)
+{
+    char escolha;
+    system("clear||cls");
+    printf("\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("               - - - - Valor - - - -                \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("             1 - Listagem em ordem crescente        \n");
+    printf("             2 - Listagem em ordem decrescente      \n");
+    printf("             0 - Voltar                             \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    escolha = input();
+    
+    if(escolha != '0'){
+        lista_valor(escolha);
+    }
+
+    else{
+        printf("\nOk!\n");
+    }
+}
+
 void escolhe_cheque(char escolha)
 {
     switch (escolha)
@@ -345,7 +373,7 @@ void escolhe_cheque(char escolha)
         break;
 
     case '3':
-        lista_valor();
+        relatorio_valor();
         break;
 
     case '4':
@@ -451,7 +479,7 @@ void lista_cpf(void){
 }
 
 
-void lista_valor(void){
+void lista_valor(char escolha){
     FILE* fp;
     Cheque* che;
     Cheque* lista;
@@ -499,22 +527,44 @@ void lista_valor(void){
                 novo->prox = NULL;
             }
 
-            else if(novo->valor < lista->valor){
-                novo->prox = lista;
-                lista = novo;
-            }
-
-            else{
-                Cheque* anterior = lista;
-                Cheque* atual = lista->prox;
-
-                while((atual != NULL) && atual->valor < novo->valor){
-                    anterior = atual;
-                    atual = novo->prox;
+            if(escolha == '1'){
+                if(novo->valor < lista->valor){
+                    novo->prox = lista;
+                    lista = novo;
                 }
 
-                anterior->prox = novo;
-                novo->prox = atual;
+                else{
+                    Cheque* anterior = lista;
+                    Cheque* atual = lista->prox;
+
+                    while((atual != NULL) && atual->valor < novo->valor){
+                        anterior = atual;
+                        atual = novo->prox;
+                    }
+
+                    anterior->prox = novo;
+                    novo->prox = atual;
+                }
+            }
+
+            else if (escolha == '2'){
+                if(novo->valor > lista->valor){
+                    novo->prox = lista;
+                    lista = novo;
+                }
+
+                else{
+                    Cheque* anterior = lista;
+                    Cheque* atual = lista->prox;
+
+                    while((atual != NULL) && atual->valor > novo->valor){
+                        anterior = atual;
+                        atual = novo->prox;
+                    }
+
+                    anterior->prox = novo;
+                    novo->prox = atual;
+                }
             }
         }
     }
