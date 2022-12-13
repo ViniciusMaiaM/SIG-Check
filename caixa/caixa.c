@@ -126,6 +126,7 @@ Caixa *cadastrar_caixa(void)
             getchar();
         } while (!data_str(cai->data_caixa,1));
 
+        retirar_cheque(cai->id_cheque);
 
         cai->id_transacao_caixa = id_tra();
         printf("\n\tSeu id de transação: %d", cai->id_transacao_caixa);
@@ -576,4 +577,19 @@ float gera_valor(char* cpf, char* id){
     free(che);
     float total = ((desconto/100) * valor) + valor;
     return total;
+}
+
+void retirar_cheque(char* id){
+    FILE* fp;
+    Cheque* che;
+
+    che = (Cheque *)malloc(sizeof(Cheque));
+    fp = fopen("cheque.dat", "ab");
+
+    while(fread(che,sizeof(Cheque),1,fp)){
+        if(strcmp(che->id, id) == 0){
+            che->status = 'x';
+        }
+    }
+    fclose(fp);
 }
