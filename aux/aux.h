@@ -12,3 +12,5 @@ void espera();
 //int valida_float(float dinheiro);
 char* data_atual(void);
 int valida_dinheiro(char* din, int tam);
+int nascimento(char* nasc);
+char* dividPal(char *pal, int del1, int del2);

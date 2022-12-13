@@ -378,3 +378,38 @@ int valida_dinheiro(char* din, int tam){ // Inspirado em https://github.com/W1nd
 
     return 1;
 }
+
+int nascimento(char* nasc){
+    time_t tempo = time(NULL);
+    struct tm *atual  = localtime(&tempo);
+
+    int ano_atual = (atual->tm_year) + 1900;
+
+    char* ano_str = dividPal(nasc,6,9);
+
+    int idade = atoi(ano_str);
+
+    return ano_atual - idade;
+}
+
+char* dividPal(char *pal, int del1, int del2){ // Inspirado em https://github.com/DayXL/Atividade-projeto-bonelaria/blob/main/moduloRelatorio.c
+    int tam = del2 - del1;
+    int aux = 0;
+
+    char* palavra = (char*) malloc((tam + 1)* sizeof(char));
+
+    palavra[0] = pal[del1];
+
+    for (int i = del1; i <= del2; i++) {
+        
+        palavra[aux] = pal[i];
+
+        aux = aux + 1;
+
+    }
+
+    palavra[tam + 1] = '\0';
+
+    return palavra;
+
+}
