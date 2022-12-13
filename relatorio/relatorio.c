@@ -102,6 +102,33 @@ void relatorio_status(void)
     }
 }
 
+void relatorio_nascimento(void){
+    char escolha;
+    system("clear||cls");
+    printf("\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("               - - - - Nascimento - - - -           \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("             1 - Listagem em ordem decrescente      \n");
+    printf("             2 - Listagem em ordem crescente        \n");
+    printf("             0 - Voltar                             \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    escolha = input();
+    
+    if(escolha != '0'){
+        lista_nascimento(escolha);
+    }
+
+    else{
+        printf("\nOk!\n");
+    }
+}
+
 void escolhe_cliente(char escolha)
 {
     switch (escolha)
@@ -115,7 +142,7 @@ void escolhe_cliente(char escolha)
         break;
 
     case '3':
-        printf("Por nascimento");
+        relatorio_nascimento();
         break;
 
     case '4':
@@ -285,6 +312,108 @@ void lista_alfabetica(void){
 
                 anterior->prox = novo;
                 novo->prox = atual;
+            }
+        }
+    }
+
+    free(cli);
+    novo = lista;
+
+    while(novo != NULL){
+        exibe_cliente(novo);
+        espera();
+        novo = novo->prox;
+    }
+
+    novo = lista;
+
+    while(lista != NULL){
+        lista = lista->prox;
+        free(novo);
+        novo = lista;
+    }
+
+    fclose(fp);
+}
+
+void lista_nascimento(char escolha){
+    FILE* fp;
+    Cliente* cli;
+    Cliente* lista;
+    Cliente* novo;
+
+    fp = fopen("cliente.dat","rb");
+
+    if (fp == NULL){
+        printf("\nNão é possível continuar a listagem");
+    }
+
+    else{
+        lista = NULL;
+        cli = (Cliente*)malloc(sizeof(Cliente));
+
+        while(fread(cli,sizeof(Cliente),1,fp)){
+            if(cli->status != 'x'){
+                novo = (Cliente*)malloc(sizeof(Cliente));
+                
+                strcpy(novo->nome_cliente, cli->nome_cliente);
+
+                strcpy(novo->cpf_cliente, cli->cpf_cliente);
+
+                strcpy(novo->cel_cliente, cli->cel_cliente);
+
+                strcpy(novo->email_cliente, cli->email_cliente);
+
+                strcpy(novo->data_nasc, cli->data_nasc);
+
+                novo->genero = cli->genero;
+
+                novo->status = cli->status;
+            }
+
+            if(lista == NULL){
+                lista = novo;
+                novo->prox = NULL;
+            }
+
+            if(escolha == '1'){
+                if(nascimento(novo->data_nasc) < nascimento(lista->data_nasc)){
+                    novo->prox = lista;
+                    lista = novo;
+                }
+
+                else{
+                    Cliente* anterior = lista;
+                    Cliente* atual = lista->prox;
+
+                    while((atual != NULL) && nascimento(atual->data_nasc) < nascimento(novo->data_nasc)){
+                        anterior = atual;
+                        atual = novo->prox;
+                    }
+
+                    anterior->prox = novo;
+                    novo->prox = atual;
+                }
+            }
+        
+            else if(escolha == '2'){
+                if(nascimento(novo->data_nasc) > nascimento(lista->data_nasc)){
+                    novo->prox = lista;
+                    lista = novo;
+                }
+
+                else{
+                    Cliente* anterior = lista;
+                    Cliente* atual = lista->prox;
+
+                    while((atual != NULL) && nascimento(atual->data_nasc) > nascimento(novo->data_nasc)){
+                        anterior = atual;
+                        atual = novo->prox;
+                    }
+
+                    anterior->prox = novo;
+                    novo->prox = atual;
+                }
             }
         }
     }

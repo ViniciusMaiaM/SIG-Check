@@ -8,6 +8,8 @@ void relatorio_cliente(void);
 void lista_status(char escolha);
 void relatorio_status(void);    
 void lista_alfabetica(void);
+void relatorio_nascimento(void);
+void lista_nascimento(char escolha);
 
 //// Cheque ////
 void escolhe_cheque(char escolha);
