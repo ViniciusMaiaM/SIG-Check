@@ -489,6 +489,34 @@ void relatorio_valor(void)
     }
 }
 
+void relatorio_data(void){
+    char escolha;
+    system("clear||cls");
+    printf("\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("               - - - - Data - - - -                 \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("             1 - Ultima semana                      \n");
+    printf("             2 - Ultimo mês                         \n");
+    printf("             3 - Ultimo ano                         \n");
+    printf("             4 - Entre datas                        \n");
+    printf("             0 - Voltar                             \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    escolha = input();
+    
+    if(escolha != '0'){
+    }
+
+    else{
+        printf("\nOk!\n");
+    }
+}
+
 void escolhe_cheque(char escolha)
 {
     switch (escolha)
@@ -506,7 +534,7 @@ void escolhe_cheque(char escolha)
         break;
 
     case '4':
-        printf("Por data, entre dadas, ultimo espaço de tempo");
+        relatorio_data();
         break;
 
     default:
@@ -716,4 +744,4 @@ void lista_valor(char escolha){
     }
 
     fclose(fp);
-}
+} 
