@@ -92,15 +92,7 @@ Caixa *cadastrar_caixa(void)
         getchar();
     } while (!valida_cpf(cai->cpf_cliente));
 
-    if(!valida_cli(cai->cpf_cliente)){
-        printf("\nCPF não cadastrado, por favor cadastre o cliente!");
-        espera();
-        Cliente* cli;
-        cli = cadastro_cliente();
-        grava_cliente(cli);
-        free(cli);
-        system("clear||cls");
-    }
+    verifica_cliente(cai->cpf_cliente);
     
     if(cheque_cpf(cai->cpf_cliente)){
 
