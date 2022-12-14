@@ -16,3 +16,4 @@ int nascimento(char* nasc);
 char* dividPal(char *pal, int del1, int del2);
 int valida_cliente(char* cpf);
 void verifica_cliente(char* cpf);
+int converte_data(char data[], int escolha);

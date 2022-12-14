@@ -116,7 +116,7 @@ int data_int(int dia, int mes, int ano, int escolha)
         return 0;
     }
 
-    if (escolha)
+    if (escolha == 1)
     {
         if (ano < ano_atual)
         {
@@ -134,7 +134,7 @@ int data_int(int dia, int mes, int ano, int escolha)
         }
     }
 
-    else
+    else if(escolha == 2)
     {
         if ((ano_atual - ano) < 18)
         {
@@ -180,9 +180,9 @@ int data_str(char data[], int escolha)
         return 0;
     }
 
-    dia = ((data[0] - '0') * 10) + (data[1] - '0');
-    mes = ((data[3] - '0') * 10) + (data[4] - '0');
-    ano = ((data[6] - '0') * 1000) + ((data[7] - '0') * 100) + ((data[8] - '0') * 10) + (data[9] - '0');
+    dia = converte_data(data,1);
+    mes = converte_data(data,2);
+    ano = converte_data(data,3);
 
     if (data_int(dia, mes, ano, escolha))
     {
@@ -522,4 +522,18 @@ void verifica_cliente(char* cpf){
         free(cli);
         system("clear||cls");
     }
+}
+
+int converte_data(char data[], int escolha){
+    if(escolha == 1){
+        return ((data[0] - '0') * 10) + (data[1] - '0');
+    }
+
+    else if(escolha == 2){
+        return ((data[3] - '0') * 10) + (data[4] - '0');
+    }
+    
+    else{
+        return ((data[6] - '0') * 1000) + ((data[7] - '0') * 100) + ((data[8] - '0') * 10) + (data[9] - '0');
+    } 
 }
