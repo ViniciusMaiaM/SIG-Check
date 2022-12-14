@@ -379,33 +379,6 @@ void att_cliente(Cliente *cli)
     fclose(fp);
 }
 
-int valida_cliente(char* cpf)
-{
-    FILE *fp;
-    Cliente *cli_arq;
-
-    cli_arq = (Cliente *)malloc(sizeof(Cliente));
-    fp = fopen("cliente.dat", "rb");
-
-    if(fp == NULL){
-        return 1;
-    }
-    
-    while (!feof(fp))
-    {
-        fread(cli_arq, sizeof(Cliente), 1, fp);
-        if (strcmp(cpf, cli_arq->cpf_cliente) == 0 && (cli_arq->status != 'x'))
-        {
-            printf("\n\tCpf já cadastradado\n");
-            fclose(fp);
-            return 0;
-        }
-    }
-
-    fclose(fp);
-    return 1;
-}
-
 void ler_nome(char *nome)
 {
     printf("\n\tNome completo: ");

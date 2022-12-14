@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "aux.h"
+#include "../cliente/cliente.h"
 
 int ddd[27] = {11, 21, 27, 31, 41, 47, 51, 61, 62, 63, 65, 67, 68, 69, 71, 79, 81, 82, 83, 84, 85, 86, 91, 92, 95, 96, 98};
 int meses[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -482,4 +483,31 @@ char *dividPal(char *pal, int del1, int del2)
     palavra[tam + 1] = '\0';
 
     return palavra;
+}
+
+int valida_cliente(char* cpf)
+{
+    FILE *fp;
+    Cliente *cli_arq;
+
+    cli_arq = (Cliente *)malloc(sizeof(Cliente));
+    fp = fopen("cliente.dat", "rb");
+
+    if(fp == NULL){
+        return 1;
+    }
+    
+    while (!feof(fp))
+    {
+        fread(cli_arq, sizeof(Cliente), 1, fp);
+        if (strcmp(cpf, cli_arq->cpf_cliente) == 0 && (cli_arq->status != 'x'))
+        {
+            printf("\n\tCpf já cadastradado\n");
+            fclose(fp);
+            return 0;
+        }
+    }
+
+    fclose(fp);
+    return 1;
 }

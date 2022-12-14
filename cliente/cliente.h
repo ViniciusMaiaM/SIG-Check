@@ -26,7 +26,5 @@ void ler_email(char* email);
 void ler_nasc(char* data_nasc);
 char ler_genero(char genero);
 
-int valida_cliente(char* cli);
-
 Cliente* cadastro_cliente(void);
 Cliente* busca_cliente(void);
