@@ -510,6 +510,7 @@ void relatorio_data(void){
     escolha = input();
     
     if(escolha != '0'){
+        escolha_data(escolha);
     }
 
     else{
@@ -540,6 +541,17 @@ void escolhe_cheque(char escolha)
     default:
         printf("Por favor insira uma opcao valida.\n");
         break;
+    }
+}
+
+void escolha_data(char escolha){
+    switch(escolha){
+        case '4':
+            entre_data();
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -745,3 +757,126 @@ void lista_valor(char escolha){
 
     fclose(fp);
 } 
+
+void entre_data(void){
+    system("clear||cls");
+
+    FILE* fp;
+    Cheque* che;
+    char data_inicial[10];
+    char data_final[10];
+
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("       - - - - Listagem entre datas - - - -         \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    
+    fp = fopen("cheque.dat","rb");
+    che = (Cheque*)malloc(sizeof(Cheque));
+
+    if(fp == NULL){
+        printf("Não foi possível fazer a listagem");
+    }
+
+    do{
+        printf("\nColoque a data inicial: ");
+        scanf(" %[0-9 / -]", data_inicial);
+    }while(!(data_str(data_inicial,0)));
+
+    do{
+        printf("\nColoque a data final: ");
+        scanf(" %[0-9 / -]", data_final);
+    }while(!(data_str(data_final,0)));
+
+    
+    while(fread(che,sizeof(Cheque),1,fp)){
+        if(compara(data_inicial,data_final,che->data_desconto) && (che->status != 'x')){
+            exibe_cheque(che);
+            espera();
+        }
+    }
+    fclose(fp);
+    free(che);
+}
+
+
+int compara(char* inicial, char* final, char* arq){
+    int dia_inicial, mes_inicial, ano_inicial;
+    int dia_final, mes_final, ano_final;
+    int dia_arq, mes_arq, ano_arq;
+
+    dia_inicial = converte_data(inicial,1);
+    mes_inicial = converte_data(inicial,2);
+    ano_inicial = converte_data(inicial,3);
+
+    dia_final = converte_data(final,1);
+    mes_final = converte_data(final,2);
+    ano_final = converte_data(final,3);
+
+    dia_arq = converte_data(arq,1);
+    mes_arq = converte_data(arq,2);
+    ano_arq = converte_data(arq,3);
+
+    if ((ano_arq <= ano_final) && (ano_arq >= ano_inicial) && (ano_inicial < ano_final))
+    {
+        if ((ano_arq == ano_final) && (mes_arq == mes_final) && (dia_arq <= dia_final))
+        {
+            return 1;
+        }
+        else if ((ano_arq == ano_final) && (mes_arq < mes_final))
+        {
+
+            return 1;
+        }
+        else if ((ano_arq == ano_inicial) && (mes_arq == mes_inicial) && (dia_arq >= dia_inicial))
+        {
+
+            return 1;
+        }
+        else if ((ano_arq == ano_inicial) && (mes_arq > mes_inicial))
+        {
+
+            return 1;
+        }
+        else if (((ano_final - ano_inicial) > 1) && (ano_arq < ano_final) && (ano_arq > ano_inicial))
+        {
+
+            return 1;
+        }
+        else
+        {
+
+            return 0;
+        }
+    }
+    else if ((ano_inicial == ano_final) && (ano_arq == ano_inicial))
+    {
+
+        if ((mes_inicial == mes_final) && (mes_inicial == mes_arq) && (dia_arq >= dia_inicial) && (dia_arq <= dia_final))
+        {
+
+            return 1;
+        }
+        else if ((mes_arq > mes_inicial) && (mes_arq == mes_final) && (dia_arq <= dia_final))
+        {
+
+            return 1;
+        }
+        else if ((mes_arq < mes_final) && (mes_arq == mes_inicial) && (dia_arq >= dia_inicial))
+        {
+
+            return 1;
+        }
+        else
+        {
+
+            return 0;
+        }
+    }
+    else
+    {
+
+        return 0;
+    }
+}
