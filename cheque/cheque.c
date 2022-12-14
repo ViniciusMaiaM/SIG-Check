@@ -227,9 +227,13 @@ void exibe_cheque(Cheque *che)
             strcpy(situacao, "Pago");
         }
 
-        else
+        else if(che->status == 'x')
         {
-            strcpy(situacao, "Não reconhecido");
+            strcpy(situacao, "Deletado");
+        }
+
+        else{
+            strcpy(situacao,"Não reconhecido");
         }
 
         printf("Situação do Cheque: %s", situacao);
