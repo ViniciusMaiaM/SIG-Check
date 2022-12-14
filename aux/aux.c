@@ -511,3 +511,15 @@ int valida_cliente(char* cpf)
     fclose(fp);
     return 1;
 }
+
+void verifica_cliente(char* cpf){
+    if(valida_cliente(cpf)){
+        printf("\nCPF não cadastrado, por favor cadastre o cliente!");
+        espera();
+        Cliente* cli;
+        cli = cadastro_cliente();
+        grava_cliente(cli);
+        free(cli);
+        system("clear||cls");
+    }
+}
