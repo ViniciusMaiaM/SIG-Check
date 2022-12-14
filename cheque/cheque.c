@@ -86,16 +86,8 @@ Cheque *cadastrar_cheque(void)
         leitura_cpf(cpf);
         strcpy(che->cpf_cliente,cpf);
         
-        if(!valida_cli(che->cpf_cliente)){
-            printf("\nCPF não cadastrado, por favor cadastre o cliente!");
-            espera();
-            Cliente* cli;
-            cli = cadastro_cliente();
-            grava_cliente(cli);
-            free(cli);
-            system("clear||cls");
-        }
-
+        verifica_cliente(che->cpf_cliente);
+        
         ler_agencia(agencia);
         strcpy(che->agencia,agencia);
 
