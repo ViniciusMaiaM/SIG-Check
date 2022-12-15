@@ -4,8 +4,6 @@
 #include "caixa/caixa.h"
 #include "cheque/cheque.h"
 #include "cliente/cliente.h"
-#include "lucro/lucro.h"
-#include "movimentacao/movimentacao.h"
 #include "relatorio/relatorio.h"
 
 /////
@@ -32,21 +30,17 @@ int main(void) {
       break;
 
     case '3':
-      tela_movimenta();
-      break;
-
-    case '4':
       tela_caixa();
       break;
 
-    case '5':
+    case '4':
       tela_relatorio();
-      break;  
-      
-    case '6':
-      tela_sobre();
       break;
 
+    case '5':
+      tela_sobre();
+      break;  
+      
     case '0':
       printf("\nAte a proxima!\n");
       break;
@@ -78,10 +72,9 @@ char tela_principal(void) {
   printf("                                                    \n");
   printf("             1 - Modulo Cliente                     \n");
   printf("             2 - Modulo Cheque                      \n");
-  printf("             3 - Modulo Movimentação                \n");
-  printf("             4 - Modulo Caixa                       \n");
-  printf("             5 - Relatorio                          \n");
-  printf("             6 - Sobre o sistema                    \n");
+  printf("             3 - Modulo Caixa                       \n");
+  printf("             4 - Relatorio                          \n");
+  printf("             5 - Sobre o sistema                    \n");
   printf("             0 - Sair                               \n");
   printf("                                                    \n");
   printf("____________________________________________________\n");
