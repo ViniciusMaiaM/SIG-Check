@@ -135,7 +135,7 @@ Caixa *cadastrar_caixa(void)
         else{
             cai->status = 'A';
         }
-        
+
         cai->id_transacao_caixa = id_tra();
         printf("\n\tSeu id de transação: %d", cai->id_transacao_caixa);
         printf("                                                    \n");
@@ -489,7 +489,7 @@ int verifica_cheque(char* cheque, char* cpf){
     else{
         while(!feof(fp)){
             fread(che,sizeof(Cheque),1,fp);
-            if(strcmp(che->cpf_cliente,cpf) == 0 && strcmp(che->id, cheque) == 0 && che->status == 'c'){
+            if(strcmp(che->cpf_cliente,cpf) == 0 && strcmp(che->id, cheque) == 0 && che->status == 'C'){
                 return 1;
             }
         }
@@ -552,12 +552,16 @@ void gera_desconto(char* cpf){
 float gera_valor(char* cpf, char* id){
     FILE* cli_arq;
     FILE* che_arq;
+    
     Cliente* cli;
     Cheque* che;
-    cli = (Cliente*)malloc(sizeof(Cliente));
-    che = (Cheque*)malloc(sizeof(Cheque));
+
     cli_arq = fopen("cliente.dat","rb");
+    cli = (Cliente*)malloc(sizeof(Cliente));
+    
+    
     che_arq = fopen("cheque.dat","rb");
+    che = (Cheque*)malloc(sizeof(Cheque));
 
 
     int desconto;
@@ -582,14 +586,14 @@ float gera_valor(char* cpf, char* id){
                 }
 
             }
-        fclose(cli_arq);
-
+            fclose(cli_arq);
         }
     }
     
     free(cli);
     free(che);
     float total = ((desconto/100) * valor) + valor;
+    espera();
     return total;
 }
 

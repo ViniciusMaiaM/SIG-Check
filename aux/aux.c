@@ -494,7 +494,7 @@ int valida_cliente(char* cpf)
     fp = fopen("cliente.dat", "rb");
 
     if(fp == NULL){
-        return 1;
+        return 0;
     }
     
     while (!feof(fp))
@@ -502,18 +502,17 @@ int valida_cliente(char* cpf)
         fread(cli_arq, sizeof(Cliente), 1, fp);
         if (strcmp(cpf, cli_arq->cpf_cliente) == 0 && (cli_arq->status != 'x'))
         {
-            printf("\n\tCpf já cadastradado\n");
             fclose(fp);
-            return 0;
+            return 1;
         }
     }
 
     fclose(fp);
-    return 1;
+    return 0;
 }
 
 void verifica_cliente(char* cpf){
-    if(valida_cliente(cpf)){
+    if(!valida_cliente(cpf)){
         printf("\nCPF não cadastrado, por favor cadastre o cliente!");
         espera();
         Cliente* cli;

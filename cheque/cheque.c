@@ -125,7 +125,7 @@ Cheque *cadastrar_cheque(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     espera();
-    che->status = 'c';
+    che->status = 'C';
     return che;
 }
 
@@ -209,17 +209,25 @@ void exibe_cheque(Cheque *che)
         printf("Data de desconto: %s\n", che->data_desconto);
         printf("Id do cheque: %s\n",che->id);
 
-        if (che->status == 'c')
+        if (che->status == 'C')
         {
             strcpy(situacao, "Cadastrado");
         }
 
-        else if (che->status == 'p')
+        else if (che->status == 'P')
         {
             strcpy(situacao, "Pago");
         }
 
-        else if(che->status == 'x')
+        else if(che->status == 'R'){
+            strcpy(situacao, "Retornado");
+        }
+
+        else if(che->status == 'A'){
+            strcpy(situacao, "A compensar");
+        }
+
+        else if(che->status == 'X')
         {
             strcpy(situacao, "Deletado");
         }
