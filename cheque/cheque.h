@@ -22,12 +22,12 @@ void grava_cheque(Cheque* che);
 void gera_id(Cheque* che);
 void muda_tela_cheque(char escolha);
 void pesquisar_cheque(void);
-void relatorio_cheque(void);
-void tela_cheque(void);
 void leitura_cpf(char *cpf);
 void ler_agencia(char* agencia);
 void ler_conta(char* conta);
 void ler_cod(char* cod);
+void relatorio_cheque(void);
+void tela_cheque(void);
 
 int def_num();
 int valida_cheque(Cheque* che);

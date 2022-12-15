@@ -306,6 +306,11 @@ void att_cheque(Cheque *che)
     FILE *fp;
     char resp;
     char escolha;
+    char cpf[30];
+    char agencia[40];
+    char num_conta[40];
+    char cod_banco[40];
+    char valor[30];
 
     if ((che == NULL) || (che->status == 'x'))
     {
@@ -348,54 +353,74 @@ void att_cheque(Cheque *che)
                 switch (escolha)
                 {
                 case '1':
-                    printf("Informe a agência: ");
-                    scanf(" %[0-9]", che->agencia);
+                    ler_agencia(agencia);
+                    strcpy(che->agencia,agencia);
                     printf("\nCheque editado com sucesso!\n");
                     break;
 
                 case '2':
-                    printf("Informe a do cpf: ");
-                    scanf(" %[0-9]", che->cpf_cliente);
+                    leitura_cpf(cpf);
+                    strcpy(che->cpf_cliente,cpf);
                     printf("\nCheque editado com sucesso!\n");
                     break;
 
                 case '3':
-                    printf("Informe o código do banco: ");
-                    scanf(" %[0-9]", che->cod_banco);
+                    ler_conta(num_conta);
+                    strcpy(che->num_conta,num_conta);
                     printf("\nCheque editado com sucesso!\n");
                     break;
 
                 case '4':
-                    printf("Informe a data de desconto: ");
-                    scanf(" %[0-9]", che->data_desconto);
+                    do{
+                        printf("          Data para ser descontado: ");
+                        scanf(" %[0-9 / -]", che->data_desconto);
+                        getchar();
+                    } while (!data_str(che->data_desconto,1));
                     printf("\nCheque editado com sucesso!\n");
                     break;
 
                 case '5':
-                    printf("Informe o número da conta: ");
-                    scanf(" %[0-9]", che->num_conta);
+                    ler_cod(cod_banco);
+                    strcpy(che->cod_banco,cod_banco);
                     printf("\nCheque editado com sucesso!\n");
                     break;
 
                 case '6':
-                    printf("Informe o valor: ");
-                    scanf(" %f", &che->valor);
+                    do{
+                        printf("\n\tValor do cheque: ");
+                        scanf(" %s", valor);
+                    }while(!valida_dinheiro(valor, strlen(valor)));
+                    che->valor = atof(valor);
                     printf("\nCheque editado com sucesso!\n");
                     break;
 
                 case '7':
-                    printf("\nInforme a agência: ");
-                    scanf(" %[0-9]", che->agencia);
-                    // printf("\nInforme a o número do cheque: ");
-                    // scanf(" %[0-9]", che->num_cheque);
-                    printf("\nInforme o código do banco: ");
-                    scanf(" %[0-9]", che->cod_banco);
-                    printf("\nInforme a data de desconto: ");
-                    scanf(" %[0-9]", che->data_desconto);
-                    printf("\nInforme o número da conta: ");
-                    scanf(" %[0-9]", che->num_conta);
-                    printf("\nInforme o valor: ");
-                    scanf(" %f", &che->valor);
+                    leitura_cpf(cpf);
+                    strcpy(che->cpf_cliente,cpf);
+                    
+                    verifica_cliente(che->cpf_cliente);
+                    
+                    ler_agencia(agencia);
+                    strcpy(che->agencia,agencia);
+
+                    ler_conta(num_conta);
+                    strcpy(che->num_conta,num_conta);
+
+                    ler_cod(cod_banco);
+                    strcpy(che->cod_banco,cod_banco);
+
+                    do{
+                        printf("\n\tValor do cheque: ");
+                        scanf(" %s", valor);
+                    }while(!valida_dinheiro(valor, strlen(valor)));
+                    che->valor = atof(valor);
+                    
+                    do{
+                        printf("          Data para ser descontado: ");
+                        scanf(" %[0-9 / -]", che->data_desconto);
+                        getchar();
+                    } while (!data_str(che->data_desconto,1));
+                    
                     printf("\nCheque editado com sucesso!\n");
                     break;
 
