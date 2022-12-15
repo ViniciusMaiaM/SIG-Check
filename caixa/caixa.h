@@ -8,6 +8,7 @@ struct caixa {
     char data_caixa[40];
     int id_transacao_caixa;
     char status;
+    Caixa* prox;
 };
 
 /*
@@ -24,7 +25,6 @@ void pesquisar_caixa(void);
 void exibe_caixa(Caixa* cai);
 void excluir_caixa(Caixa* cai);
 void att_caixa(Caixa* cai);
-void lista_caixa(void);
 void gera_desconto(char* cpf);
 void retirar_cheque(char* id, char status);
 

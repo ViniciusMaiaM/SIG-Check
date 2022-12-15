@@ -41,10 +41,6 @@ void escolha_caixa(char escolha)
         att_caixa(cai);
         free(cai);
         break;
-    case '5':
-        lista_caixa();
-        break;
-
     default:
         break;
     }
@@ -66,7 +62,6 @@ void tela_caixa(void)
     printf("             2 - Pesquisar transação                \n");
     printf("             3 - Excluir transação                  \n");
     printf("             4 - Atualizar transação                \n");
-    printf("             5 - Relatório                          \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
@@ -369,50 +364,6 @@ void att_caixa(Caixa *cai)
     }
     espera();
     fclose(fp);
-}
-
-void lista_caixa(void)
-{
-    system("clear||cls");
-    int cont = 0;
-    FILE *fp;
-    Caixa *cai;
-    printf("____________________________________________________\n");
-    printf("                                                    \n");
-    printf("          - - - - Listagem - - - -                  \n");
-    printf("                                                    \n");
-    printf("____________________________________________________\n");
-    cai = (Caixa *)malloc(sizeof(Caixa));
-    fp = fopen("caixa.dat", "rb");
-
-    if (fp == NULL)
-    {
-        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
-        exit(1);
-    }
-
-    while (fread(cai, sizeof(Caixa), 1, fp))
-    {
-        if (cai->status != 'x')
-        {
-            exibe_caixa(cai);
-            cont++;
-        }
-    }
-
-    if (cont > 0)
-    {
-        printf("\nVocê possúi %d transação(s) cadastradas!\n", cont);
-    }
-
-    else
-    {
-        printf("\nVocê não possui transação(s) cadastradas!");
-    }
-
-    espera();
-    fclose(fp);
-    free(cai);
 }
 
 //--------------------------------
