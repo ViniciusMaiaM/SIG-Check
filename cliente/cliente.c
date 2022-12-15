@@ -420,7 +420,7 @@ void ler_nasc(char* data_nasc){
         printf("\n\tData de nascimento (dd/mm/aaaa): ");
         scanf(" %[0-9 / -]", data_nasc);
         getchar();
-    } while (!data_str(data_nasc,0));
+    } while (!data_str(data_nasc,2));
 }
 
 char ler_genero(char genero){
