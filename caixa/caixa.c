@@ -494,7 +494,7 @@ void gera_desconto(char* cpf){
 
         if(arq_cliente != NULL){
             while(fread(cli,sizeof(Caixa),1,arq_cliente)){
-                if(strcmp(cli->cpf_cliente,cpf) == 0 && (positivo%5) == 0){
+                if(strcmp(cli->cpf_cliente,cpf) == 0 && (positivo%5) == 0 &&(cli->desconto >= 1)){
                     cli->desconto -= positivo/5;
                 }
 
