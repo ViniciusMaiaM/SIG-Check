@@ -41,7 +41,7 @@ int main(void) {
       break;
 
     default:
-      printf("\nEm desenvolvimento!\n");
+      printf("\nMódulo inexistente!\n");
       espera();
       break;
     }
