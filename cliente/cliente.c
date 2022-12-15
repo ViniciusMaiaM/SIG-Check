@@ -109,7 +109,7 @@ Cliente *cadastro_cliente(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     espera();
-    cli->status = 'c';
+    cli->status = 'C';
     return cli;
 }
 
@@ -184,7 +184,7 @@ void exibe_cliente(Cliente *cli)
     printf("                                                    \n");
     printf("____________________________________________________\n");
 
-    if ((cli == NULL) || cli->status == 'x')
+    if ((cli == NULL) || cli->status == 'X')
     {
         printf("\nCliente não encontrado\n");
     }
@@ -198,7 +198,7 @@ void exibe_cliente(Cliente *cli)
         printf("Data de nascimento: %s\n", cli->data_nasc);
         printf("Genero: %c\n", cli->genero);
 
-        if (cli->status == 'c')
+        if (cli->status == 'C')
         {
             strcpy(situacao, "Cadastrado");
         }
@@ -260,7 +260,7 @@ Cliente *busca_cliente()
         while (!feof(fp))
         { // Busca até o final do arquivo
             fread(cli, sizeof(Cliente), 1, fp);
-            if (strcmp(cli->cpf_cliente, cpf) == 0 && (cli->status != 'x'))
+            if (strcmp(cli->cpf_cliente, cpf) == 0 && (cli->status != 'X'))
             { /*Verifica se o código é igual e o status*/
                 fclose(fp);
                 return cli;
@@ -277,7 +277,7 @@ void att_cliente(Cliente *cli)
     char resp;
     char escolha;
 
-    if ((cli == NULL) || (cli->status == 'x'))
+    if ((cli == NULL) || (cli->status == 'X'))
     {
         printf("\nCliente não encontrado\n");
         resp = 'n';
@@ -392,7 +392,7 @@ void ler_cpf(char *cpf)
         printf("\n\tCPF: ");
         scanf(" %[0-9]", cpf);
         getchar();
-    } while (!((valida_cpf(cpf)) && (valida_cliente(cpf))));
+    } while ((!(valida_cpf(cpf)) || (valida_cliente(cpf))));
 }
 
 void ler_cel(char *cel)

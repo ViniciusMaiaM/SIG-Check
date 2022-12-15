@@ -18,12 +18,13 @@ void escolha_cliente(char);
 void excluir_cliente(Cliente* cli);
 void exibe_cliente(Cliente* cli);
 void grava_cliente(Cliente* cli);
-void tela_cliente(void);
 void ler_nome(char* nome);
 void ler_cpf(char* cpf);
 void ler_cel(char* cel);
 void ler_email(char* email);
 void ler_nasc(char* data_nasc);
+void tela_cliente(void);
+
 char ler_genero(char genero);
 
 Cliente* cadastro_cliente(void);
