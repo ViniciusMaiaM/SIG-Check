@@ -4,14 +4,9 @@
 #include "caixa/caixa.h"
 #include "cheque/cheque.h"
 #include "cliente/cliente.h"
+#include "main.h"
 #include "relatorio/relatorio.h"
 
-/////
-// Assinatura das funções
-/////
-char tela_principal(void);
-void tela_sobre(void);
-void sleep();
 /////
 // Programa principal
 /////
@@ -47,7 +42,7 @@ int main(void) {
 
     default:
       printf("\nEm desenvolvimento!\n");
-      sleep(1);
+      espera();
       break;
     }
   } while (modulo != '0');
