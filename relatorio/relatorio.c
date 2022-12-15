@@ -156,6 +156,11 @@ void escolhe_cliente(char escolha)
         lista_alfabetica();
         break;
 
+
+    case '5':
+        lista_genero();
+        break;
+
     default:
         printf("Por favor insira uma opcao valida.\n");
         break;
@@ -474,6 +479,67 @@ void lista_nascimento(char escolha)
     }
 
     fclose(fp);
+}
+
+void lista_genero(void){
+    system("clear||cls");
+    FILE *fp;
+    Cliente *cli;
+    int total = 0;
+    int masc = 0;
+    int fem = 0;
+    int out = 0;
+    int porc_masc = 0;
+    int porc_fem = 0;
+    int porc_out = 0;
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("        - - - - Listagem por status - - - -         \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    cli = (Cliente *)malloc(sizeof(Cliente));
+    fp = fopen("cliente.dat", "rb");
+
+    if (fp == NULL)
+    {
+        printf("\nNão exitem clientes cadastrados, por favor cadastre para prosseguir.\n");
+    }
+
+    else{
+        while (fread(cli, sizeof(Cliente), 1, fp))
+        {
+            if (cli->status != 'X' && cli->genero == 'M'){
+                exibe_cliente(cli);
+                total++;
+                masc++;
+            }
+
+            else if (cli->status != 'X' && cli->genero == 'F'){
+                exibe_cliente(cli);
+                total++;
+                fem++;
+            }
+
+            else if (cli->status != 'X' && cli->genero == 'O'){
+                exibe_cliente(cli);
+                total++;
+                out++;
+            }
+        }
+        fclose(fp);
+
+        porc_fem = (100*fem)/total;
+        porc_masc = (100*masc)/total;
+        porc_out = (100*out)/total;
+        printf("\nVocê possui %d cliente(s), dos quais %d são mulheres,",total,fem);
+        printf("\n%d são homens e %d são outro",masc,out);
+
+        printf("\nPorcentagem:\nHomens: %d%% \nMulheres: %d%% \nOutros: %d%%",porc_masc,porc_fem,porc_out);
+    }
+
+
+    espera();
+    free(cli);
 }
 
 void relatorio_cheque(void)

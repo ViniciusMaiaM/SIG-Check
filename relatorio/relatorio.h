@@ -10,6 +10,7 @@ void relatorio_status(void);
 void lista_alfabetica(void);
 void relatorio_nascimento(void);
 void lista_nascimento(char escolha);
+void lista_genero(void);
 
 //// Cheque ////
 void escolhe_cheque(char escolha);
