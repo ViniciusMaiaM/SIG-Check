@@ -23,3 +23,5 @@ void escolha_data(char escolha);
 void entre_data(char escolha);
 void relatorio_entre_data(void);
 void ultima_data(char* data, int escolha);
+void lista_cheque_status(char escolha);
+void relatorio_status_cheque(void);

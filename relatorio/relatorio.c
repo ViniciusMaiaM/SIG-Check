@@ -485,10 +485,11 @@ void relatorio_cheque(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("             1 - Listagem de todos                  \n");
-    printf("             2 - Listagem por cpf                   \n");
-    printf("             3 - Listagem por valor                 \n");
-    printf("             4 - Listagem por data                  \n");
+    printf("             1 - Listagem de cadastrados            \n");
+    printf("             2 - Listagem por status                \n");
+    printf("             3 - Listagem por cpf                   \n");
+    printf("             4 - Listagem por valor                 \n");
+    printf("             5 - Listagem por data                  \n");
     printf("             0 - Voltar                             \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
@@ -589,6 +590,37 @@ void relatorio_entre_data(void)
     }
 }
 
+void relatorio_status_cheque(){
+    char escolha;
+    system("clear||cls");
+    printf("\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("               - - - - Status - - - -               \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("             1 - Listagem dos pagos                 \n");
+    printf("             2 - Listagem dos deletados             \n");
+    printf("             3 - Listagem dos retornados            \n");
+    printf("             4 - Listagem de todos                  \n");
+    printf("             0 - Voltar                             \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    escolha = input();
+
+    if (escolha != '0')
+    {
+        lista_cheque_status(escolha);
+    }
+
+    else
+    {
+        printf("\nOk!\n");
+    }
+}
+
 void escolhe_cheque(char escolha)
 {
     switch (escolha)
@@ -598,14 +630,18 @@ void escolhe_cheque(char escolha)
         break;
 
     case '2':
-        lista_cpf();
+        relatorio_status_cheque();
         break;
 
     case '3':
-        relatorio_valor();
+        lista_cpf();
         break;
 
     case '4':
+        relatorio_valor();
+        break;
+
+    case '5':
         relatorio_data();
         break;
 
@@ -627,7 +663,7 @@ void escolha_data(char escolha)
     case '2':
         ultima_data(data_atual(),2);
         break;
-        
+
     case '3':
         ultima_data(data_atual(),3);
         break;
@@ -1045,5 +1081,102 @@ void ultima_data(char* data, int escolha){
         fclose(fp);
     }
     
+    free(che);
+}
+
+void lista_cheque_status(char escolha){
+    system("clear||cls");
+    FILE *fp;
+    Cheque *che;
+    int cont = 0;
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("        - - - - Listagem por status - - - -         \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    che = (Cheque *)malloc(sizeof(Cheque));
+    fp = fopen("cheque.dat", "rb");
+
+    if (fp == NULL)
+    {
+        printf("\nNão exitem clientes cadastrados, por favor cadastre para prosseguir.\n");
+    }
+
+    else
+    {
+        if (escolha == '1')
+        {
+            while (fread(che, sizeof(Cheque), 1, fp))
+            {
+                if (che->status == 'p')
+                {
+                    exibe_cheque(che);
+                    cont++;
+                }
+
+                if (cont > 0)
+                {
+                printf("\nVocê possui %d cheque(s) pagos!\n", cont);
+                }
+            }
+        }
+
+        else if (escolha == '2')
+        {
+            while (fread(che, sizeof(Cheque), 1, fp))
+            {
+                if (che->status == 'x')
+                {
+                    exibe_cheque(che);
+                    cont++;
+                }
+            }
+
+            if (cont > 0)
+            {
+                printf("\nVocê possui %d cheque(s) deletados!\n", cont);
+            }
+        }
+
+        else if(escolha == '3')
+        {
+            while (fread(che, sizeof(Cheque), 1, fp))
+            {
+                if(che->status == 'r'){
+                    exibe_cheque(che);
+                    cont++;
+                }
+            }
+
+            if (cont > 0)
+            {
+                printf("\nVocê possui %d cheque(s) retornados!\n", cont);
+            }
+        }
+
+        else{
+            while (fread(che, sizeof(Cheque), 1, fp))
+            {
+                exibe_cheque(che);
+                cont++;
+            }
+
+            if (cont > 0)
+            {
+                printf("\nVocê possui %d cheque(s) cadastrados!\n", cont);
+            }
+        }
+
+        fclose(fp);
+    }
+
+    
+
+    if(cont == 0)
+    {
+        printf("\nVocê não possui cliente(s) cadastrados!");
+    }
+
+    espera();
     free(che);
 }
