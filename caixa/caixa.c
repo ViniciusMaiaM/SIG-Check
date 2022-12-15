@@ -138,7 +138,8 @@ Caixa *cadastrar_caixa(void)
         printf("                                                    \n");
         printf("____________________________________________________\n");
         espera();
-        cai->status = 'c';
+        cai->status = 'C';
+        cai->prox = NULL;
         return cai;
     }
 
@@ -204,6 +205,7 @@ Caixa *busca_caixa()
 
 void exibe_caixa(Caixa *cai)
 {
+    char situacao[20];
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("          - - - - Relatório Caixa - - - -           \n");
@@ -218,11 +220,20 @@ void exibe_caixa(Caixa *cai)
     else
     {
         printf("CPF: %s\n", cai->cpf_cliente);
-        printf("Entrada ou saida: %c\n", cai->entrada_saida_caixa);
         printf("Valor: %.2f\n", cai->valor_caixa);
-        printf("\nData: %s\n", cai->data_caixa);
-        printf("\nId do check: %s\n", cai->id_cheque);
-        printf("\nId da transação: %d\n", cai->id_transacao_caixa);
+        printf("Data: %s\n", cai->data_caixa);
+        printf("Id do cheque: %s\n", cai->id_cheque);
+        printf("Id da transação: %d\n", cai->id_transacao_caixa);
+        
+        if(cai->entrada_saida_caixa == 'E'){
+            strcpy(situacao,"Entrada");
+        }
+
+        else{
+            strcpY(situacao,"Saída");
+        }
+
+        printf("Entrada ou saida: %s\n", situacao);
     }
     printf("\n____________________________________________________\n");
     espera();
@@ -515,8 +526,9 @@ float gera_valor(char* cpf, char* id){
     che = (Cheque*)malloc(sizeof(Cheque));
 
 
-    int desconto;
-    float valor;
+    float desconto = 0;
+    float valor = 0;
+    float total = 0;
 
     if(che_arq != NULL){
 
@@ -543,7 +555,7 @@ float gera_valor(char* cpf, char* id){
     
     free(cli);
     free(che);
-    float total = ((desconto/100) * valor) + valor;
+    total = ((desconto/100) * valor) + valor;
     espera();
     return total;
 }
