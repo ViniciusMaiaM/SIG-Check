@@ -538,7 +538,7 @@ void relatorio_data(void)
     printf("                                                    \n");
     printf("____________________________________________________\n");
     printf("                                                    \n");
-    printf("             1 - Ultima semana                      \n");
+    printf("             1 - Ultimo dia                         \n");
     printf("             2 - Ultimo mês                         \n");
     printf("             3 - Ultimo ano                         \n");
     printf("             4 - Entre datas                        \n");
@@ -619,6 +619,19 @@ void escolha_data(char escolha)
 {
     switch (escolha)
     {
+
+    case '1':
+        ultima_data(data_atual(),1);
+        break;
+
+    case '2':
+        ultima_data(data_atual(),2);
+        break;
+        
+    case '3':
+        ultima_data(data_atual(),3);
+        break;
+
     case '4':
         relatorio_entre_data();
         break;
@@ -994,4 +1007,43 @@ int compara(char *inicial, char *final, char *arq)
 
         return 0;
     }
+}
+
+
+void ultima_data(char* data, int escolha){
+    FILE* fp;
+    Cheque* che;
+
+    fp = fopen("cheque.dat","rb");
+
+    if(fp == NULL){
+        printf("\nNão foi possível abrir o arquivo\n");
+    }
+
+    else{
+        che = (Cheque*)malloc(sizeof(Cheque));
+
+        while(fread(che,sizeof(Cheque),1,fp)){
+            if(escolha == 1){
+                if(converte_data(data,1) == converte_data(che->data_cadastro,1)){
+                    exibe_cheque(che);
+                }
+            }
+
+            else if(escolha == 2){
+                if(converte_data(data,2) == converte_data(che->data_cadastro,2)){
+                    exibe_cheque(che);
+                }
+            }
+
+            else{
+                if(converte_data(data,3) == converte_data(che->data_cadastro,3)){
+                    exibe_cheque(che);
+                }
+            }
+        }
+        fclose(fp);
+    }
+    
+    free(che);
 }

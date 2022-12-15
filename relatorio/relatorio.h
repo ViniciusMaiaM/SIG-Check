@@ -22,3 +22,4 @@ int compara(char* inicial, char* final, char* arq);
 void escolha_data(char escolha);
 void entre_data(char escolha);
 void relatorio_entre_data(void);
+void ultima_data(char* data, int escolha);
