@@ -172,7 +172,7 @@ Cheque *busca_cheque()
         while (!feof(fp))
         { // Busca até o final do arquivo
             fread(che, sizeof(Cheque), 1, fp);
-            if (strcmp(che->id, id_bus) == 0 && (che->status != 'x'))
+            if (strcmp(che->id, id_bus) == 0 && (che->status != 'X'))
             { /*Verifica se o código é igual e o status*/
                 fclose(fp);
                 return che;
@@ -193,7 +193,7 @@ void exibe_cheque(Cheque *che)
     printf("          - - - - Relatório Cheque - - - -          \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
-    if ((che == NULL) || che->status == 'x')
+    if ((che == NULL) || che->status == 'X')
     {
         printf("\nCheque não encontrado\n");
     }
@@ -267,7 +267,7 @@ void excluir_cheque(Cheque *che)
             while (!feof(fp))
             {
                 fread(che_arq, sizeof(Cheque), 1, fp);
-                if ((strcmp(che_arq->num_conta, che->num_conta) == 0 && (che_arq->status != 'x')))
+                if ((strcmp(che_arq->num_conta, che->num_conta) == 0 && (che_arq->status != 'X')))
                 {
                     exibe_cheque(che);
                     printf("\nEsse é o cheque que você quer excluir(S/N)? ");
@@ -275,7 +275,7 @@ void excluir_cheque(Cheque *che)
                     achou = 1;
                     if (escolha == 'S' || escolha == 's')
                     {
-                        che_arq->status = 'x';
+                        che_arq->status = 'X';
                         fseek(fp, -1 * sizeof(Cheque), SEEK_CUR);
                         fwrite(che_arq, sizeof(Cheque), 1, fp);
                         printf("\nCheque excluído!\n");
@@ -458,7 +458,7 @@ int valida_cheque(Cheque* che)
     while (!feof(fp))
     {
         fread(che_arq, sizeof(Cheque), 1, fp);
-        if (strcmp(che->id, che_arq->id) == 0 && (che_arq->status != 'x'))
+        if (strcmp(che->id, che_arq->id) == 0 && (che_arq->status != 'X'))
         {
             printf("\n\tCheque já cadastrado,\n\tpor favor insira novas informações\n");
             return 0;
@@ -511,7 +511,7 @@ int valida_cli(char* cpf){
     else{
         while(!feof(fp)){
             fread(cli,sizeof(Cliente),1,fp);
-            if(strcmp(cli->cpf_cliente,cpf) == 0 && (cli->status != 'x')){
+            if(strcmp(cli->cpf_cliente,cpf) == 0 && (cli->status != 'X')){
                 fclose(fp);
                 free(cli);
                 return 1;
