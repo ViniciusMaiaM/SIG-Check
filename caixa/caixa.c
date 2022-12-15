@@ -79,6 +79,7 @@ Caixa *cadastrar_caixa(void)
 {
     Caixa *cai;
     cai = (Caixa*)malloc(sizeof(Caixa));
+    char status;
     system("clear||cls");
     printf("____________________________________________________\n");
     printf("                                                    \n");
@@ -122,9 +123,19 @@ Caixa *cadastrar_caixa(void)
         } while (!data_str(cai->data_caixa,1));
 
         if(cai->entrada_saida_caixa == 'S'){
-            retirar_cheque(cai->id_cheque);
-        }
+            do{
+                printf("Cheque compensado ou retornado(P/R): ");
+                scanf(" %c", &status);
+                status = toupper(status);
+            }while(!(status != 'P' || status != 'R'));
 
+            retirar_cheque(cai->id_cheque, status);
+        }
+        
+        else{
+            cai->status = 'A';
+        }
+        
         cai->id_transacao_caixa = id_tra();
         printf("\n\tSeu id de transação: %d", cai->id_transacao_caixa);
         printf("                                                    \n");
@@ -430,7 +441,7 @@ int cheque_cpf(char* cpf){
     system("clear||cls");
     FILE* fp;
     Cheque* che;
-    
+    int cont = 0;
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("          - - - - Cheques desse cpf - - - -         \n");
@@ -445,16 +456,22 @@ int cheque_cpf(char* cpf){
         return 0;
     }
 
-        while(fread(che,sizeof(Cheque),1,fp)){
-            if(strcmp(che->cpf_cliente,cpf) == 0 && (che->status != 'x')){
-                exibe_cheque(che);
-            }
+    while(fread(che,sizeof(Cheque),1,fp)){
+        if(strcmp(che->cpf_cliente,cpf) == 0 && (che->status == 'C')){
+            exibe_cheque(che);
+            cont++;
         }
-        fclose(fp);
+    }
 
+    fclose(fp);
     espera();
     free(che);
-    return 1;
+    
+    if(cont > 0){
+        return 1;
+    }
+
+    return 0;
 }
 
 int verifica_cheque(char* cheque, char* cpf){
@@ -472,7 +489,7 @@ int verifica_cheque(char* cheque, char* cpf){
     else{
         while(!feof(fp)){
             fread(che,sizeof(Cheque),1,fp);
-            if(strcmp(che->cpf_cliente,cpf) == 0 && strcmp(che->id, cheque) == 0){
+            if(strcmp(che->cpf_cliente,cpf) == 0 && strcmp(che->id, cheque) == 0 && che->status == 'c'){
                 return 1;
             }
         }
@@ -576,7 +593,7 @@ float gera_valor(char* cpf, char* id){
     return total;
 }
 
-void retirar_cheque(char* id){
+void retirar_cheque(char* id, char status){
     FILE* fp;
     Cheque* che;
     che = (Cheque *)malloc(sizeof(Cheque));
@@ -584,7 +601,14 @@ void retirar_cheque(char* id){
     while(!feof(fp)){
         fread(che,sizeof(Cheque),1,fp);
         if(strcmp(che->id, id) == 0 && (che->status != 'x')){
-            che->status = 'p';
+            if(status == 'C'){
+                che->status = 'P';
+            }
+
+            else{
+                che->status = 'D';
+            }
+
             fseek(fp,-1*sizeof(Cheque), SEEK_CUR);
             fwrite(che, sizeof(Cheque), 1, fp);
             break;
