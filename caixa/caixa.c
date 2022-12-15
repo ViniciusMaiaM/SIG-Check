@@ -230,7 +230,7 @@ void exibe_caixa(Caixa *cai)
         }
 
         else{
-            strcpY(situacao,"Saída");
+            strcpy(situacao,"Saída");
         }
 
         printf("Entrada ou saida: %s\n", situacao);
