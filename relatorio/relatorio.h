@@ -20,4 +20,5 @@ void lista_valor(char escolha);
 void relatorio_data(void);
 int compara(char* inicial, char* final, char* arq);
 void escolha_data(char escolha);
-void entre_data(void);
+void entre_data(char escolha);
+void relatorio_entre_data(void);

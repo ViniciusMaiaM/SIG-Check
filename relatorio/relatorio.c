@@ -92,17 +92,20 @@ void relatorio_status(void)
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    
-    if(escolha != '0'){
+
+    if (escolha != '0')
+    {
         lista_status(escolha);
     }
 
-    else{
+    else
+    {
         printf("\nOk!\n");
     }
 }
 
-void relatorio_nascimento(void){
+void relatorio_nascimento(void)
+{
     char escolha;
     system("clear||cls");
     printf("\n");
@@ -119,12 +122,14 @@ void relatorio_nascimento(void){
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    
-    if(escolha != '0'){
+
+    if (escolha != '0')
+    {
         lista_nascimento(escolha);
     }
 
-    else{
+    else
+    {
         printf("\nOk!\n");
     }
 }
@@ -154,7 +159,6 @@ void escolhe_cliente(char escolha)
         break;
     }
 }
-
 
 void lista_cliente(void)
 {
@@ -202,9 +206,10 @@ void lista_cliente(void)
     free(cli);
 }
 
-void lista_status(char escolha){
+void lista_status(char escolha)
+{
     system("clear||cls");
-    FILE* fp;
+    FILE *fp;
     Cliente *cli;
     int cont = 0;
     printf("____________________________________________________\n");
@@ -220,8 +225,10 @@ void lista_status(char escolha){
         printf("\nNão exitem clientes cadastrados, por favor cadastre para prosseguir.\n");
     }
 
-    else{
-        if(escolha == '1'){
+    else
+    {
+        if (escolha == '1')
+        {
             while (fread(cli, sizeof(Cliente), 1, fp))
             {
                 if (cli->status == 'x')
@@ -232,10 +239,12 @@ void lista_status(char escolha){
             }
         }
 
-        else{
-            while (fread(cli, sizeof(Cliente), 1, fp)){
-                        exibe_cliente(cli);
-                        cont++;
+        else
+        {
+            while (fread(cli, sizeof(Cliente), 1, fp))
+            {
+                exibe_cliente(cli);
+                cont++;
             }
         }
 
@@ -256,26 +265,31 @@ void lista_status(char escolha){
     free(cli);
 }
 
-void lista_alfabetica(void){
-    FILE* fp;
-    Cliente* cli;
-    Cliente* lista;
-    Cliente* novo;
+void lista_alfabetica(void)
+{
+    FILE *fp;
+    Cliente *cli;
+    Cliente *lista;
+    Cliente *novo;
 
-    fp = fopen("cliente.dat","rb");
+    fp = fopen("cliente.dat", "rb");
 
-    if (fp == NULL){
+    if (fp == NULL)
+    {
         printf("\nNão é possível continuar a listagem");
     }
 
-    else{
+    else
+    {
         lista = NULL;
-        cli = (Cliente*)malloc(sizeof(Cliente));
+        cli = (Cliente *)malloc(sizeof(Cliente));
 
-        while(fread(cli,sizeof(Cliente),1,fp)){
-            if(cli->status != 'x'){
-                novo = (Cliente*)malloc(sizeof(Cliente));
-                
+        while (fread(cli, sizeof(Cliente), 1, fp))
+        {
+            if (cli->status != 'x')
+            {
+                novo = (Cliente *)malloc(sizeof(Cliente));
+
                 strcpy(novo->nome_cliente, cli->nome_cliente);
 
                 strcpy(novo->cpf_cliente, cli->cpf_cliente);
@@ -291,21 +305,25 @@ void lista_alfabetica(void){
                 novo->status = cli->status;
             }
 
-            if(lista == NULL){
+            if (lista == NULL)
+            {
                 lista = novo;
                 novo->prox = NULL;
             }
 
-            else if(strcmp(novo->nome_cliente, lista->nome_cliente) < 0){
+            else if (strcmp(novo->nome_cliente, lista->nome_cliente) < 0)
+            {
                 novo->prox = lista;
                 lista = novo;
             }
 
-            else{
-                Cliente* anterior = lista;
-                Cliente* atual = lista->prox;
+            else
+            {
+                Cliente *anterior = lista;
+                Cliente *atual = lista->prox;
 
-                while((atual != NULL) && strcmp(atual->nome_cliente,novo->nome_cliente) < 0){
+                while ((atual != NULL) && strcmp(atual->nome_cliente, novo->nome_cliente) < 0)
+                {
                     anterior = atual;
                     atual = novo->prox;
                 }
@@ -319,7 +337,8 @@ void lista_alfabetica(void){
     free(cli);
     novo = lista;
 
-    while(novo != NULL){
+    while (novo != NULL)
+    {
         exibe_cliente(novo);
         espera();
         novo = novo->prox;
@@ -327,7 +346,8 @@ void lista_alfabetica(void){
 
     novo = lista;
 
-    while(lista != NULL){
+    while (lista != NULL)
+    {
         lista = lista->prox;
         free(novo);
         novo = lista;
@@ -336,26 +356,31 @@ void lista_alfabetica(void){
     fclose(fp);
 }
 
-void lista_nascimento(char escolha){
-    FILE* fp;
-    Cliente* cli;
-    Cliente* lista;
-    Cliente* novo;
+void lista_nascimento(char escolha)
+{
+    FILE *fp;
+    Cliente *cli;
+    Cliente *lista;
+    Cliente *novo;
 
-    fp = fopen("cliente.dat","rb");
+    fp = fopen("cliente.dat", "rb");
 
-    if (fp == NULL){
+    if (fp == NULL)
+    {
         printf("\nNão é possível continuar a listagem");
     }
 
-    else{
+    else
+    {
         lista = NULL;
-        cli = (Cliente*)malloc(sizeof(Cliente));
+        cli = (Cliente *)malloc(sizeof(Cliente));
 
-        while(fread(cli,sizeof(Cliente),1,fp)){
-            if(cli->status != 'x'){
-                novo = (Cliente*)malloc(sizeof(Cliente));
-                
+        while (fread(cli, sizeof(Cliente), 1, fp))
+        {
+            if (cli->status != 'x')
+            {
+                novo = (Cliente *)malloc(sizeof(Cliente));
+
                 strcpy(novo->nome_cliente, cli->nome_cliente);
 
                 strcpy(novo->cpf_cliente, cli->cpf_cliente);
@@ -371,22 +396,27 @@ void lista_nascimento(char escolha){
                 novo->status = cli->status;
             }
 
-            if(lista == NULL){
+            if (lista == NULL)
+            {
                 lista = novo;
                 novo->prox = NULL;
             }
 
-            if(escolha == '1'){
-                if(nascimento(novo->data_nasc) < nascimento(lista->data_nasc)){
+            if (escolha == '1')
+            {
+                if (nascimento(novo->data_nasc) < nascimento(lista->data_nasc))
+                {
                     novo->prox = lista;
                     lista = novo;
                 }
 
-                else{
-                    Cliente* anterior = lista;
-                    Cliente* atual = lista->prox;
+                else
+                {
+                    Cliente *anterior = lista;
+                    Cliente *atual = lista->prox;
 
-                    while((atual != NULL) && nascimento(atual->data_nasc) < nascimento(novo->data_nasc)){
+                    while ((atual != NULL) && nascimento(atual->data_nasc) < nascimento(novo->data_nasc))
+                    {
                         anterior = atual;
                         atual = novo->prox;
                     }
@@ -395,18 +425,22 @@ void lista_nascimento(char escolha){
                     novo->prox = atual;
                 }
             }
-        
-            else if(escolha == '2'){
-                if(nascimento(novo->data_nasc) > nascimento(lista->data_nasc)){
+
+            else if (escolha == '2')
+            {
+                if (nascimento(novo->data_nasc) > nascimento(lista->data_nasc))
+                {
                     novo->prox = lista;
                     lista = novo;
                 }
 
-                else{
-                    Cliente* anterior = lista;
-                    Cliente* atual = lista->prox;
+                else
+                {
+                    Cliente *anterior = lista;
+                    Cliente *atual = lista->prox;
 
-                    while((atual != NULL) && nascimento(atual->data_nasc) > nascimento(novo->data_nasc)){
+                    while ((atual != NULL) && nascimento(atual->data_nasc) > nascimento(novo->data_nasc))
+                    {
                         anterior = atual;
                         atual = novo->prox;
                     }
@@ -421,7 +455,8 @@ void lista_nascimento(char escolha){
     free(cli);
     novo = lista;
 
-    while(novo != NULL){
+    while (novo != NULL)
+    {
         exibe_cliente(novo);
         espera();
         novo = novo->prox;
@@ -429,7 +464,8 @@ void lista_nascimento(char escolha){
 
     novo = lista;
 
-    while(lista != NULL){
+    while (lista != NULL)
+    {
         lista = lista->prox;
         free(novo);
         novo = lista;
@@ -479,17 +515,20 @@ void relatorio_valor(void)
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    
-    if(escolha != '0'){
+
+    if (escolha != '0')
+    {
         lista_valor(escolha);
     }
 
-    else{
+    else
+    {
         printf("\nOk!\n");
     }
 }
 
-void relatorio_data(void){
+void relatorio_data(void)
+{
     char escolha;
     system("clear||cls");
     printf("\n");
@@ -508,12 +547,44 @@ void relatorio_data(void){
     printf("____________________________________________________\n");
     printf("\n");
     escolha = input();
-    
-    if(escolha != '0'){
+
+    if (escolha != '0')
+    {
         escolha_data(escolha);
     }
 
-    else{
+    else
+    {
+        printf("\nOk!\n");
+    }
+}
+
+void relatorio_entre_data(void)
+{
+    char escolha;
+    system("clear||cls");
+    printf("\n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("               - - - - Data - - - -                 \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("                                                    \n");
+    printf("             1 - Ordem de cadastro                  \n");
+    printf("             2 - Ordem de desconto                  \n");
+    printf("             0 - Voltar                             \n");
+    printf("                                                    \n");
+    printf("____________________________________________________\n");
+    printf("\n");
+    escolha = input();
+
+    if (escolha != '0')
+    {
+        entre_data(escolha);
+    }
+
+    else
+    {
         printf("\nOk!\n");
     }
 }
@@ -544,14 +615,16 @@ void escolhe_cheque(char escolha)
     }
 }
 
-void escolha_data(char escolha){
-    switch(escolha){
-        case '4':
-            entre_data();
-            break;
+void escolha_data(char escolha)
+{
+    switch (escolha)
+    {
+    case '4':
+        relatorio_entre_data();
+        break;
 
-        default:
-            break;
+    default:
+        break;
     }
 }
 
@@ -574,8 +647,10 @@ void lista_cheque()
         printf("Você não possui cheques cadastrados, por favor cadastre para então poder listar");
     }
 
-    else{
-        while (fread(che, sizeof(Cheque), 1, fp)){
+    else
+    {
+        while (fread(che, sizeof(Cheque), 1, fp))
+        {
             if (che->status != 'x')
             {
                 exibe_cheque(che);
@@ -599,19 +674,20 @@ void lista_cheque()
     free(che);
 }
 
-void lista_cpf(void){
+void lista_cpf(void)
+{
     system("clear||cls");
-    FILE* fp;
-    Cheque* che;
+    FILE *fp;
+    Cheque *che;
     char cpf[30];
     int cont = 0;
-    
+
     printf("____________________________________________________\n");
     printf("                                                    \n");
     printf("          - - - - Listagem por cpf - - - -          \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
-    
+
     che = (Cheque *)malloc(sizeof(Cheque));
     fp = fopen("cheque.dat", "rb");
 
@@ -619,20 +695,24 @@ void lista_cpf(void){
     scanf(" %[0-9]", cpf);
     getchar();
 
-    if(fp == NULL){
+    if (fp == NULL)
+    {
         printf("\nArquivo sem cadastro, não foi possível fazer a listagem\n");
     }
 
-    else{
-        while(fread(che,sizeof(Cheque),1,fp)){
-            if(strcmp(che->cpf_cliente,cpf) == 0 && (che->status != 'x')){
+    else
+    {
+        while (fread(che, sizeof(Cheque), 1, fp))
+        {
+            if (strcmp(che->cpf_cliente, cpf) == 0 && (che->status != 'x'))
+            {
                 exibe_cheque(che);
                 cont++;
             }
         }
         fclose(fp);
     }
-    
+
     if (cont > 0)
     {
         printf("\nVocê possúi %d cheque(s) cadastrados com esse cpf!\n", cont);
@@ -647,27 +727,31 @@ void lista_cpf(void){
     free(che);
 }
 
+void lista_valor(char escolha)
+{
+    FILE *fp;
+    Cheque *che;
+    Cheque *lista;
+    Cheque *novo;
 
-void lista_valor(char escolha){
-    FILE* fp;
-    Cheque* che;
-    Cheque* lista;
-    Cheque* novo;
+    fp = fopen("cheque.dat", "rb");
 
-    fp = fopen("cheque.dat","rb");
-
-    if (fp == NULL){
+    if (fp == NULL)
+    {
         printf("\nNão é possível continuar a listagem");
     }
 
-    else{
+    else
+    {
         lista = NULL;
-        che = (Cheque*)malloc(sizeof(Cheque));
+        che = (Cheque *)malloc(sizeof(Cheque));
 
-        while(fread(che,sizeof(Cheque),1,fp)){
-            if(che->status != 'x'){
-                novo = (Cheque*)malloc(sizeof(Cheque));
-                
+        while (fread(che, sizeof(Cheque), 1, fp))
+        {
+            if (che->status != 'x')
+            {
+                novo = (Cheque *)malloc(sizeof(Cheque));
+
                 strcpy(novo->agencia, che->agencia);
 
                 strcpy(novo->num_conta, che->num_conta);
@@ -691,22 +775,27 @@ void lista_valor(char escolha){
                 novo->status = che->status;
             }
 
-            if(lista == NULL){
+            if (lista == NULL)
+            {
                 lista = novo;
                 novo->prox = NULL;
             }
 
-            if(escolha == '1'){
-                if(novo->valor < lista->valor){
+            if (escolha == '1')
+            {
+                if (novo->valor < lista->valor)
+                {
                     novo->prox = lista;
                     lista = novo;
                 }
 
-                else{
-                    Cheque* anterior = lista;
-                    Cheque* atual = lista->prox;
+                else
+                {
+                    Cheque *anterior = lista;
+                    Cheque *atual = lista->prox;
 
-                    while((atual != NULL) && atual->valor < novo->valor){
+                    while ((atual != NULL) && atual->valor < novo->valor)
+                    {
                         anterior = atual;
                         atual = novo->prox;
                     }
@@ -716,17 +805,21 @@ void lista_valor(char escolha){
                 }
             }
 
-            else if (escolha == '2'){
-                if(novo->valor > lista->valor){
+            else if (escolha == '2')
+            {
+                if (novo->valor > lista->valor)
+                {
                     novo->prox = lista;
                     lista = novo;
                 }
 
-                else{
-                    Cheque* anterior = lista;
-                    Cheque* atual = lista->prox;
+                else
+                {
+                    Cheque *anterior = lista;
+                    Cheque *atual = lista->prox;
 
-                    while((atual != NULL) && atual->valor > novo->valor){
+                    while ((atual != NULL) && atual->valor > novo->valor)
+                    {
                         anterior = atual;
                         atual = novo->prox;
                     }
@@ -741,7 +834,8 @@ void lista_valor(char escolha){
     free(che);
     novo = lista;
 
-    while(novo != NULL){
+    while (novo != NULL)
+    {
         exibe_cheque(novo);
         espera();
         novo = novo->prox;
@@ -749,20 +843,22 @@ void lista_valor(char escolha){
 
     novo = lista;
 
-    while(lista != NULL){
+    while (lista != NULL)
+    {
         lista = lista->prox;
         free(novo);
         novo = lista;
     }
 
     fclose(fp);
-} 
+}
 
-void entre_data(void){
+void entre_data(char escolha)
+{
     system("clear||cls");
 
-    FILE* fp;
-    Cheque* che;
+    FILE *fp;
+    Cheque *che;
     char data_inicial[10];
     char data_final[10];
 
@@ -771,52 +867,71 @@ void entre_data(void){
     printf("       - - - - Listagem entre datas - - - -         \n");
     printf("                                                    \n");
     printf("____________________________________________________\n");
-    
-    fp = fopen("cheque.dat","rb");
-    che = (Cheque*)malloc(sizeof(Cheque));
 
-    if(fp == NULL){
+    fp = fopen("cheque.dat", "rb");
+    che = (Cheque *)malloc(sizeof(Cheque));
+
+    if (fp == NULL)
+    {
         printf("Não foi possível fazer a listagem");
     }
 
-    do{
+    do
+    {
         printf("\nColoque a data inicial: ");
         scanf(" %[0-9 / -]", data_inicial);
-    }while(!(data_str(data_inicial,0)));
+    } while (!(data_str(data_inicial, 0)));
 
-    do{
+    do
+    {
         printf("\nColoque a data final: ");
         scanf(" %[0-9 / -]", data_final);
-    }while(!(data_str(data_final,0)));
+    } while (!(data_str(data_final, 0)));
 
-    
-    while(fread(che,sizeof(Cheque),1,fp)){
-        if(compara(data_inicial,data_final,che->data_desconto) && (che->status != 'x')){
-            exibe_cheque(che);
-            espera();
+    if (escolha == '1')
+    {
+        while (fread(che, sizeof(Cheque), 1, fp))
+        {
+            if (compara(data_inicial, data_final, che->data_desconto) && (che->status != 'x'))
+            {
+                exibe_cheque(che);
+                espera();
+            }
+        }
+    }
+
+    else
+    {
+        while (fread(che, sizeof(Cheque), 1, fp))
+        {
+            if (compara(data_inicial, data_final, che->data_cadastro) && (che->status != 'x'))
+            {
+                exibe_cheque(che);
+                espera();
+            }
         }
     }
     fclose(fp);
     free(che);
 }
 
-
-int compara(char* inicial, char* final, char* arq){
+int compara(char *inicial, char *final, char *arq)
+{
     int dia_inicial, mes_inicial, ano_inicial;
     int dia_final, mes_final, ano_final;
     int dia_arq, mes_arq, ano_arq;
 
-    dia_inicial = converte_data(inicial,1);
-    mes_inicial = converte_data(inicial,2);
-    ano_inicial = converte_data(inicial,3);
+    dia_inicial = converte_data(inicial, 1);
+    mes_inicial = converte_data(inicial, 2);
+    ano_inicial = converte_data(inicial, 3);
 
-    dia_final = converte_data(final,1);
-    mes_final = converte_data(final,2);
-    ano_final = converte_data(final,3);
+    dia_final = converte_data(final, 1);
+    mes_final = converte_data(final, 2);
+    ano_final = converte_data(final, 3);
 
-    dia_arq = converte_data(arq,1);
-    mes_arq = converte_data(arq,2);
-    ano_arq = converte_data(arq,3);
+    dia_arq = converte_data(arq, 1);
+    mes_arq = converte_data(arq, 2);
+    ano_arq = converte_data(arq, 3);
 
     if ((ano_arq <= ano_final) && (ano_arq >= ano_inicial) && (ano_inicial < ano_final))
     {
