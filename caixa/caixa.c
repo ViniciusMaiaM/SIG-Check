@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <time.h> //biblioteca de data e hora
+#include <ctype.h>
 #include "caixa.h"
 #include "../cheque/cheque.h"
 #include "../cliente/cliente.h"
@@ -102,12 +103,14 @@ Caixa *cadastrar_caixa(void)
             getchar();
         }while (!verifica_cheque(cai->id_cheque, cai->cpf_cliente));
 
-        printf("\n\tEntrada ou saída(E/S): ");
-        scanf(" %c",&cai->entrada_saida_caixa);
-        getchar();
+        
+        do{
+            printf("\n\tEntrada ou saída(E/S): ");
+            scanf(" %c",&cai->entrada_saida_caixa);
+            cai->entrada_saida_caixa = toupper(cai->entrada_saida_caixa);
+        }while (!recebe_entrada(cai->entrada_saida_caixa));
 
         gera_desconto(cai->cpf_cliente);
-
         cai->valor_caixa = gera_valor(cai->cpf_cliente,cai->id_cheque);
         printf("\n\tValor do cheque: %.2f",cai->valor_caixa);
 
@@ -491,7 +494,7 @@ void gera_desconto(char* cpf){
     cai = (Caixa*)malloc(sizeof(Caixa));
     arq_caixa = fopen("caixa.dat","rb");
 
-    arq_cliente = fopen("cliente.dat","ab");
+    arq_cliente = fopen("cliente.dat","r+b");
     cli = (Cliente*)malloc(sizeof(Cliente));
 
 
@@ -589,4 +592,11 @@ void retirar_cheque(char* id){
     }
     free(che);
     fclose(fp);
+}
+
+int recebe_entrada(char input){
+    if(input == 'E' || input == 'S'){
+        return 1;
+    }
+    return 0;
 }

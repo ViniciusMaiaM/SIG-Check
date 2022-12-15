@@ -31,6 +31,7 @@ void retirar_cheque(char* id);
 int id_tra();
 int verifica_cheque(char* cheque, char* cpf);
 int cheque_cpf(char* cpf);
+int recebe_entrada(char input);
 
 float gera_valor(char* cpf, char* id);
 
