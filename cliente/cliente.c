@@ -417,7 +417,7 @@ void ler_email(char *email)
 void ler_nasc(char* data_nasc){
     do{
         printf("\n\tApenas Maiores de idade\n");
-        printf("\n\tData de nascimento: ");
+        printf("\n\tData de nascimento (dd/mm/aaaa): ");
         scanf(" %[0-9 / -]", data_nasc);
         getchar();
     } while (!data_str(data_nasc,0));

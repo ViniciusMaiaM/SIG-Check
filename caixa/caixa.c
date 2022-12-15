@@ -112,7 +112,7 @@ Caixa *cadastrar_caixa(void)
 
         do
         {
-            printf("\n\tData: ");
+            printf("\n\tData (dd/mm/aaaa): ");
             scanf(" %[0-9 / -]", cai->data_caixa);
             getchar();
         } while (!data_str(cai->data_caixa,1));
@@ -349,7 +349,7 @@ void att_caixa(Caixa *cai)
                 scanf("%f", &cai->valor_caixa);
                 do
                 {
-                    printf("\n\tData: ");
+                    printf("\n\tData (dd/mm/aaaa): ");
                     scanf(" %[0-9 / -]", cai->data_caixa);
                     getchar();
                 } while (!data_str(cai->data_caixa,1));

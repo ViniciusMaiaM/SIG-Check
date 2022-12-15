@@ -105,7 +105,7 @@ Cheque *cadastrar_cheque(void)
 
         do
         {
-            printf("          Data para ser descontado: ");
+            printf("          Data para ser descontado (dd/mm/aaaa): ");
             scanf(" %[0-9 / -]", che->data_desconto);
             getchar();
         } while (!data_str(che->data_desconto,1));
@@ -372,7 +372,7 @@ void att_cheque(Cheque *che)
 
                 case '4':
                     do{
-                        printf("          Data para ser descontado: ");
+                        printf("          Data para ser descontado(dd/mm/aaaa): ");
                         scanf(" %[0-9 / -]", che->data_desconto);
                         getchar();
                     } while (!data_str(che->data_desconto,1));
@@ -416,7 +416,7 @@ void att_cheque(Cheque *che)
                     che->valor = atof(valor);
                     
                     do{
-                        printf("          Data para ser descontado: ");
+                        printf("          Data para ser descontado(dd/mm/aaaa): ");
                         scanf(" %[0-9 / -]", che->data_desconto);
                         getchar();
                     } while (!data_str(che->data_desconto,1));
